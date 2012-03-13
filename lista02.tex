@@ -560,22 +560,26 @@
 
     \question
     \begin{parts}
-        \part Considere a matriz $I_n + u v^t$, com $u, v \in \mathbb{R}^n$ e $1 + v^t u \neq 0$. Verifique (por multiplica\c{c}\~{a}o direta), que $(I + u v^t)^{-1} = I - \frac{u v^t}{u v^t + 1}$.
+        \part Considere a matriz $I_n + u v^t$, com $u, v \in \mathbb{R}^n$ e $1 + v^t u \neq 0$. Verifique (por multiplica\c{c}\~{a}o direta), que $(I + u v^t)^{-1} = I - \frac{u v^t}{v^t u + 1}$.
         \begin{solution}
             \begin{align*}
-                \left( I + u v^t \right) \left( I - \frac{u v^t}{u v^t + 1} \right) &= I - \frac{u v^t}{u v^t + 1} + u v^t - \frac{u v^t u v^t}{u v^t + 1} \\
-                &= I + \frac{- u v^t + \left( u v^t + 1 \right) u v^t - u v^t u v^t}{u v^t + 1} \\
-                &= I + \frac{- u v^t + u v^t u v^t + u v^t - u v^t u v^t}{u v^t + 1} \\
+                \left( I + u v^t \right) \left( I - \frac{u v^t}{v^t u + 1} \right) &= I - \frac{u v^t}{v^t u + 1} + u v^t - \frac{u v^t u v^t}{v^t u + 1} \\
+                &= I + \frac{- u v^t + \left( v^t u + 1 \right) u v^t - u v^t u v^t}{v^t u + 1} \\
+                &= I + \frac{- u v^t + v^t u u v^t + u v^t - \left( v^t u \right) u v^t}{v^t u + 1} && v^t u \in \mathbb{R} \\
+                &= I + \frac{ v^t u u v^t - \left( v^t u \right) u v^t}{v^t u + 1} \\
+                &= I + \frac{ v^t u u v^t - v^t u u v^t}{v^t u + 1} \\
                 &= I.
             \end{align*}
         \end{solution}
 
         \part Considerando a f\'{o}rmula para a inversa dada no item anterior, obtenha a inversa de $(I - u v^t)$ e condi\c{c}\~{a}o para a exist\^{e}ncia da inversa desta matriz.
         \begin{solution}
-            Suponhamos que $\left( I - u v^t \right)^{-1} = I + \frac{u v^t}{- u v^t + 1}$, com $u, v \in \mathbb{R}^n$ e $\left( - u v^t + 1 \right) \neq 0$. Agora vamos verificar nossa suposi\c{c}\~{a}o por multiplica\c{c}\~{a}o direta.
+            Suponhamos que $\left( I - u v^t \right)^{-1} = I + \frac{u v^t}{- v^t u + 1}$, com $u, v \in \mathbb{R}^n$ e $\left( - u v^t + 1 \right) \neq 0$. Agora vamos verificar nossa suposi\c{c}\~{a}o por multiplica\c{c}\~{a}o direta.
             \begin{align*}
-                \left( I - uv^t \right) \left( I + \frac{u v^t}{u v^t + 1} \right) &= I + \frac{u v^t}{- u v^t + 1} - u v^t - \frac{u v^t u v^t}{- u v^t + 1} \\
-                &= I + \frac{u v^t + u v^t u v^t - u v^t + u v^t u v^t}{- u v^t + 1} \\
+                \left( I - uv^t \right) \left( I + \frac{u v^t}{- v^t u + 1} \right) &= I + \frac{u v^t}{- v^t u + 1} - u v^t - \frac{u v^t u v^t}{- v^t u + 1} \\
+                &= I + \frac{u v^t + u v^t v^t u - u v^t - u v^t u v^t}{- v^t u + 1} \\
+                &= I + \frac{u v^t v^t u - u v^t \left( v^t u \right)}{- v^t u + 1} && v^t u \in \mathbb{R} \\
+                &= I + \frac{u v^t v^t u - u v^t v^t u }{- v^t u + 1} \\
                 &= I.
             \end{align*}
         \end{solution}
@@ -584,7 +588,7 @@
         \begin{solution}
             Utilizando o resultado do item anterior temos que a inversa da matriz elementar $E = I - \alpha e_i e_k^t$ \'{e}
             \[
-            E^{-1} = I + \frac{\alpha e_i e_k^t}{- \alpha e_i e_k^t + 1}.
+            E^{-1} = I + \frac{\alpha e_i e_k^t}{- \alpha e_k^t e_i + 1}.
             \]
         \end{solution}
     \end{parts}
