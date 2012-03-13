@@ -1,0 +1,440 @@
+%        File: lista3.tex
+%     Created: Sun Mar 11 08:00 AM 2012 B
+% Last Change: Sun Mar 11 08:00 AM 2012 B
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 3}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+\newcommand{\EI}{\text{Im}}
+\newcommand{\EN}{\text{N}}
+\newcommand{\posto}{\text{posto}}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \section*{Matrizes com Estruturas de Blocos}
+    \question Considere as matrizes n\~{a}o singulares: $A: r \times s$ e $B: s \times r$.
+    \begin{parts}
+        \part Demonstre (sem usar multiplica\c{c}\~{a}o direta), que se
+        \[
+        M = \begin{bmatrix}
+            A & 0 \\
+            0 & B
+        \end{bmatrix}
+        \]
+        ent\~{a}o,
+        \[
+        M^{-1} = \begin{bmatrix}
+            A^{-1} & 0 \\
+            0 & B^{-1}
+        \end{bmatrix}.
+        \]
+        \begin{solution}
+            \begin{align*}
+                \left[ \begin{array}[]{cc|cc}
+                    A & 0 & I & 0 \\
+                    0 & B & 0 & I
+                \end{array} \right] &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & 0 & A^{-1} & 0 \\
+                    0 & B & 0 & I
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & 0 & A^{-1} & 0 \\
+                    0 & I & 0 & B^{-1}
+                \end{array} \right].
+            \end{align*}
+        \end{solution}
+
+        \part Se
+        \[
+        M = \begin{bmatrix}
+            A & C \\
+            0 & B
+        \end{bmatrix}
+        \]
+        ent\~{a}o,
+        \[
+        M^{-1} = \begin{bmatrix}
+            A^{-1} & - A^{-1} C B^{-1} \\
+            0 & B^{-1}
+        \end{bmatrix}.
+        \]
+        \begin{solution}
+            \begin{align*}
+                \left[ \begin{array}[]{cc|cc}
+                    A & C & I & 0 \\
+                    0 & B & 0 & I
+                \end{array} \right] &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    0 & B & 0 & I
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    0 & I & 0 & B^{-1}
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & 0 & A^{-1} & -A^{-1} C B^{-1} \\
+                    0 & I & 0 & B^{-1}
+                \end{array} \right].
+            \end{align*}
+        \end{solution}
+
+        \part Se
+        \[
+        M = \begin{bmatrix}
+            A & C \\
+            D & B
+        \end{bmatrix},
+        \]
+        $C: r \times s$ e $D: s \times r$, ent\~{a}o
+        \[
+        M ^{-1} = \begin{bmatrix}
+            A^{-1} + A^{-1} C S^{-1} D A^{-1} & -A^{-1} C S^{-1} \\
+            -S^{-1} D A^{-1} & S^{-1}
+        \end{bmatrix},
+        \]
+        onde $S = B - D A^{-1} C$ \'{e} o complemento de Schur de $A$. Observe que a condi\c{c}\~{a}o que $S$ tem que ser invers\'{i}vel surge no desenvolvimento do c\'{a}lculo da inversa de $M$.
+        \begin{solution}
+            \begin{align*}
+                \left[ \begin{array}[]{cc|cc}
+                    A & C & I & 0 \\
+                    D & B & 0 & I
+                \end{array} \right] &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    D & B & 0 & I
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    0 & B - D A^{-1} C & - D A^{-1} & I
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    0 & S & - D A^{-1} & I
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & A^{-1} C & A^{-1} & 0 \\
+                    0 & I & S^{-1} (- D A^{-1}) & S^{-1}
+                \end{array} \right] \\
+                &\equiv \left[ \begin{array}[]{cc|cc}
+                    I & 0 & A^{-1} + (A^{-1} C) S^{-1} (D A^{-1}) & -A^{-1} C S^{-1} \\
+                    0 & I & S^{-1} (- D A^{-1}) & S^{-1}
+                \end{array} \right].
+            \end{align*}
+        \end{solution}
+
+        \part Considere $M: (r + s) \times (r + s)$ dada por
+        \[
+        M = \begin{bmatrix}
+            A & C \\
+            D & B
+        \end{bmatrix},
+        \]
+        com $A: r \times r$ e $B: s \times s$. Verifique que esta matriz pode ser fatorada na forma $M = W Y$ onde
+        \[
+        W = \begin{bmatrix}
+            I_r & 0 \\
+            D A^{-1} & I_s
+        \end{bmatrix} \text{ e } Y = \begin{bmatrix}
+            A & C \\
+            0 & S
+        \end{bmatrix}.
+        \]
+        \begin{solution}
+            Para a verifica\c{c}\~{a}o utilizaremos a multiplica\c{c}\~{a}o direta:
+            \begin{align*}
+                M = W Y &= \begin{bmatrix}
+                    I_r & 0 \\
+                    D A^{-1} & I_s
+                \end{bmatrix} \begin{bmatrix}
+                    A & C \\
+                    0 & S
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A & C \\
+                    D & D A^{-1} C + S
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A & C \\
+                    D & D A^{-1} C + \left( B - D A^{-1} C \right)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A & C \\
+                    D & B
+                \end{bmatrix}.
+            \end{align*}
+        \end{solution}
+
+        \part Considerando a matriz $M$ do item anterior, demonstre que $\det (M) = \det (A) \det (S)$, onde $S = B - D A^{-1} C$ \'{e} o complemento de Schur de $A$.
+        \begin{solution}
+            Sabemos que
+            \[
+                \det (M) = \det (W) \det (Y)
+            \]
+            de modo que precisamos calcular $\det (W)$ e $\det (Y)$.
+
+            TODO n\~{a}o \'{e} poss\'{i}vel utilizar $\det (M) = \det (A B - C D)$ devido a dimens\~{a}o das matrizes.
+        \end{solution}
+
+        \part Repita os dois itens anteriores trabalhando com a forma fatorada de $M$, $M = W Y$, na qual um dos fatores depende do complemento de Schur de $B$, $T = A - C B^{-1} D$, obtendo assim o resultado:
+        \[
+        \det (M) = \det (B) \det (T) = \det (A) \det (S)
+        \]
+        \begin{solution}
+        
+        \end{solution}
+    \end{parts}
+
+    \section*{Subespa\c{c}os Fundamentais de A}
+    Os quatro espa\c{c}os fundamentais associados \`{a} matriz $A$ s\~{a}o:
+    \begin{itemize}
+        \item Espa\c{c}o coluna de $A$ ou espa\c{c}o imagem de $A$: $\EI (A) = \left\{ y \in \mathbb{R}^m \mid y = A x, x \in \mathbb{R}^n \right\}$,
+        \item N\'{u}cleo de $A$ ou espa\c{c}o nulo de $A$: $\EN (A) = \left\{ x \in \mathbb{R}^n \mid A x = 0 \right\}$,
+        \item Espa\c{c}o linha de $A$ ou espa\c{c}o coluna de $A^t$: $\EI (A^t) = \left\{ x \in \mathbb{R}^n \mid x = A^t y , y \in \mathbb{R}^m \right\}$,
+        \item N\'{u}cleo de $A^t$ ou espa\c{c}o nulo de $A^t$: $\EN (A^t) = \left\{ y \in \mathbb{R}^m \mid A^t y = 0 \right\}$.
+    \end{itemize}
+
+    \question Demonstre que o sistema linear $A x = b$ admite solu\c{c}\~{a}o se e somente se $\posto ([A \ b]) = \posto (A)$.
+    \begin{solution}
+        Primeiro vamos demonstrar que se o sistema linear $A x = b$ admite solu\c{c}\~{a}o ent\~{a}o $\posto ([A \ b]) = \posto (A)$.
+
+        Se o sistema linear $A x = b$ admite solu\c{c}\~{a}o existe $x^*$ tal que $b = \sum_j A_{\mdot j} x^*_j$, i.e., $b$ \'{e} uma combina\c{c}\~{a}o linear de $A$. Portanto, $\posto ([A \ b]) = \posto (A)$.
+
+        Agora vamos demonstrar que o $\posto ([A \ b]) = \posto (A)$ ent\~{a}o o sistema linear $A x = b$ admite solu\c{c}\~{a}o.
+
+        Se $\posto ([A \ b]) = \posto (A)$ o conjunto das colunas de $[A \ b]$ \'{e} linearmente dependente, i.e., existe $(\alpha, \beta)$ tal que
+        \begin{align*}
+            \left( \sum_j \alpha_j A_{\mdot j} + \beta b \right) &= 0 \\
+            \sum_j - \frac{\alpha_j}{\beta} A_{\mdot j} &= b.
+        \end{align*}
+        Logo, o sistema linear $A x = b$ admite solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Considere $x^*$ uma solu\c{c}\~{a}o de $A x = b$ e $S$ o conjunto das solu\c{c}\~{o}es de $A x = b$. Demonstre que $S = \left\{ x^* + z, \forall z \in \EN (A) \right\}$.
+    \begin{solution}
+        Seja $\bar{x} \in \left\{ x^* + z, \forall z \in \EN (A) \right\}$, ent\~{a}o
+        \begin{align*}
+            A \bar{x} &= A \left( x^* + z \right) && \bar{x} \in \left\{ x^* + z, \forall z \in \EN (A) \right\} \\
+            &= A x^* + A z \\
+            &= b + 0 && A x^* = b \text{ e } z \in \EN (A) \\
+            &= b.
+        \end{align*}
+    \end{solution}
+
+    \question Demonstre que a solu\c{c}\~{a}o do sistema linear \'{e} \'{u}nica se e somente se $\EN (A) = \left\{ 0 \right\}$.
+    \begin{solution}
+        Primeiro vamos demonstrar que se a solu\c{c}\~{a}o do sistema linear \'{e} \'{u}nica ent\~{a}o $\EN (A) = \left\{ 0 \right\}$.
+
+        Seja $x^*$ a solu\c{c}\~{a}o \'{u}nica do sistema linear $A x = b$ e $x = x^* + y$ qualquer ponto do dom\'{i}nio. Ent\~{a}o
+        \begin{align*}
+            A x &= A \left( x^* + y \right) \\
+            &= A x^* + A y \\
+            &= b + A y.
+        \end{align*}
+        Logo, se existir $y \neq 0$ tal que $A y = 0$ o sistema linear teria mais de uma solu\c{c}\~{a}o. Como o sistema linear admite uma \'{u}nica solu\c{c}\~{a}o concluimos que $\EN (A) = \left\{ 0 \right\}$.
+
+        Agora vamos demonstrar que se $\EN (A) = \left\{ 0 \right\}$ a solu\c{c}\~{a}o do sistema linear \'{e} \'{u}nica.
+
+        Como demonstrado anteriormente, o conjunto das solu\c{c}\~{o}es do sistema linear $A x = b$, denotado por $S$, \'{e} dado por $S = \left\{ x^* + z, \forall z \in \EN (A) \right\}$, onde $x^*$ \'{e} uma solu\c{c}\~{a}o do sistema linear. Se $\EN (A) = \left\{ 0 \right\}$ notamos que $S = \left\{ x^* \right\}$ e portanto a solu\c{c}\~{a}o dos sistema linear \'{e} \'{u}nica.
+    \end{solution}
+
+    \question Para todo $b \in \mathbb{R}^m$, o sistema linear $A x = b$, $A : m \times n$, admite uma \'{u}nica solu\c{c}\~{a}o se e somente se $m = n$ e $\posto (A) = n$.
+    \begin{solution}
+        Primeiro vamos mostrar que se o sistema linear $A x = b$, $A: m \times n$, admite uma \'{u}nica solu\c{c}\~{a}o para todo $b \in \mathbb{R}^m$ ent\~{a}o $m = n$ e $\posto (A) = n$.
+
+        Como o sistema linear admite solu\c{c}\~{a}o para todo $b \in \mathbb{R}^m$ temos que $A$ possue exatamente $m$ linhas ($m = n$) e no m\'{i}nimo $m$ colunas, sendo $m$ colunas linearmente independentes ($\posto (A) = n$). E como o sistema linear admite uma \'{u}nica solu\c{c}\~{a}o ent\~{a}o $A$ possue e$b$ \'{e} uma combina\c{c}\~{a}o linear das colunas de $A$ e as colunas de $A$ s\~{a}o linearmente independentes. 
+
+        Agora vamos mostrar que se $m = n$ e $\posto (A) = n$ ent\~{a}o o sistema linear $A x = b$, $A: m \times n$ admite uma \'{u}nica solu\c{c}\~{a}o.
+        
+    \end{solution}
+
+    \question Demonstre (sem usar o Teorema do N\'{u}cleo e Imagem) que $\EN (A) = \left\{ 0 \right\}$ se e somente se $A$ tem as $n$ colunas linearmente independentes.
+    \begin{solution}
+        Primeiro vamos mostrar que se $\EN (A) = \left\{ 0 \right\}$ ent\~{a}o $A$ tem as $n$ colunas linearmente independentes.
+
+        Se $\EN (A) = \left\{ 0 \right\}$ temos, como demonstrado anteriormente, que o sistema linear $A x = b$ admite uma \'{u}nica solu\c{c}\~{a}o e isso ocorre somente se as $n$ colunas de $A$ forem linearmente independentes.
+
+        Agora vamos mostrar que se $A$ tem as $n$ colunas linearmente independentes ent\~{a}o $\EN (A) = \left\{ 0 \right\}$.
+
+        Se $A$ tem as $n$ colunas linearmente independentes ent\~{a}o
+        \[
+        \sum_j \alpha_j A_{\mdot j} = 0 \leftrightarrow \alpha_j = 0, \  \forall j.
+        \]
+        Logo, $\EN (A) = \left\{ 0 \right\}$.
+    \end{solution}
+
+    \question Julgue verdadeiro ou falso a afirma\c{c}\~{a}o abaixo:
+    \begin{quote}
+        Se $A: m \times n$ para $n > m$ ent\~{a}o $\EN (A) \neq \left\{ 0 \right\}$.
+    \end{quote}
+    \begin{solution}
+        A afirma\c{c}\~{a}o \'{e} falsa pois se $A: m \times n$ para $n > m$ temos que pelo menos $\left( n - m \right)$ colunas de $A$ que s\~{a}o linearmente dependentes, i.e.,
+        \[
+        \exists \alpha_j \neq 0 \rightarrow \sum_j \alpha_j A_{\mdot j} = 0.
+        \]
+        Logo, $\EN (A) \neq \left\{ 0 \right\}$.
+    \end{solution}
+
+    \question Analisando os resultados demonstrados nos itens anteriores, fa\c{c}a um resumo colocando as condi\c{c}\~{o}es que a matriz $A: m \times n$ deve satisfazer para garatir a exist\^{e}ncia e unicidade da solu\c{c}\~{a}o de $A x = b$, para qualquer $b \in \mathbb{R}^m$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere o sistema linear $A x = b$ onde
+    \[
+    A = \begin{bmatrix}
+        2 & 5 \\
+        4 & 10
+    \end{bmatrix} \text{ e } b = \begin{bmatrix}
+        3 \\
+        6
+    \end{bmatrix}.
+    \]
+    Encontre o conjunto de solu\c{c}\~{o}es para este sistema linear e interprete geometricamente o resultado abaixo:
+    \begin{quote}
+        Conhecida uma solu\c{c}\~{a}o $x^*$ qualquer vetor da forma $x^* + w$ \'{e} solu\c{c}\~{a}o para o sistema linear onde $w$ \'{e} um vetor qualquer do $\EN (A)$.
+    \end{quote}
+    \begin{solution}
+        O conjunto solu\c{c}\~{a}o do sistema linear, denotado por $S$, \'{e} dado por
+        \[
+        S = \left\{ (x, y) \in \mathbb{R}^2 \mid x = \left( 3 - 5 y \right) / 2 \right\}.
+        \]
+
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+            % Eixos
+            \draw[color=gray!70] (0,0) grid (12,12);
+            \draw[->] (-0.5,0) -- (12.5,0) node[below] {$x$};
+            \draw[->] (0,-0.5) -- (0,12.5) node[left] {$y$};
+            % Colunas de A
+            \draw[->] (0,0) -- (2,4) node[below right] {$(2,4)$};
+            \draw[->] (0,0) -- (5,10) node[below right] {$(5,10)$};
+            % Vetor B
+            \draw[->] (0,0) -- (3,6) node[below right] {$(3,6)$};
+        \end{tikzpicture}
+        \end{center}
+    \end{solution}
+
+    \question Demonstre que $\EN (A^t)$ e $\EI (A)$ s\~{a}o complementos ortogonais em $\mathbb{R}^m$. E que $\EN (A)$ e $\EI (A^t)$ s\~{a}o complementos ortogonais em $\mathbb{R}^n$.
+    \begin{solution}
+        Seja $y \in \EI (A)$ e $z \in \EN (A^t)$, i.e., existe $x$ tal que $A x = y$ e $A^t z = 0$. Ent\~{a}o
+        \begin{align*}
+            A x &= y \\
+            \left( A x \right)^t &= y^t \\
+            x^t A^t &= y^t \\
+            x^t A^t z &= y^t z \\
+            x^t 0 &= y^t z && z \in \EN (A^t) \\
+            0 &= y^t z.
+        \end{align*}
+
+        Seja $y \in \EI (A^t)$ e $z \in \EN(A)$, i.e., existe $x$ tal que $A^t x = y$ e $A z = 0$. Ent\~{a}o
+        \begin{align*}
+            A^t x &= y \\
+            \left( A^t x \right)^t &= y^t \\
+            x^t A &= y^t \\
+            x^t A z &= y^t z \\
+            x^t 0 &= y^t z && z \in \EN (A) \\
+            0 &= y^t z.
+        \end{align*}
+    \end{solution}
+
+    \section*{Resultados para posto de matriz}
+
+    \question Demonstre que $\posto (A + B) \leq \posto (A) + \posto (B)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Se $A: m \times p$ e $B: p \times n$, demonstre que:
+    \begin{parts}
+        \part $\posto (A B) = \posto (B) - \dim (\EN (A) \cap \EI (B))$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\posto (A) + \posto (B) - p \leq \posto (A B) \leq \min \left\{ \posto (A), \posto (B) \right\}$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Para matrizes $A$ e $B$ demonstre que $\EI (A B) \subseteq \EI (A)$ e $\EN (B) \subseteq \EN (A B)$.
+    \begin{solution}
+        Pela defini\c{c}\~{a}o de espa\c{c}o imagem temos que
+        \begin{align*}
+            \EI (A B) &= \left\{ y \mid A B x = y \right\}, \\
+            \EI (A) &= \left\{ z \mid A w = z \right\}.
+        \end{align*}
+        Notamos ent\~{a}o que $\EI (A B) \subseteq \EI (A)$ pois \'{e} poss\'{i}vel que exista $w$ que n\~{a}o perten\c{c}a a imagem de $B$.
+
+        Pela defini\c{c}\~{a}o de espa\c{c}o nulo temos que
+        \begin{align*}
+            \EN (A B) &= \left\{ x \mid A B x = 0 \right\}, \\
+            \EN (B) &= \left\{ y \mid B y = 0 \right\}.
+        \end{align*}
+        Notamos ent\~{a}o que $\EN (B) \subseteq \EN (A B)$ pois para todo $y \in \EN (B)$ verifica-se $A B y = 0$ mas pode existir $x$ tal que $B x \neq 0$ mas $ A B x = 0$.
+        
+    \end{solution}
+
+    \question Demonstre que:
+    \begin{parts}
+        \part $\posto (A^t A) = \posto (A) = \posto (A A^t)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\EI (A^t A) = \EI (A^t)$ e $\EI (A A^t) = \EI (A)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\EN (A^t A) = \EN (A)$ e $\EN (A A^t) = \EN (A^t)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Considere o sistema linear $A x = b$, com $A : m \times n$ e o sistema $A^t A x = A^t b$ (sistema de equa\c{c}\~{o}es normais). Verifique se as informa\c{c}\~{o}es abaixo s\~{a}o verdadeiras ou falsas.
+    \begin{parts}
+        \part O sistema $A^t A x = A^t b$ sempre admite solu\c{c}\~{a}o, ainda que $A x = b$ n\~{a}o tenha solu\c{c}\~{a}o.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Se os sitema linear $A x = b$ admite solu\c{c}\~{a}o ent\~{a}o os dois sistemas possuem o mesmo cnjunto solu\c{c}\~{a}o.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+\end{questions}
+
+% \bibliographystyle{plain}
+% \bibliography{bibliography}
+\end{document}
+
+

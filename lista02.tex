@@ -1,0 +1,597 @@
+%        File: lista01_sol_ra092767.tex
+%     Created: qui mar 01 04:00  2012 HodB
+% Last Change: qui mar 01 04:00  2012 HodB
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 1}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Sobre os exerc\'{i}cios 11 e 12 da Lista de Exerc\'{i}cios No. 01:
+    \begin{parts}
+        \part Conforme visto no item (a) do exerc\'{i}cio 11, a rela\c{c}\~{a}o $\mbox{tr}(A) = \mbox{tr}(A^t)$ \'{e} verdadeira, por\'{e}m $\mbox{tr}(A) = \mbox{tr}(A^*)$ \'{e} falso. Quando consideramos a Hermetiana de $A$, o correto \'{e}: $\mbox{tr}(A) = \ldots$
+        \begin{solution}
+            Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz, temos
+            \[
+            \mbox{tr}(A) = \sum_i a_{ii}
+            \]
+            e
+            \[
+            \mbox{tr}(A^*) = \sum_i \overline{a_{ii}}.
+            \]
+
+            Quando consideramos a Hermitiana de $A$, temos que $A = A^*$ e conseguentemente $a_{ii} \in \mathbb{R}$. Logo, considerando a Hermitiana de $A$ \'{e} correto $\mbox{tr}(A) = \mbox{tr}(A^*)$.
+        \end{solution}
+
+        \part No item (c) do exerc\'{i}cio 12 demonstramos que: $\mbox{tr}\left( A^t B \right) = \mbox{tr}\left( A B^t) \right)$. Complete e demonstre: $\mbox{tr}(A^* B) = \ldots$
+        \begin{solution}
+            Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz, temos
+            \begin{align*}
+                \mbox{tr}\left( A^* B \right) &= \mbox{tr}\left( C \right) && C_{ij} = \sum_{r = 1}^n \overline{A_{ri}} B_{rj} \\
+                &= \sum_{s = 1}^n C_{ss} \\
+                &= \sum_{s = 1}^n \sum_{r = 1}^n \overline{A_{rs}} B_{rs}
+            \end{align*}
+            e
+            \begin{align*}
+                \mbox{tr}\left( A B^* \right) &= \mbox{tr}\left( D \right) && D_{ij} = \sum_{r = 1}^n A_{ir} \overline{B_{jr}} \\
+                &= \sum_{s = 1}^n D_{ii} \\
+                &= \sum_{s = 1}^n \sum_{r = 1}^n A_{sr} \overline{B_{rs}}.
+            \end{align*}
+            Utilizando das propriedades do conjugado complexo, temos
+            \[
+            \overline{\sum_{s = 1}^n \sum_{r = 1}^n A_{sr} \overline{B_{rs}}} = \sum_{s = 1}^n \sum_{r = 1}^n \overline{A_{sr}} B_{rs}.
+            \]
+            Logo, concluimos que $\mbox{tr}\left( A^* B \right) = \overline{\mbox{tr}\left( A B^* \right)}$.
+        \end{solution}
+    \end{parts}
+
+    \question Duas matrizes $A$ e $B$ s\~{a}o semelhantes se \dots
+    \begin{solution}
+        Duas matrizes $A$ e $B$ s\~{a}o semelhantes se existe uma matriz n\~{a}o-singular $P$ tal que $A = P^{-1} B P$.
+    \end{solution}
+
+    Demonstre que se $A$ e $B$ s\~{a}o semelhantes ent\~{a}o $\mbox{tr}(A) = \mbox{tr}(B)$.
+    \begin{solution}
+        Se $A$ e $B$ s\~{a}o semelhantes ent\~{a}o, por defini\c{c}\~{a}o, existe uma matriz n\~{a}o-singular $P$ tal que $A = P^{-1} B P$. Logo,
+        \[
+        \mbox{tr}(A) = \mbox{tr}(P^{-1} B P).
+        \]
+
+        Como demonstrado anteriormente, temos
+        \[
+        \mbox{tr}(A B C) = \mbox{tr}(B C A) = \mbox{tr}(C A B).
+        \]
+        Portanto,
+        \[
+        \mbox{tr}(A) = \mbox{tr}(P^{-1} B P) = \mbox{tr}(B P P^{-1}) = \mbox{tr}(B).
+        \]
+    \end{solution}
+
+    \question $A \in \mathbb{C}^{n \times n}$ \'{e} ortogonal se $A^t A = A A^t = I$ e \'{e} unit\'{a}ria se $A^* A = A A^* = I$.
+    \begin{parts}
+        \part Demonstre que uma matriz de permuta\c{c}\~{a}o \'{e} ortogonal e unit\'{a}ria.
+        \begin{solution}
+            Seja $p : \{1, \ldots, n\} \rightarrow \{1, \ldots, n\}$ uma fun\c{c}\~{a}o bijetora. Consideremos agora a matriz $A$ dada por
+            \[
+            \begin{bmatrix}
+                e_{p(1)} & e_{p(2)} & \ldots & e_{p(n)}
+            \end{bmatrix}.
+            \]
+            
+            Vamos primeiramente mostrar que a matriz $A$ \'{e} ortogonal. Para isso, verificamos que
+            \[
+            A^t A = \begin{bmatrix}
+                e_{p(1)}^t \\
+                e_{p(2)}^t \\
+                \vdots \\
+                e_{p(n)}^t
+            \end{bmatrix} \begin{bmatrix}
+                e_{p(1)} & e_{p(2)} & \ldots & e_{p(n)}
+            \end{bmatrix} = \begin{bmatrix}
+                1 & 0 & \ldots & 0 \\
+                0 & 1 & \ldots & 0 \\
+                \vdots & \vdots & \ddots & \vdots \\
+                0 & 0 & \ldots & 1
+            \end{bmatrix} = I.
+            \]
+            e
+            \[
+            A A^t = \begin{bmatrix}
+                e_{p(1)} & e_{p(2)} & \ldots & e_{p(n)}
+            \end{bmatrix} \begin{bmatrix}
+                e_{p(1)}^t \\
+                e_{p(2)}^t \\
+                \vdots \\
+                e_{p(n)}^t
+            \end{bmatrix} = \sum_{i = 1}^n e_{p(i)} e_{p(i)}^t = I.
+            \]
+            Logo, $A$ \'{e} ortogonal.
+            
+            Agora vamos mostrar que a matriz $A$ \'{e} unit\'{a}ria. Como $A \in \mathbb{R}^{n \times n}$ temos que $A^* = A^t$. Logo, $A^* A = A^t A = I$ e $A A^* = A A^t = I$ e assim concluimos que $A$ \'{e} unit\'{a}ria.
+        \end{solution}
+
+        \part O produto de matrizes unit\'{a}rias \'{e} uma matriz unit\'{a}ria?
+        \begin{solution}
+            Seja $A$ e $B$ matrizes unit\'{a}rias. Vamos verificar se $A B$ \'{e} uma matriz unit\'{a}ria.
+            
+            Primeiramente, vamos verificar que $(A B)^* (A B) = I$. Uma vez que $(A B)^* = B^* A^*$ temos que
+            \[
+            (A B)^* (A B) = B^* A^* A B = B^* I B = I
+            \]
+            pois $A$ e $B$ s\~{a}o matrizes unit\'{a}rias. 
+            
+            Agora vamos verificar que $\left( A B \right) \left( A B \right)^* = I$. Temos ent\~{a}o que
+            \[
+            \left( A B \right) \left( A B \right)^* = A B B^* A^* = A I A^* = I.
+            \]
+            Logo, concluimos que $A B$ \'{e} uma matriz unit\'{a}ria.
+        \end{solution}
+        
+        \part Demonstre que se $v \in \mathbb{C}^n$ e $v^* v = 1$, ent\~{a}o a matriz $H = (I - 2 v v^*)$ \'{e} Hermitiana e unit\'{a}ria. Conclua que esta matriz \'{e} involut\'{o}ria $H^2 = I$.
+        \begin{solution}
+            Verificamos que $H$ \'{e} Hermitiana pelos seguintes passos:
+            \[
+            H^* = (I - 2 v v^*)^* = I^* - 2 (v v^*)^* = I - 2 (v^*)^* v^* = I - 2 v v^* = H.
+            \]
+            
+            Verificamos que $H$ \'{e} unit\'{a}ria pelos seguintes passos:
+            \begin{align*}
+            H^* H &= H H = H^2 \\
+            &= (I - 2 v v^*) (I - 2 v v^*) \\
+            &= I - 4 v v^* + 4 v v^* v v^* \\
+            &= I - 4 v v^* + 4 v v^* && \mbox{Hip\'{o}tese: } v^* v = 1 \\
+            &= I.
+            \end{align*}
+            Pelos passos acima tamb\'{e}m verificamos que $H$ \'{e} involunt\'{o}ria.
+        \end{solution}
+        
+        \part Considere a matriz unit\'{a}ria $A \in \mathbb{C}^{n \times n}$ particionada em $A = \begin{bmatrix} A_1 & A_2 \end{bmatrix}$ onde $A_1 : n \times k$ e $A_2 : n \times (n - k)$. Complete e demonstre a afirma\c{c}\~{a}o abaixo:
+        \begin{quote}
+            $A_1^* A_1 = \ldots$, $A_2^* A_2 = \ldots$, $A_1^* A_2 = \ldots$.
+        \end{quote}
+        \begin{solution}
+            Como $A$ \'{e} unit\'{a}ria temos que $A A^* = A^* A = I$, logo
+            \[
+            A^* A = \begin{bmatrix}
+                A_1^* \\
+                A_2^*
+            \end{bmatrix} \begin{bmatrix}
+                A_1 & A_ 2
+            \end{bmatrix} = \begin{bmatrix}
+                A_1^* A_1 & A_1^* A_2 \\
+                A_2^* A_1 & A_2^* A_ 2
+            \end{bmatrix} = I.
+            \]
+            
+            Portanto, $A_1^* A = I_k$, $A_2^2 A_2 = I_{n - k}$ e $A_1^* A_2 = 0$.
+        \end{solution}
+    \end{parts}
+    
+    \question \hfill
+    \begin{parts}
+        \part Verifique que o produto entre duas matrizes $A : m \times p$ e $B : p \times n$ pode ser escrito como $C = \sum_{k=1}^p A(1:m,k) B(k,1:n)$, isto \'{e}, $C$ \'{e} a soma de matrizes obtidas pelo \textit{outer product} entre a coluna $k$ de $A$ e a linha $k$ de $B$, $k = 1, \ldots, p$.
+        \begin{solution}
+            Considerando a coluna $k$ de $A$ e a linha $k$ de $B$ temos
+            \begin{align*}
+                A(1:m, k) B(k, 1:n) &= \begin{bmatrix}
+                    A_{1,k} \\
+                    A_{2,k} \\
+                    \vdots \\
+                    A_{m,k}
+                \end{bmatrix} \begin{bmatrix}
+                    B_{k,1} & B_{k,2} & \ldots & B_{k,n}
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A_{1,k} B_{k,1} & A_{1,k} B_{k,2} & \ldots & A_{1,k} B_{k,n} \\
+                    A_{2,k} B_{k,1} & A_{2,k} B_{k,2} & \ldots & A_{2,k} B_{k,n} \\
+                    \vdots & \vdots &\ddots & \vdots \\
+                    A_{m,k} B_{k,1} & A_{m,k} B_{k,2} & \ldots & A_{m,k} B_{k,n}
+                \end{bmatrix}.
+            \end{align*}
+            Logo, podemos escrever $C = \sum_{k = 1}^p A(1:m, k) B(k,1:n)$ como
+            \[
+            \begin{bmatrix}
+                \sum_{k = 1}^p A_{1,k} B_{k,1} & \sum_{k = 1}^p A_{1,k} B_{k,2} & \ldots & \sum_{k = 1}^p A_{1,k} B_{k,n} \\
+                \sum_{k = 1}^p A_{2,k} B_{k,1} & \sum_{k = 1}^p A_{2,k} B_{k,2} & \ldots & \sum_{k = 1}^p A_{2,k} B_{k,n} \\
+                \vdots & \vdots &\ddots & \vdots \\
+                \sum_{k = 1}^p A_{m,k} B_{k,1} & \sum_{k = 1}^p A_{m,k} B_{k,2} & \ldots & \sum_{k = 1}^p A_{m,k} B_{k,n}
+            \end{bmatrix}
+            \]
+            que corresponde a defini\c{c}\~{a}o do produto matricial.
+        \end{solution}
+        
+        \part Exemplifique as poss\'{i}veis interpreta\c{c}\~{o}es do produto entre matrizes, $C = AB$. (Considere as dimens\~{o}es: $A : 3 \times 2$, $B : 2 \times 4$.)
+        
+        Matriz $C$ como combina\c{c}\~{a}o linear das colunas de $A$.
+        \begin{solution}
+            \[
+            \begin{bmatrix}
+                \left(\begin{split}B_{11} \begin{bmatrix}
+                    A_{11} \\
+                    A_{21} \\
+                    A_{31}
+                \end{bmatrix} + \\ B_{21} \begin{bmatrix}
+                    A_{12} \\
+                    A_{22} \\
+                    A_{32}
+                \end{bmatrix}\end{split}\right) & \left(\begin{split}B_{12} \begin{bmatrix}
+                    A_{11} \\
+                    A_{21} \\
+                    A_{31}
+                \end{bmatrix} + \\ B_{22} \begin{bmatrix}
+                    A_{12} \\
+                    A_{22} \\
+                    A_{32}
+                \end{bmatrix}\end{split}\right) & \left(\begin{split}B_{13} \begin{bmatrix}
+                    A_{11} \\
+                    A_{21} \\
+                    A_{31}
+                \end{bmatrix} + \\ B_{23} \begin{bmatrix}
+                    A_{12} \\
+                    A_{22} \\
+                    A_{32}
+                \end{bmatrix}\end{split}\right) & \left(\begin{split}B_{14} \begin{bmatrix}
+                    A_{11} \\
+                    A_{21} \\
+                    A_{31}
+                \end{bmatrix} + \\ B_{24} \begin{bmatrix}
+                    A_{12} \\
+                    A_{22} \\
+                    A_{32}
+                \end{bmatrix}\end{split}\right)
+            \end{bmatrix}
+            \]
+        \end{solution}
+
+        Matriz $C$ como combina\c{c}\~{a}o linear das linhas de $B$.
+        \begin{solution}
+            \[
+            \begin{bmatrix}
+                A_{11} \begin{bmatrix}
+                    B_{11} & B_{12} & B_{13} & B_{14}
+                \end{bmatrix} + A_{12} \begin{bmatrix}
+                    B_{21} & B_{22} & B_{23} & B_{24}
+                \end{bmatrix} \\
+                A_{21} \begin{bmatrix}
+                    B_{11} & B_{12} & B_{13} & B_{14}
+                \end{bmatrix} + A_{22} \begin{bmatrix}
+                    B_{21} & B_{22} & B_{23} & B_{24}
+                \end{bmatrix} \\
+                A_{31} \begin{bmatrix}
+                    B_{11} & B_{12} & B_{13} & B_{14}
+                \end{bmatrix} + A_{32} \begin{bmatrix}
+                    B_{21} & B_{22} & B_{23} & B_{24}
+                \end{bmatrix}
+            \end{bmatrix}
+            \]
+        \end{solution}
+
+        Matriz C obtida na forma \textit{outer product} descrita no item (a).
+        \begin{solution}
+            \[
+            \begin{split}
+                \begin{bmatrix}
+                    A_{11} B_{11} & A_{11} B_{12} & A_{11} B_{13} & A_{11} B_{14} \\
+                    A_{21} B_{11} & A_{21} B_{12} & A_{21} B_{13} & A_{21} B_{14} \\
+                    A_{31} B_{11} & A_{31} B_{12} & A_{31} B_{13} & A_{31} B_{14} \\
+                    A_{41} B_{11} & A_{41} B_{12} & A_{41} B_{13} & A_{41} B_{14} \\
+                \end{bmatrix} + \begin{bmatrix}
+                    A_{11} B_{21} & A_{11} B_{22} & A_{11} B_{23} & A_{11} B_{24} \\
+                    A_{21} B_{21} & A_{21} B_{22} & A_{21} B_{23} & A_{21} B_{24} \\
+                    A_{31} B_{21} & A_{31} B_{22} & A_{31} B_{23} & A_{31} B_{24} \\
+                    A_{41} B_{21} & A_{41} B_{22} & A_{41} B_{23} & A_{41} B_{24} \\
+                \end{bmatrix} + \\ \begin{bmatrix}
+                    A_{12} B_{11} & A_{12} B_{12} & A_{12} B_{13} & A_{12} B_{14} \\
+                    A_{22} B_{11} & A_{22} B_{12} & A_{22} B_{13} & A_{22} B_{14} \\
+                    A_{32} B_{11} & A_{32} B_{12} & A_{32} B_{13} & A_{32} B_{14} \\
+                    A_{42} B_{11} & A_{42} B_{12} & A_{42} B_{13} & A_{42} B_{14} \\
+                \end{bmatrix} + \begin{bmatrix}
+                    A_{12} B_{21} & A_{12} B_{22} & A_{12} B_{23} & A_{12} B_{24} \\
+                    A_{22} B_{21} & A_{22} B_{22} & A_{22} B_{23} & A_{22} B_{24} \\
+                    A_{32} B_{21} & A_{32} B_{22} & A_{32} B_{23} & A_{32} B_{24} \\
+                    A_{42} B_{21} & A_{42} B_{22} & A_{42} B_{23} & A_{42} B_{24} \\
+                \end{bmatrix} 
+            \end{split}
+            \]
+        \end{solution}
+    \end{parts}
+
+    \question
+    \begin{parts}
+        \part Dada $A : n \times n$, qual a rela\c{c}\~{a}o entre as linhas de $A$ e $P A$ e colunas de $A$ e $A P$, onde
+        \[
+        P = \begin{bmatrix}
+            0 & 1 & 0 & \ldots & 0 \\
+            0 & 0 & 1 & \ldots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 0 & \ldots & 1 \\
+            1 & 0 & 0 & \ldots & 0
+        \end{bmatrix}.
+        \]
+        \begin{solution}
+            Em rela\c{c}\~{a}o a $A$ e $P A$ verificamos que ao arrancarmos a primeira linha de $A$ e adicionarmos ela ap\'{o}s a \'{u}ltima linha obtemos $P A$.
+
+            E em rela\c{c}\~{a}o a $A$ e $A P$ verificamos que ao arrancarmos a \'{u}ltima coluna de $A$ e adicionarmos ela antes da primeira coluna obtemos $A P$.
+        \end{solution}
+
+        \part E para
+        \[
+        P = \begin{bmatrix}
+            0 & 0 & 0 & \ldots & 1 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 1 & \ldots & 0 \\
+            0 & 1 & 0 & \ldots & 0 \\
+            1 & 0 & 0 & \ldots & 0
+        \end{bmatrix}.
+        \]
+        \begin{solution}
+            Em rela\c{c}\~{a}o a $A$ e $P A$ verificamos que a $i$-\'{e}sima linha de $A$ corresponde a $(n - i + 1)$-\'{e}sima linha de $P A$.
+
+            E em rela\c{c}\~{a}o a $A$ e $A P$ verificamos que a $i$-\'{e}sima coluna de $A$ corresponde a $(n - i + 1)$-\'{e}sima coluna de $A P$.
+        \end{solution}
+    \end{parts}
+
+    \question Considere $A : n \times n$, o sistema linear $A x = b$ e $P : n \times n$ uma matriz de permuta\c{c}\~{a}o.
+    \begin{parts}
+        \part Como obter a solu\c{c}\~{a}o do sistema linear $A x = b$, resolvendo um sistema linear com matriz de coeficientes $B = P A$?
+        \begin{solution}
+            A solu\c{c}\~{a}o do sistema \'{e} dada por $x = B^{-1} P b$, pois
+            \begin{align*}
+                A x &= b \\
+                P A x &= P b \\
+                B x &= P b && B = P A \\
+                x &= B^{-1} P b.
+            \end{align*}
+        \end{solution}
+
+        \part E com um sistema linear com matriz de coeficientes $C = A P$?
+        \begin{solution}
+            A solu\c{c}\~{a}o do sistema \'{e} dada por $x = P C^{-1} b$, pois
+            \begin{align*}
+                A x &= b \\
+                A P P^{-1} x &= b \\
+                C P^{-1} x &= b && A P = C \\
+                P^{-1} x &= C^{-1} b \\
+                x &= P C^{-1} b.
+            \end{align*}
+        \end{solution}
+
+        \part E com um sistema linear com matrix de coeficientes $G = P A Q$?
+        \begin{solution}
+            A solu\c{c}\~{a}o do sistema \'{e} dada por $x = Q G^{-1} P b$, pois
+            \begin{align*}
+                A x &= b \\
+                P A x &= P b \\
+                P A Q Q^{-1} x &= P b \\
+                G Q^{-1} x &= P b && G = P A Q \\
+                Q^{-1} x &= G^{-1} P b \\
+                x &= Q G^{-1} P b.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Considere $A : n \times n$, o sistema linear $A x = b$ e a matriz diagonal $D : n \times n$.
+    \begin{parts}
+        \part Como obter a solu\c{c}\~{a}o do sistema linear $A x = b$, resolvendo um sistema linear com matriz de coeficientes $B = D A$?
+        \begin{solution}
+            A solu\c{c}\~{a} do sistema \'{e} dada por $x = B^{-1} D b$, pois
+            \begin{align*}
+                A x &= b \\
+                D A x &= D b \\
+                B x &= D b && B = D A \\
+                x &= B^{-1} D b.
+            \end{align*}
+        \end{solution}
+
+        \part E com matriz de coeficientes $C = A D$?
+        \begin{solution}
+            A solu\c{c}\~{a}o do sistema \'{e} dada por $x = D C^{-1} b$, pois
+            \begin{align*}
+                A x &= b \\
+                A D D^{-1} x &= b \\
+                C D^{-1} x &= b && C = A D \\
+                D^{-1} x &= C^{-1} b \\
+                x &= D C^{-1} b.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Considere a matriz $A : n \times n$, sim\'{e}trica. Como devemos realizar permuta\c{c}\~{o}es sobre as linhas e/ou colunas de $A$ de modo que a matriz resultante seja tamb\'{e}m sim\'{e}trica?
+    \begin{solution}
+        Seja $A: n \times n$ uma matrix sim\'{e}trica, $A = A^t$, e $P: n \times n$ uma matriz de permuta\c{c}\~{a}o. A matriz $P A P^t$ \'{e} sim\'{e}trica pois
+        \[
+        \left( P A P^t \right)^t = \left( P^t \right)^t \left( P A \right)^t = P A^t P^t = P A P^t.
+        \]
+
+        Logo, para que uma matriz sim\'{e}trica continue sim\'{e}trica ap\'{o}s uma permuta\c{c}\~{a}o devemos permutar linhas e colunas correspondentes.
+    \end{solution}
+
+    \question Considere $A \in \mathbb{R}$, $n \times n$, $b \in \mathbb{R}^n$ e a fun\c{c}\~{a}o $\phi(x) = 0.5x^ t A x - x^t b$.
+    \begin{parts}
+        \part Mostre que o gradiente de $\phi$ \'{e} dado por $\nabla \phi(x) = 0.5(A^t + A)x - b$.
+        \begin{solution}
+            Sabemos que
+            \[
+            \frac{d}{dx}x^t a = \frac{d}{dx}a^t x = a.
+            \]
+            e consequentemente
+            \[
+            \frac{d}{dx} x^t A = A.
+            \]
+
+            Ent\~{a}o
+            \begin{align*}
+                \nabla \phi(x) &= \frac{d}{dx} \left( 0.5 x^t A x - x^t b \right) \\
+                &= 0.5 \frac{d}{dx} \left( x^t A x \right) - \frac{d}{dx} x^t b \\
+                &= 0.5 \left( \frac{d\left( x^t \right)}{dx} A x + x^t A \frac{d \left( x \right)}{dx} \right) - b \\
+                &= 0.5 \left( x^t A^t \frac{d \left( x \right)}{dx} + x^t A \frac{d \left( x \right)}{dx} \right) - b \\
+                &= 0.5 \left( A x + A^t x \right) - b \\
+                &= 0.5 \left( A + A^t \right) x - b.
+            \end{align*}
+        \end{solution}
+
+        \part Como fica esta express\~{a}o se a matriz $A$ for sim\'{e}trica?
+        \begin{solution}
+            Se a matriz $A$ for sim\'{e}trica ent\~{a}o $A = A^t$ e portanto a express\~{a}o fica
+            \[
+            \nabla \phi(x) = 0.5 \left( A + A \right) x - b = 0.5 \left( 2 A \right) x - b = A x - b.
+            \]
+        \end{solution}
+    \end{parts}
+
+    \question[Apenas leitura] A se\c{c}\~{a}o 2.1 do Meyer\nocite{Meyer:2000:matrix} apresenta a seguinte defini\c{c}\~{a}o para posto de uma matriz:
+    \begin{quote}
+        Supondo $A : m \times n$ reduzida, atrav\'{e}s de opera\c{c}\~{o}es elementares sobre linhas, \`{a} forma escalonada, \textit{echelon form}, matriz $U$. O posto (\textit{rank}) de $A$ \'{e} definido pelo n\'{u}mero de piv\^{o}s\footnote{Piv\^{o}: primeira entrada n\~{a}o nula de cada linha} $\Leftrightarrow$ n\'{u}mero de linhas n\~{a}o nulas de $U$ $\Leftrightarrow$ n\'{u}mero de colunas b\'{a}sicas\footnote{Colunas b\'{a}sicas de $A$ s\~{a}o definidas pelas colunas que contem a posi\c{c}\~{a}o pivotal} de $A$.
+    \end{quote}
+
+    Considerando o subespa\c{c}o vetorial gerado pelas colunas de $A$:
+    \begin{align*}
+        \mbox{Im} (A) &= \mbox{span} \left\{ a_1, a_2, \ldots, a_n \right\} \mbox{ onde $a_j$ denota coluna $j$ ou} \\
+        \mbox{Im} (A) &= \left\{ w \in \mathbb{R}^m \mid w = A x, x \in \mathbb{R}^n \right\},
+    \end{align*}
+    o posto de $A$ pode ser equivalentemente definido como dimens\~{a}o de $\mbox{Im} (A)$ ou dimens\~{a}o do espa\c{c}o coluna de $A$ (conforme Golub\nocite{Golub:1996:matrix} , sec.2.1.2).
+
+    \question[exerc\'{i}cio 3.9.9 Meyer\nocite{Meyer:2000:matrix}] Demonstre que posto de $A : m \times n$ \'{e} igual a $1$ se e somente se $A = u v^t$, onde $u$ e $v$ s\~{a}o vetores n\~{a}o nulos, $u \in \mathbb{R}^m$ e $v \in \mathbb{R}^n$.
+    \begin{solution}
+        Primeiro vamos demonstrar que se posto de $A$ \'{e} igual a $1$ ent\~{a}o $A = u v^t$.
+        
+        Se o posto de $A$ \'{e} igual a $1$ ent\~{a}o $A$ possue apenas uma coluna linearmente independente e consequentemente as demais colunas s\~{a}o m\'{u}ltiplas dela. Digamos que $u$ \'{e} a coluna linearmente independente ent\~{a}o podemos construir $A$ pelo produto externo $u v^t$ onde $v$ \'{e} o vetor com os m\'{u}ltiplos de $u$ que caracteriza as demais colunas.
+
+        Agora vamos demonstrar que se $A = u v^t$ ent\~{a}o o posto de $A$ \'{e} igual a $1$. 
+
+        Se $A = u v^t$ notamos que cada coluna de $A$ \'{e} m\'{u}ltiplo de $u$ e portanto existe apenas uma \'{u}nica coluna linearmente independente em $A$. Como o posto de uma matriz pode ser interpretado como o n\'{u}mero de colunas linearmente independentes temos que o posto de $A$ \'{e} igual a $1$.
+    \end{solution}
+
+    \question Demonstre que $A = u v^t$ ent\~{a}o, $A^2 = \sigma A$, onde $\sigma = \mbox{tr}(A)$.
+    \begin{solution}
+        Se $A = u v^t$ ent\~{a}o
+        \begin{align*}
+            A^2 &= A A \\
+            &= u v^t u v^t && A = u v^t \\
+            &= u \sigma v^t && v^t u = \sigma \in \mathbb{R} \\
+            &= \sigma u v^t
+            &= \sigma A. && A = u v^t
+        \end{align*}
+
+        Como $\sigma$ \'{e} o produto interno de $u$ por $v$ temos que
+        \[
+        \sigma = u v^t = \sum_i = u_i v_i.
+        \]
+        E pela defini\c{c}\~{a}o de produto externo temos que
+        \[
+        A = u v^t = \begin{bmatrix}
+            u_1 v_1 & u_1 v_2 & \ldots \\
+            u_2 v_1 & u_2 v_2 & \ldots \\
+            \vdots & \vdots & \ddots
+        \end{bmatrix}.
+        \]
+        Ent\~{a}o $\mbox{tr}(A) = \sum_i u_i v_i = \sigma$.
+
+    \end{solution}
+
+    \question Verifique que as opera\c{c}\~{o}es elementares sobre as linhas de uma matriz podem ser representadas por matrizes elementares: $E = I + u v^t$.
+    \begin{parts}
+        \part Permuta\c{c}\~{a}o das linhas $i$ e $k$: $E = I - u u^t$ com $u = (e_i - e_k)$.
+        \begin{solution}
+            Sem perda de generalidade, considerando $i < k$ a matrix obtida pelo produto externo $u u^t$, $u = \left( e_i - e_k \right)$, corresponde a
+            \begin{align*}
+                u u^t &= \begin{bmatrix}
+                    u_1 u_1 & u_1 u_2 & \ldots & u_1 u_i & \ldots & u_1 u_k & \ldots & u_1 u_n \\
+                    u_2 u_1 & u_2 u_2 & \ldots & u_2 u_i & \ldots & u_2 u_k & \ldots & u_2 u_n \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    u_i u_1 & u_i u_2 & \ldots & u_i u_i & \ldots & u_i u_k & \ldots & u_i u_n \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    u_k u_1 & u_k u_2 & \ldots & u_k u_i & \ldots & u_k u_k & \ldots & u_k u_n \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    u_n u_1 & u_n u_2 & \ldots & u_n u_i & \ldots & u_n u_k & \ldots & u_n u_n 
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    0 & 0 & \ldots & 0 & \ldots & 0 & \ldots & 0 \\
+                    0 & 0 & \ldots & 0 & \ldots & 0 & \ldots & 0 \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \ldots & 1 & \ldots & -1 & \ldots & 0 \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \ldots & -1 & \ldots & 1 & \ldots & 0 \\
+                    \vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+                    0 & 0 & \ldots & 0 & \ldots & 0 & \ldots & 0 
+                \end{bmatrix} 
+            \end{align*}
+
+            Pela matrix acima verifica-se que $E = I - u u^t$ corresponde a matrix de permuta\c{c}\~{a}o das linhas $i$ e $k$.
+        \end{solution}
+
+        \part Multiplicar a linha $i$ por uma constante $\alpha$ n\~{a}o nula: $E = I - (1 - \alpha)e_i e_i^t$.
+        \begin{solution}
+            O produto externo $e_i e_i^t$ produz uma matriz com um \'{u}nico elemento n\~{a}o nulo na posi\c{c}\~{a}o $ii$ que \'{e} igual a $1$. Deste modo $E = I - (1 - \alpha) e_i e_i^t$ corresponde a multiplicar a linha $i$ por uma constante $\alpha$ n\~{a}o nula.
+        \end{solution}
+
+        \part Adicionar a uma linha $i$ um m\'{u}ltiplo da linha $k$: $E = I + \alpha e_i e_k^t$.
+        \begin{solution}
+            O produto externo $e_i e_k^t$ produz uma matriz com um elemento n\~{a}o nulo localizados na posi\c{c}\~{a}o $ik$ que \'{e} igual a $1$. Deste modo $E = I + \alpha e_i e_k^t$ corresponde a adicionar a uma linha $i$ um $\alpha$ vezes a linha $k$.
+        \end{solution}
+    \end{parts}
+
+    \question
+    \begin{parts}
+        \part Considere a matriz $I_n + u v^t$, com $u, v \in \mathbb{R}^n$ e $1 + v^t u \neq 0$. Verifique (por multiplica\c{c}\~{a}o direta), que $(I + u v^t)^{-1} = I - \frac{u v^t}{u v^t + 1}$.
+        \begin{solution}
+            \begin{align*}
+                \left( I + u v^t \right) \left( I - \frac{u v^t}{u v^t + 1} \right) &= I - \frac{u v^t}{u v^t + 1} + u v^t - \frac{u v^t u v^t}{u v^t + 1} \\
+                &= I + \frac{- u v^t + \left( u v^t + 1 \right) u v^t - u v^t u v^t}{u v^t + 1} \\
+                &= I + \frac{- u v^t + u v^t u v^t + u v^t - u v^t u v^t}{u v^t + 1} \\
+                &= I.
+            \end{align*}
+        \end{solution}
+
+        \part Considerando a f\'{o}rmula para a inversa dada no item anterior, obtenha a inversa de $(I - u v^t)$ e condi\c{c}\~{a}o para a exist\^{e}ncia da inversa desta matriz.
+        \begin{solution}
+            Suponhamos que $\left( I - u v^t \right)^{-1} = I + \frac{u v^t}{- u v^t + 1}$, com $u, v \in \mathbb{R}^n$ e $\left( - u v^t + 1 \right) \neq 0$. Agora vamos verificar nossa suposi\c{c}\~{a}o por multiplica\c{c}\~{a}o direta.
+            \begin{align*}
+                \left( I - uv^t \right) \left( I + \frac{u v^t}{u v^t + 1} \right) &= I + \frac{u v^t}{- u v^t + 1} - u v^t - \frac{u v^t u v^t}{- u v^t + 1} \\
+                &= I + \frac{u v^t + u v^t u v^t - u v^t + u v^t u v^t}{- u v^t + 1} \\
+                &= I.
+            \end{align*}
+        \end{solution}
+
+        \part Obtenha a inversa da matriz elementar: $E = I - \alpha e_i e_k^t$.
+        \begin{solution}
+            Utilizando o resultado do item anterior temos que a inversa da matriz elementar $E = I - \alpha e_i e_k^t$ \'{e}
+            \[
+            E^{-1} = I + \frac{\alpha e_i e_k^t}{- \alpha e_i e_k^t + 1}.
+            \]
+        \end{solution}
+    \end{parts}
+\end{questions}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
+
+
