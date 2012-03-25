@@ -1,0 +1,176 @@
+% Filename: lista06.tex
+% This code is part of solu\c{c}\~{o}es de matrizes.
+% 
+% Description: lista 06
+% 
+% Created: 25.03.12 04:31:30 PM
+% Last Change: 25.03.12 05:19:10 PM
+% 
+% Author: Raniere Gaia Costa da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia Costa da Silva. All rights reserved.
+% 
+% This file is license under the terms of the
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 7}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question A elimina\c{c}\~{a}o dos elementso $A_{ik}, i = k + 1, \ldots, n$ \'{e} realizada atrav\'{e}s de uma sequ\^{e}ncia de opera\c{c}\~{o}es elementares: multiplicar a linha $k$ por $m_{ik}$ e subtrair o resultado da linha $i$, $i = k + 1, \ldots, n$. Esta sequ\^{e}ncia de opera\c{c}\~{o}es comp\~{o}e a Transforma\c{c}\~{a}o de Gauss, $M_k$ da etapa $k$. Demonstre que:
+    \begin{parts}
+        \part Cada opera\c{c}\~{a}o elementar corresponde a pr\'{e}-multiplicar a matriz por $E_i = I - m_{ik} e_i e_k^t$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $M_k = E_n E_{n - 1} \ldots E_{k + 1} = I - \sum_{i = k + 1}^n m_{ik} e_i e_k^t = I - \gamma_k e_k^t$, onde $\gamma_k : n \times 1$, $\gamma_k(i) = 0, i = 1, \ldots, k$ e $\gamma_k(i) = m_{ik}, i = k + 1, \ldots, n$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre que a matriz $L = \left( M_{n - 1} M_{n - 2} \ldots M_2 M_1 \right)^{-1} = I + \sum_{k = 1}^n \gamma_k e_k^t$, se os fatores $L$ e $U$ s\~{a}o calculados pelo processo de Elimina\c{c}\~{a}o de Gauss sem estrat\'{e}gia de pivoteamento parcial.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question $P = I - u u^t$, $u = e_r - e_s$ representa a permuta\c{c}\~{a}o das linhas $r$ e $s$:
+    \begin{parts}
+        \part Demonstre que $P^{-1} = P$ e portanto, $P^2 = I$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Demonstre que $P M_k P = I - \tilde{\gamma}_k e_k^t = M_k$ onde $\tilde{\gamma}_k$ \'{e} o vetor $\gamma_k$ com os multiplicadores $m_{rk}$ e $m_{sk}$, $r > k$ e $s > k$, permutados.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Se os fatores $L$ e $U$ s\~{a}o obtidos atrav\'{e}s da Elimina\c{c}\~{a}o de Gauss com pivoteamento parcial, represente $P$ e $L$ de acordo com as permuta\c{c}\~{o}es e transforma\c{c}\~{o}es de Gauss realizadas durante o processo.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Se $P A = LU$, como usar estes fatores para resolver o sistema linear $A^t x = b$?
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Descreva como o processo de elimina\c{c}\~{a}o de Gauss com pivoteamente parcial pode ser usando para obter o determinante de uma matriz $A : n \times n$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Sobre o teorema da exist\^{e}ncia e unicidade da fatora\c{c}\~{a}o LU: se uma submatriz principal dominante de ordem $k$ for singular, podemos afirmar que a matriz $A$ n\~{a}o tem fatora\c{c}\~{a}o $LU$? Fundamente sua resposta teoricamente e com exemplos.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Descreva como obter a inversa de uma matriz $A$ atrav\'{e}s da resolu\c{c}\~{a}o de $n$ sistemas lineares. A fatora\c{c}\~{a}o $LU$ com pivoteamento parcial \'{e} indicada para esta resolu\c{c}\~{a}o? Qual o número total de opera\c{c}\~{o}es necess\'{a}rias para obter $A^{-1}$?
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Supor que s\~{a}o dados $A : n \times n$, $d: n \times 1$ e $c : n \times 1$, e o objetivo \'{e} calcular: $z = c^t A^{-1} d$. Na express\~{a}o de $z$ a dificuldade est\'{a} no c\'{a}lculo de $s = A^{-1} d$. Analise os dois processos para obter $s$:
+    \begin{enumerate}
+        \item invertendo a matriz $A$ e calculando $s = A^{-1} d$ e
+        \item resolvendo o sistema linear $A s = d$.
+    \end{enumerate}
+    Qual das duas formas deve ser escolhida de modo que $z$ seja obtido de modo econômico? Conclus\~{a}o: \'{e} melhor resolver um sistema linear do que inverter uma matriz? Justifique!
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Supor que a matriz $A : n \times n$ \'{e} particionada na forma
+    \[
+    A = \begin{bmatrix}
+        A_{11} & A_{12} \\
+        A_{12} & A_{22}
+    \end{bmatrix}
+    \]
+    onde $A_{11} : r \times s$ \'{e} n\~{a}o singular. Demonstre por $S$, o complemento de Schr de $A_{11}$ em $A$. Demonstre que $A$ \'{e} n\~{a}o singular, se e somente se $S = A_{22} - A_{21} A_{11}^{-1} A_{12}$ \'{e} n\~{a}o singular. Sugest\~{a}o: escreva a fatora\c{c}\~{a}o $LU$ de $A$ em fun\c{c}\~{a}o das submatrizes $A_{ij}$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere $A : n \times n$, estritamente diagonal dominante por colunas, isto \'{e}: $| a_{ij} | > \sum_{j \neq k} | a_{jk} |$. Demonstre que a fatora\c{c}\~{a}o $LU$ com pivoteamente parcial aplicada sobre a matriz $A$, n\~{a}o ir\'{a} realizar nenhuma permuta\c{c}\~{a}o de linhas, ou seja, ao final do processo a matriz $P$ ser\'{a} a identidade.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere o sistema linear $A x = b$, $A : n \times n$ n\~{a}o singular. O objetivo \'{e} analisar as solu\c{c}\~{o}es dos sistemas: $A x = b$ e $A (x + \delta x) = b + \delta b$, (introduzimos uma permuta\c{c}\~{a}o no vetor $b$). \'{E} desej\'{a}vel que se esta permuta\c{c}\~{a}o for pequena ent\~{a}o a permuta\c{c}\~{a}o na solu\c{c}\~{a}o tamb\'{e}m seja pr\'{o}xima de zero. Analisando em termos relativos aos vetores originais estamos perguntando se vale a rela\c{c}\~{a}o: $\| \delta b\| / \| b \| \approx 0 \rightarrow \| \delta x \| / \| x \| \approx 0$.
+    \begin{parts}
+        \part Demonstre que $\| \delta x \| \| x \| \leq \text{cond}(A) \| \delta b \| / \| b \|$ e analise se a rela\c{c}\~{a}o acima \'{e} verdadeira ou falsa.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+    
+    \question[Trefethen\nocite{Trefethen:1997:numerical}, Lecture 22] Sobre o Fator de Crescimento:
+    \begin{quote}
+        \textbf{Teorema:} Supor que a fatora\c{c}\~{a}o $LU$ de $A$ foi obtida sem pivoteamento. Ent\~{a}o para todo $\epsilon_\text{maq}$, precis\~{a}o da m\'{a}quina, suficientemente pr\'{o}ximo de zero, a fatora\c{c}\~{a}o \'{e} realizada com sucesso em aritm\'{e}tica de ponto flutuante (nenhum pivô nulo \'{e} gerado) e as matrizes computadas, $\tilde{L}$ e $\tilde{U}$ satisfazem a equa\c{c}\~{a}o:
+        \[
+        \tilde{L} \tilde{U} = A + \delta A, \frac{\| \delta A \|}{\| L \| \| U \|} = \mathcal{O}(\epsilon_\text{maq}).
+        \]
+        (Informa\c{c}\~{o}es: $\epsilon_\text{maq} \approx 10^{-16}$ em precis\~{a}o dupla e $\epsilon_\text{maq} \approx 10^{-8}$ em precis\~{a}o simples.)
+    \end{quote}
+    Considerando agora a fatora\c{c}\~{a}o $LU$ de $A$ com pivoteamento parcial. Neste caso, $\| L \| = \mathcal{O}(1)$ (por qu\^{e}?). O fator de crescimento para $A$ \'{e} definido por $\rho = \max u_{ij} / \max a_{ij}$ e usando este fator e a rela\c{c}\~{a}o do teorema podemos extrair a rela\c{c}\~{a}o: $\| U \| = \mathcal{O}(\rho \| A \|)$ (deduza essa rela\c{c}\~{a}o). E, da\'{i} temos finalmente a rela\c{c}\~{a}o:
+    \[
+    \tilde{L} \tilde{U} = P A + \delta A, \frac{\| \delta A \|}{\| A \|} = \mathcal{O}(\rho \epsilon_\text{maq}).
+    \]
+    Portanto, podemos afirmar que a fatora\c{c}\~{a}o $LU$ \'{e} backward stable\footnote{Estabilidade analisada quando se compara a matriz original com a obtida ao se multiplicar $L$ por $U$.} se $\rho = \mathcal{O}(1)$.
+    \begin{parts}
+        \part Demonstre que $\rho \leq 2^{n-1}$ quando os fatores $L$ e $U$ s\~{a}o obtidos com estrat\'{e}gia de pivoteamento parcial. Conclua que este limite superior pode resultar em um fator de crescimento excessiamente grande para matrizes de grande porte.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Efetue a fatora\c{c}\~{a}o $LU$ de $A : 5 \times 5$ com pivoteamento parcial e calcule o fator de crescimento, onde
+        \[
+        A = \begin{bmatrix}
+            1 & 0 & 0 & 0 & 1 \\
+            -1 & 1 & 0 & 0 & 1 \\
+            -1 & -1 & 1 & 0 & 1 \\
+            -1 & - 1 & -1 & 1 & 1 \\
+            -1 & -1 & -1 & -1 & 1
+        \end{bmatrix}
+        \]
+        e verifique que este limitante superior para $\rho$ pode ocorrer\footnote{O exemplo foi constru\'{i}do para provar que o pior caso pode acontecer. Em aplica\c{c}\~{o}es reais, tal fator de crescimento nunca ocorreu.}.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

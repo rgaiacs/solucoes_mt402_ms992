@@ -1,0 +1,270 @@
+% Filename: lista04.tex
+% This code is part of Listas de Matrizes
+% 
+% Description: Lista 04
+% 
+% Created: 18.03.12 12:15:06 PM
+% Last Change: 18.03.12 03:44:05 PM
+% 
+% Author: Raniere Gaia Costa da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia Costa da Silva. All rights reserved.
+% 
+% This file is license under the terms of
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 04}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question[exerc\'{i}cio 5.1.12, Meyer\nocite{Meyer:2000:matrix}] Desigualdade de Holder: para vetores $u$ e $v$ em $\mathbb{C}^n$, demonstre que:
+    \[
+    | u^* v | \leq \sum_i \left( | u_i |^p \right)^{1/p} \left( | v_i |^q \right)^{1/q}a,
+    \]
+    onde $p > 1$, $q > 1$ e $\frac{1}{p} + \frac{1}{q} = 1$.
+    \begin{solution}
+        
+    \end{solution}
+
+    Em particular, se $p = q = 2$ tem-se a desigualdade de Cauchy-Schwarz.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Para vetores $v$ e $w$ em $\mathbb{C}^n$, n\~{a}o nulos, a rela\c{c}\~{a}o de Cauchy-Schwarz \'{e} satisfeita na igualdade se e somente se \dots
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que $| u^* v | \leq \| u \|_1 \| v \|_\infty$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que para qualquer norma vetorial:
+    \[
+    | \| v \| - \| w \| | \leq \| v - w \|.
+    \]
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que $\lim_{p \rightarrow \infty} \| v \|_p = \| v \|_\infty = \max_i \left\{ | v_i | \right\}$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Equival\^{e}ncia entre normas vetoriais: demonstre que para cada par de normas, $\| \cdot \|_p$ e $\| \cdot \|_q$, num espa\c{c}o vetorial $V$ de dimens\~{a}o $n$, existem constantes $\alpha$ e $\beta$ tais que: $\alpha \| v \|_q \leq \| v \|_p \leq \beta \| v \|_q$, $v \in V$, $v \neq 0$. (Usando o conjunto $S_q = \left\{ w \mid \| w \|_q = 1 \right\}$ e a constante $\mu = \min \| w \|_p$ estabela\c{c}a a rela\c{c}\~{a}o: $\| v \|_p \geq \mu \| v \|_q$. Use argumentos semelhantes para obter rela\c{c}\~{a}o da forma: $\| v \|_q \geq \sigma \| v \|_p$).
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre as rela\c{c}\~{o}es:
+    \begin{parts}
+        \part $\| v \|_2 \leq \| v \|_1 \leq \sqrt{n} \| v \|_2$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| v \|_\infty \leq \| v \|_2 \leq \sqrt{n} \| v \|_\infty$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| v \|_\infty \leq \| v \|_1 \leq n \| v \|_\infty$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre as rela\c{c}\~{o}es para normas matricias induzidas a partir das normas-p vetoriais:
+    \begin{parts}
+        \part $\| A x \|_p \leq \| A \|_p \| x \|_p$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A B \|_p \leq \| A \|_p \| B \|_p$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| I_n \| _p = 1$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+    
+    \question Para as express\~{o}es abaixo, demonstrar inicialmente que as normas s\~{a}o limitadas superiomente pelos valores respectivos. Em seguinda, encontra um vetor $x$ que satisfa\c{c}a a rela\c{c}\~{a}o na igualdade. Sugest\~{a}o: empregue vetores canônicos e /ou vetores com componentes convenientemente escolhidas, iguais a $\left( +1 \right)$ ou $\left( -1 \right)$, de modo a conseguir a igualdade.
+    \begin{parts}
+        \part $\| A \|_1 = \max_j \sum_i | a_{ij} |$,
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A \|_\infty = \max_i \sum_j | a_{ij} |$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Considere a matriz $A : m \times n$, e a norma de Frobenius: $\| A \|_F^2 = \sum_{i = 1}^m \sum_{j = 1}^n | a_{ij} |^2$. Demonstre que:
+    \begin{parts}
+        \part As tr\^{e}s condi\c{c}\~{o}es de defini\c{c}\~{a}o de norma de matrizes se verificam.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A \|_F^2 = \text{tr} \left( A^* A \right)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A B \|_F \leq \| A \|_F \| B \|_F$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Demonstrar que $\| A \|_2 = \max_{\| x \|_2 = 1} \| A x \|_2 = \sqrt{\lambda_\text{max}}$, onde $\lambda_\text{max}$ \'{e} o maior autovalor de $A^T A$. Sugest\~{a}o: considere o problema: $\max f(x) = \| A x \|_2^2 = \left( A x \right)^t \left( A x \right)$, $x^t x = 1$ e a fun\c{c}\~{a}o $L(x, \lambda) = f(x) - \lambda \left( x^t x - 1 \right)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    Analise pontos estacion\'{a}rios de $f(x)$ e \dots
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre a seguinte propriedade v\'{a}lida para a norma-2 de matrizes: $\| A \|_2 = \max_x \max_y | y^t A x |$, para todo $x$ e $y$ tais que: $\| x \|_2 = \| y \|_2 = 1$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Verifique se as afirma\c{c}\~{o}es abaixo s\~{a}o verdadeiras ou falsas. Demonstre as verdadeiras e d\^{e} um contra-exemplo para as falsas.
+    \begin{parts}
+        \part $\| A \|_p = \| A^t \|_p$, $p = 1, 2, \infty$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A \|_1 = \| A^t \|_\infty$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A \|_F = \| A^t \|_F$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre que $\| A \|_p \geq | \lambda |$ para $A : n \times n$ e $\lambda$ autovalor de $A$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Equival\^{e}ncia de Normas Matriciais: considere $A : m \times n$. Demonstre que:
+    \begin{parts}
+        \part $\left( 1 / \sqrt{n} \right) \| A \|_\infty \leq \| A \|_2 \leq \sqrt{m} \| A \|_\infty$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\left( 1 / m \right) \| A \|_1 \leq \| A \|_\infty \leq n \| A \|_1$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\left( 1 / \sqrt{m} \right) \| A \|_1 \leq \| A \|_2 \leq \sqrt{n} \| A \|_1$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| A \|_2 \leq \| A \|_F \leq \sqrt{n} \| A \|_2$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Mostre que $B = \left( A + A^t \right) / 2$ \'{e} a matriz sim\'{e}trica mais pr\'{o}xima de $A \in \mathbb{R}^{n \times n}$ na norma de Fronenius.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Se $u, v \in \mathbb{R}^n$ e $E = u v^t$ ent\~{a}o:
+    \begin{parts}
+        \part $\| E \|_F = \| E \|_2 = \| u \|_2 \| v \|_2$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| E \|_\infty \leq \| u \|_\infty \| v \|_1$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Perturba\c{c}\~{o}es em Matrizes e Inversas: considere $F : n \times n$ e uma norma matricial que satisfaz a propriedade: $\| A B \| \leq \| A \| \| B \|$. Se $\| F \| < 1$ ent\~{a}o $\left( I - F \right)$ \'{e} n\~{a}o singular e $\left( I - F \right)^{-1} = \sum_{k = 0}^\infty F^k$. Demonstrar este resultado.
+
+    Roteiro sugerido para a demonstra\c{c}\~{a}o:
+    \begin{enumerate}
+        \item demonstra que $\left( I - F \right)$ \'{e} n\~{a}o singular;
+        \item monstrar que $\sum_{k = 0}^N F^k \left( I - F \right) = I - F^{N + 1}$;
+        \item verificar que se $\| F \| < 1$ ent\~{a}o $\lim_{k \rightarrow \infty} F^k = 0$ e concluir o teorema.
+    \end{enumerate}
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Sob as hip\'{o}teses do teorema anterior, demonstrar que $\| \left( I - F \right)^{-1} - I \| \leq \left( \| F \| \right) / \left( 1 - \| F \| \right)$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Generalizar estes resultados para $A : n \times n$ n\~{a}o singular e considerar a pertuba\c{c}\~{a}o em $A : A + E$. Qual a consid\c{c}\~{a}o para que $\left( A + E \right)$ seja inves\'{i}vel? Quais as rela\c{c}\~{o}es para $\| \left( A + E \right)^{-1} \|$ e $\| \left( A + E \right)^{-1} - A^{-1} \|$?
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que: se $A : n \times n$ \'{e} n\~{a}o singular e $\| E \|_p / \| A \|_p < 1 / \text{cond}_p (A)$, ent\~{a}o $(A + E)$ \'{e} n\~{a}o singular. Qual a interpreta\c{c}\~{a}o deste resultado?
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Seja $A : n \times n$ n\~{a}o singular e sejam $a_1, a_2, \ldots, a_n$ as colunas de $A$. Demonstre que para todo $i = 1, \ldots, n$ e todo $j = 1, \ldots, n$ vale a rela\c{c}\~{a}o: $\text{cond}_p (A) \geq \| a_i \|_p / \| a_j \|_p$. A partir deste resultado, podemos concluir que se a matriz $A$ \'{e} mal-escalda ent\~{a}o ser\'{a} mal-condicionada?
+    \begin{solution}
+        
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+\end{document}

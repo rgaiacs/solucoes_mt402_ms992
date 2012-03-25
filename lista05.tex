@@ -1,0 +1,153 @@
+% Filename: lista05.tex
+% This code is part of solu\c{c}\~{o}es de matrizes
+% 
+% Description: lista 05
+% 
+% Created: 25.03.12 11:12:39 AM
+% Last Change: 25.03.12 11:39:30 AM
+% 
+% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
+% Organization: UNICAMP
+% 
+% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% 
+% This file is license under the terms of 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 5}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+\newcommand{\cond}{\text{cond}}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Considere a matriz $A \in \mathbb{R}^{n \times n}$ e uma norma vetorial $p$. Demonstre que se $A$ tem posto completo, ent\~{a}o $\| v \|_A = \| A v \|_p$ \'{e} uma norma vetorial em $\mathbb{R}$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Seja $A \in \mathbb{R}^{n \times n}$ sim\'{e}trica. Demonstre que $\| v \|_A = \sqrt{v^t A v}$ \'{e} uma norma em $mathbb{R}^n$ se e somente se $A$ \'{e} definida positiva. ($A$ \'{e} definida positiva se $v^t A v > 0, \forall v \in \mathbb{R}^n, v \neq 0$.)
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere as matrizes de permuta\c{c}\~{a}o $P_1$ e $P_2$, ambas $n \times n$. Demonstre que:
+    \begin{parts}
+        \part $\| P v \|_p = \| v \|_p$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Para normas matriciais induzidas das normas vetoriais e para norma de Frobenius: $\| P_1 A P_2 \| = \| A \|$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question[Golub\nocite{Golub:1996:matrix}, corol\'{a}rio 2.3.2] Se $A : m \times n$, ent\~{a}o: $\| A \|_2 \leq \sqrt{\| A \|_1 \| A \|_\infty}$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere a matriz $A: n \times n$ e a matriz unit\'{a}ria $Q : n \times n$. Demonstre que matrizes unit\'{a}rias preservam norma-2 de vetores e matrizes e preservam a norma de Frobenius de matrizes:
+    \begin{parts}
+        \part $\| Q \|_2 = 1$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| Q A \|_2 = \| A Q \|_2 = \| A \|_2$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| Q v \|_2 = \| v \|_2$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\| Q A \|_F = \| A Q \|_F = \| A \|_F$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre as propriedades para $\cond(A)$:
+    \begin{parts}
+        \part $\cond_p(A) \geq 1$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\cond(\alpha A) = \cond(A)$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $\cond(AB) \leq \cond(A)\cond(B)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Usando os resultados de equival\^{e}ncia entre normas matriciais demonstre:
+    \begin{parts}
+        \part $(1/n) \cond_2(A) \leq \cond_1(A) \leq n\cond_2(A)$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $(1/n)\cond_\infty(A) \leq \cond_2(A) \leq n\cond_\infty(A)$;
+        \begin{solution}
+            
+        \end{solution}
+
+        \part $(1/n^2)\cond_1(A) \leq \cond_\infty(A) \leq n^2\cond_1(A)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Considere $A: n \times n$ e as matrizes $Q: n \times n$, ortogonal e $R: n \times n$ triangula superior tais que $A = QR$. Demonstre que $\left( 1 / \sqrt(n) \right) \| A \|_1 \leq \| R \|_1 \leq \sqrt{n} \| A \|_1$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que se $B$ \'{e} uma submatriz qualquer de $A$ ent\~{a}o $\| B \|_p \leq \| A \|_p$.
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Demonstre que a matriz $A = \frac{v u^t}{u^t u}$ \'{e} a matriz de norma-2 m\'{i}nima que satistaz $A u = v$.
+    \begin{solution}
+        
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
