@@ -1,15 +1,15 @@
 % Filename: lista06.tex
-% This code is part of solu\c{c}\~{o}es de matrizes.
+% This code is part of 'Listas de Matrizes'
 % 
-% Description: lista 06
+% Description: Lista 06.
 % 
 % Created: 25.03.12 04:31:30 PM
-% Last Change: 25.03.12 05:19:10 PM
+% Last Change: 27.04.12 10:19:07 AM
 % 
-% Author: Raniere Gaia Costa da Silva, r.gaia.cs@gmail.com
-% Organization: UNICAMP
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
 % 
-% Copyright (c) 2012, Raniere Gaia Costa da Silva. All rights reserved.
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
 % 
 % This file is license under the terms of the
 %
@@ -22,7 +22,7 @@
 \usepackage{hyperref}
 
 % Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 7}{1º semestre de 2012}
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 6}{1º semestre de 2012}
 \firstpageheadrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
 \footrule 
@@ -49,56 +49,165 @@
     \begin{parts}
         \part Cada opera\c{c}\~{a}o elementar corresponde a pr\'{e}-multiplicar a matriz por $E_i = I - m_{ik} e_i e_k^t$;
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                E_i A &= \left( I - m_{ik} e_i e_k^t \right) A \\
+                &= A - m_{ik} e_i e_k^t A \\
+                &= A - e_i \left( m_{ik} A_{k \mdot}^t \right).
+            \end{align*}
         \end{solution}
 
         \part $M_k = E_n E_{n - 1} \ldots E_{k + 1} = I - \sum_{i = k + 1}^n m_{ik} e_i e_k^t = I - \gamma_k e_k^t$, onde $\gamma_k : n \times 1$, $\gamma_k(i) = 0, i = 1, \ldots, k$ e $\gamma_k(i) = m_{ik}, i = k + 1, \ldots, n$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                M_k &= E_n E_{n - 1} \ldots E_{k + 1} \\
+                &= \left( I - m_{n, k} e_n e_k^t \right) \left( I - m_{n - 1, k} e_{n-1} e_k^t \right) \ldots \left( I - m_{k + 1, k} e_{k + 1} e_k^t \right) \\
+                % &= \left( I - m_{n - 1, k} e_{n - 1} e_k^t - m_{n, k} e_n e_k^t + m_{n, k} m_{n - 1, k} e_n e_k^t e_{n - 1} e_k^t \right) \ldots \left( I - m_{k + 1, k} e_{k + 1} e_k^t \right) \\
+                &= \left( I - m_{n - 1, k} e_{n - 1} e_k^t - m_{n, k} e_n e_k^t \right) \ldots \left( I - m_{k + 1, k} e_{k + 1} e_k^t \right) && e_n e_k^t = 0 \\
+                &= I - \sum_{i = k + 1}^n m_{ik} e_i e_k^t \\
+                &= I - \left( \sum_{i = k + 1}^n m_{ik} e_i \right) e_k^t \\
+                &= I - \gamma_k e_k^t,
+            \end{align*}
+            onde $\gamma_k : n \times 1$, $\gamma_k(i) = 0, i = 1, \ldots, k$ e $\gamma_k(i) = m_{ik}, i = k + 1, \ldots, n$.
         \end{solution}
     \end{parts}
 
     \question Demonstre que a matriz $L = \left( M_{n - 1} M_{n - 2} \ldots M_2 M_1 \right)^{-1} = I + \sum_{k = 1}^n \gamma_k e_k^t$, se os fatores $L$ e $U$ s\~{a}o calculados pelo processo de Elimina\c{c}\~{a}o de Gauss sem estrat\'{e}gia de pivoteamento parcial.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            L &= \left( M_{n - 1} M_{n - 2} \ldots M_2 M_1 \right)^{-1} \\
+            &= M_1^{-1} M_2^{-1} \ldots M_{n - 2}^{-1} M_{n - 1}^{-1}
+        \end{align*}
+        Mas pelo exerc\'{i}cio 1(b) temos que $M_k = I - \gamma_k e_k^t$ de onde verificamos que
+        \begin{align*}
+            M_k M_k^{-1} &= \left( I - \gamma_k e_k^t \right) \left( I + \gamma_k e_k^t \right) \\
+            &= I + \gamma+k e_k^t - \gamma_k e_k^t - \gamma_k e_k^t \gamma_k e_k^t \\
+            &= I - \gamma_k e_k^t \gamma_k e_k^t \\
+            &= I && e_k^t \gamma_k = 0.
+        \end{align*}
+        Logo,
+        \begin{align*}
+            L&= \left( I + \gamma_1 e_1^t \right) \left( I + \gamma_2 e_2^t \right) \ldots \left( I + \gamma_{n - 2} e_{n - 2}^t \right) \left( I + \gamma_{n - 1} e_{n - 1}^t \right) \\
+            &= \left( I + \gamma_1 e_1^t + \gamma_2 e_2^t + \gamma_1 e_1^t \gamma_2 e_2^t \right) \ldots \left( I + \gamma_{n - 2} e_{n - 2}^t \right) \left( I + \gamma_{n - 1} e_{n - 1}^t \right) \\
+            &= \left( I + \gamma_1 e_1^t + \gamma_2 e_2^t \right) \ldots \left( I + \gamma_{n - 2} e_{n - 2}^t \right) \left( I + \gamma_{n - 1} e_{n - 1}^t \right) \\
+            &= I + \sum_{k = 1}^{n - 1} \gamma_k e_k^t.
+        \end{align*}
     \end{solution}
 
     \question $P = I - u u^t$, $u = e_r - e_s$ representa a permuta\c{c}\~{a}o das linhas $r$ e $s$:
     \begin{parts}
         \part Demonstre que $P^{-1} = P$ e portanto, $P^2 = I$;
         \begin{solution}
-            
+            Se $P$ corresponde a permuta\c{c}\~{a}o das linhas $r$ e $s$ ent\~{a}o $P^{-1}$, a opera\c{c}\~{a}o inversa, corresponde a permuta\c{c}\~{a}o das linhas $s$ e $r$ que equivale a permuta\c{c}\~{a}o das linhas $r$ e $s$, logo $P^{-1} = P$.
+
+            Portanto,
+            \begin{align*}
+                P P^{-1} &= P P \\
+                &= \left( I - u u^t \right) \left( I - u u^t \right) \\
+                &= I - u u^t - u u^t + u u^t u u^t \\
+                &= I - 2 u u^t + \| u \|_2^2 u u^t \\
+                &= I - 2 u u^t + 2 u u^t && u = e_r - e_s \\
+                &= I.
+            \end{align*}
         \end{solution}
 
         \part Demonstre que $P M_k P = I - \tilde{\gamma}_k e_k^t = M_k$ onde $\tilde{\gamma}_k$ \'{e} o vetor $\gamma_k$ com os multiplicadores $m_{rk}$ e $m_{sk}$, $r > k$ e $s > k$, permutados.
         \begin{solution}
-            
+            Pelo exerc\'{i}cio 1(b) temos que $M_k = I - \gamma_k e_k^t$ e portanto
+            \begin{align*}
+                P M_k P &= \left( I - u u^t \right) \left( I - \gamma_k e_k^t \right) \left( I - u u^t \right) \\
+                &= \left( I - \gamma_k e_k^t - u u^t + u u^t \gamma_k e_k^t \right) \left( I - u u^t \right) \\
+                &= \left( I - \gamma_k e_k^t - u u^t + \left( \gamma_k(r) - \gamma(s) \right) u e_k^t \right) \left( I - u u^t \right) \\
+                \begin{split}
+                    &= I - u u^t - \gamma_k e_k^t - \gamma_k e_k^t u u^t - u u^t + u u^t u u^t \\ &\quad {}+ \left( \gamma_k(r) - \gamma_k(s) \right) u e_k^t - \left( \gamma_k(r) - \gamma_k(s) \right) u e_k^t u u^t
+                \end{split} \\
+                \begin{split}
+                    &= I - u u^t - \gamma_k e_k^t - u u^t + 2 u u^t + \left( \gamma_k(r) - \gamma_k(s) \right) u e_k^t
+                \end{split} && e_k^t u = 0, r > k, s > k \\
+                &= I - \gamma_k e_k^t + \left( \gamma_k(r) - \gamma_k(s) \right) u e_k^t \\
+                &= I - \left( \gamma_k - \left( \gamma_k(r) - \gamma_k(s) \right) u \right) e_k^t \\
+                &= I - \tilde{\gamma}_k e_k^t,
+            \end{align*}
+            onde $\tilde{\gamma}_k$ corresponde ao vetor $\gamma_k$ com os multiplicadores $m_{rk}$ e $m_{sk}$ permutados.
         \end{solution}
     \end{parts}
 
-    \question Se os fatores $L$ e $U$ s\~{a}o obtidos atrav\'{e}s da Elimina\c{c}\~{a}o de Gauss com pivoteamento parcial, represente $P$ e $L$ de acordo com as permuta\c{c}\~{o}es e transforma\c{c}\~{o}es de Gauss realizadas durante o processo.
+    \question[Ver Teorema 3.4.1, p\'{a}gina 113, do Golub\nocite{Golub:1996:matrix}] Se os fatores $L$ e $U$ s\~{a}o obtidos atrav\'{e}s da Elimina\c{c}\~{a}o de Gauss com pivoteamento parcial, represente $P$ e $L$ de acordo com as permuta\c{c}\~{o}es e transforma\c{c}\~{o}es de Gauss realizadas durante o processo.
     \begin{solution}
-        
+        Pelo exerc\'{i}cio 2 temos que, no caso em que n\~{a}o \'{e} utilizado permuta\c{c}\~{a}o,
+        \begin{align*}
+            L &= \left( M_{n - 1} M_{n - 2} \ldots M_2 M_1 \right)^{-1}.
+        \end{align*}
+        J\'{a} ao utilizarmos uma permuta\c{c}\~{a}o antes de cada opera\c{c}\~{a}o elementar temos
+        \begin{align*}
+            L &= \left( M_{n - 1} P_{n - 1} M_{n - 2} P_{n - 2} \ldots M_2 P_2 M_1 P_1 \right)^{-1},
+        \end{align*}
+        onde $P_k$ \'{e} a permuta\c{c}\~{a}o efetuada antes de realizar a opera\c{c}\~{a}o elementar $M_k$.
     \end{solution}
 
-    \question Se $P A = LU$, como usar estes fatores para resolver o sistema linear $A^t x = b$?
+    \question Se $P A = L U$, como usar estes fatores para resolver o sistema linear $A^t x = b$?
     \begin{solution}
-        
+        Se $P A = L U$ ent\~{a}o $A = P^t L U$. Logo,
+        \begin{align*}
+            A^t x &= \left( P^t L U \right) x \\
+            &= U^t L^t P x.
+        \end{align*}
+        E para resolver o sistema utilizamos $x = P^t L^{-t} U^{-t} b$.
     \end{solution}
 
     \question Descreva como o processo de elimina\c{c}\~{a}o de Gauss com pivoteamente parcial pode ser usando para obter o determinante de uma matriz $A : n \times n$.
     \begin{solution}
-        
+        Seja $P A = L U$, ent\~{a}o
+        \begin{align*}
+            \det(P A) &= \det(L U) \\
+            &= \det(L) \det (U) \\
+            &= \prod_{i = 1}^n l_{ii} \prod_{i = 1}^n u_{ii} && \text{pois L e U s\~{a}o diagonais} \\
+            &= \prod_{i = 1}^n u_{ii} && \text{pois L possui diagonal unit\'{a}ria}.
+        \end{align*}
+        Mas
+        \begin{align*}
+            \det(P A) &= \det(P) \det(A) \\
+            &= (-1)^{c} \det(A),
+        \end{align*}
+        onde $c$ \'{e} o n\'{u}mero de permuta\c{c}\~{o}es realizadas. Logo, $\det(A) = (-1)^c \prod_{i = 1}^n u_{ii}$.
     \end{solution}
 
-    \question Sobre o teorema da exist\^{e}ncia e unicidade da fatora\c{c}\~{a}o LU: se uma submatriz principal dominante de ordem $k$ for singular, podemos afirmar que a matriz $A$ n\~{a}o tem fatora\c{c}\~{a}o $LU$? Fundamente sua resposta teoricamente e com exemplos.
+    \question(Ver equa\c{c}\~{a}o 3.10.12, p\'{a}gina 149, do Meyer\nocite{Meyer:2000:matrix}] Sobre o teorema da exist\^{e}ncia e unicidade da fatora\c{c}\~{a}o LU: se uma submatriz principal dominante de ordem $k$ for singular, podemos afirmar que a matriz $A$ n\~{a}o tem fatora\c{c}\~{a}o $LU$? Fundamente sua resposta teoricamente e com exemplos.
     \begin{solution}
-        
+        O Teorema 3.2.1, p\'{a}gina 97, do Golub\nocite{Golub:1996:matrix} trata da exist\^{e}ncia e unicidade da fatora\c{c}\~{a}o LU e \'{e} transcrito abaixo:
+        \begin{quote}
+            $A \in \mathbb{R}{^n \times n}$ possue fatora\c{c}\~{a}o LU se $\det(A(1:k, 1:k)) \neq 0$ para $k = 1:n - 1$. Se a fatora\c{c}\~{a}o LU existe e $A$ \'{e} n\~{a}o singular, ent\~{a}o a fatora\c{c}\~{a}o LU \'{e} \'{u}nica e $\det(A) = \prod_{i = 1}^n u_{[ii}$.
+        \end{quote}
+
+        Como podemos notar, o teorema apenas garante que se todas as submatrizes principais s\~{a}o n\~{a}o singulares ent\~{a}o a fatora\c{c}\~{a}o LU existe e nada \'{e} afirmada para o caso de alguma das submatrizes principais ser singular.
+
+        Pelo contra-exemplo abaixo,
+        \begin{align*}
+            A = \begin{bmatrix}
+                1 & 1 \\
+                1 & 0
+            \end{bmatrix} = \begin{bmatrix}
+                1 & 0 \\
+                1 & 1
+            \end{bmatrix} \begin{bmatrix}
+                1 & 1 \\
+                0 & -1
+            \end{bmatrix} = L U,
+        \end{align*}
+        mostramos que mesmo existindo uma submatriz singular a fatora\c{c}\~{a}o LU ainda existe.
     \end{solution}
 
     \question Descreva como obter a inversa de uma matriz $A$ atrav\'{e}s da resolu\c{c}\~{a}o de $n$ sistemas lineares. A fatora\c{c}\~{a}o $LU$ com pivoteamento parcial \'{e} indicada para esta resolu\c{c}\~{a}o? Qual o número total de opera\c{c}\~{o}es necess\'{a}rias para obter $A^{-1}$?
     \begin{solution}
-        
+        Seja $B = A^{-1}$. Podemos obter a matriz $B$ resolvendo os seguintes sistemas lineares:
+        \begin{align*}
+            A B_{\mdot i} = e_i, \forall i \in \left\{ 1, 2, \ldots, n \right\}.
+        \end{align*}
+        A fatora\c{c}\~{a}o LU com pivoteamento parcial \'{e} indicada para esta resolu\c{c}\~{a}o pois temos que resolver $n$ sistemas lineares que diferem apenas no lado direito e ao utilizarmos pivoteamento parcial temos garantia de encontrar a fatora\c{c}\~{a}o LU da matriz $A$.
+
+        Para obter a fatora\c{c}\~{a}o LU necessitamos de $2 n^3 / 3$ opera\c{c}\~{o}es e para resolver um sistema triangular de $n^2$ opera\c{c}\~{o}es. Como para obter a matriz $B$ efetuamos uma fatora\c{c}\~{a}o LU e $2 n$ resolu\c{c}\~{o}es de sistemas triangulares temos que o n\'{u}mero total de opera\c{c}\~{o}es \'{e} $2 n^3 / 3 + 2 n^3$.
     \end{solution}
 
     \question Supor que s\~{a}o dados $A : n \times n$, $d: n \times 1$ e $c : n \times 1$, e o objetivo \'{e} calcular: $z = c^t A^{-1} d$. Na express\~{a}o de $z$ a dificuldade est\'{a} no c\'{a}lculo de $s = A^{-1} d$. Analise os dois processos para obter $s$:
@@ -108,7 +217,7 @@
     \end{enumerate}
     Qual das duas formas deve ser escolhida de modo que $z$ seja obtido de modo econômico? Conclus\~{a}o: \'{e} melhor resolver um sistema linear do que inverter uma matriz? Justifique!
     \begin{solution}
-        
+        Deve escolher resolver o sistema linear $A s = d$ pois este processo requer um n\'{u}mero de opera\c{c}\~{o}es pr\'{o}ximo de $2 n^3 / 3$ (realizando uma fatora\c{c}\~{a}o LU e a resolu\c{c}\~{a}o de um sistema linear) enquanto que apenas inverter a matriz $A$ requer um n\'{u}mero de opera\c{c}\~{o}es pr\'{o}ximo de $7 n^3 / 3$ opera\c{c}\~{o}es (realizando uma fatora\c{c}\~{a}o LU e a resolu\c{c}\~{a}o de $n$ sistemas lineares, ver exerc\'{i}cio 8).
     \end{solution}
 
     \question Supor que a matriz $A : n \times n$ \'{e} particionada na forma
@@ -118,17 +227,79 @@
         A_{12} & A_{22}
     \end{bmatrix}
     \]
-    onde $A_{11} : r \times s$ \'{e} n\~{a}o singular. Demonstre por $S$, o complemento de Schr de $A_{11}$ em $A$. Demonstre que $A$ \'{e} n\~{a}o singular, se e somente se $S = A_{22} - A_{21} A_{11}^{-1} A_{12}$ \'{e} n\~{a}o singular. Sugest\~{a}o: escreva a fatora\c{c}\~{a}o $LU$ de $A$ em fun\c{c}\~{a}o das submatrizes $A_{ij}$.
+    onde $A_{11} : r \times s$ \'{e} n\~{a}o singular. Denote por $S$, o complemento de Schr de $A_{11}$ em $A$. Demonstre que $A$ \'{e} n\~{a}o singular, se e somente se $S = A_{22} - A_{21} A_{11}^{-1} A_{12}$ \'{e} n\~{a}o singular. Sugest\~{a}o: escreva a fatora\c{c}\~{a}o $LU$ de $A$ em fun\c{c}\~{a}o das submatrizes $A_{ij}$.
     \begin{solution}
-        
+        Temos que a fatora\c{c}\~{a}o LU da matriz $A$ em termos de sua submatrizes \'{e} dado por
+        \begin{align*}
+            A = \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix} = \begin{bmatrix}
+                I & 0 \\
+                -A_{21} A_{11}^{-1} & I
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} & A_{12} \\
+                0 & A_{22} - A_{21} A_{11}^{-1} A_{12}
+            \end{bmatrix},
+        \end{align*}
+        onde $A_{22} - A_{21} A_{11}^{-1} A_{12} = S$ \'{e} o complemento de Schur de $A_{11}$.
+
+        Para que $A$ seja n\~{a}o singular devemos ter que $\det(A) \neq 0$. Logo,
+        \begin{align*}
+            \det(A) &= \det(L U) \\
+            &= \det(L) \det(U) \\
+            &= 1 \det(U) && \text{L \'{e} triangular unit\'{a}ria} \\
+            &= \det(A_{11}) \det(S) && \text{U \'{e} triangular}.
+        \end{align*}
+        Portanto, $A$ \'{e} n\~{a}o singular se e somente se $S$ \'{e} n\~{a}o singular.
     \end{solution}
 
-    \question Considere $A : n \times n$, estritamente diagonal dominante por colunas, isto \'{e}: $| a_{ij} | > \sum_{j \neq k} | a_{jk} |$. Demonstre que a fatora\c{c}\~{a}o $LU$ com pivoteamente parcial aplicada sobre a matriz $A$, n\~{a}o ir\'{a} realizar nenhuma permuta\c{c}\~{a}o de linhas, ou seja, ao final do processo a matriz $P$ ser\'{a} a identidade.
+    \question[Teorema 3.4.3, p\'{a}gina 120, do Golub\nocite{Golub:1996:matrix}] Considere $A : n \times n$, estritamente diagonal dominante por colunas, isto \'{e}: $| a_{ij} | > \sum_{j \neq k} | a_{jk} |$. Demonstre que a fatora\c{c}\~{a}o $LU$ com pivoteamente parcial aplicada sobre a matriz $A$, n\~{a}o ir\'{a} realizar nenhuma permuta\c{c}\~{a}o de linhas, ou seja, ao final do processo a matriz $P$ ser\'{a} a identidade.
     \begin{solution}
-        
+        Particionando a matriz $A$ como
+        \begin{align*}
+            A = \begin{bmatrix}
+                \alpha & w^t \\
+                v & C
+            \end{bmatrix},
+        \end{align*}
+        onde $\alpha \in \mathbb{R}$. Ap\'{o}s uma itera\c{c}\~{a}o da fatora\c{c}\~{a}o LU temos
+        \begin{align*}
+            \begin{bmatrix}
+                \alpha & w^t \\
+                v & C
+            \end{bmatrix} = \begin{bmatrix}
+                1 & 0 \\
+                v / \alpha & 1
+            \end{bmatrix} \begin{bmatrix}
+                1 & 0 \\
+                0 & C - v w^t / \alpha
+            \end{bmatrix} \begin{bmatrix}
+                \alpha & w^t \\
+                0 & I
+            \end{bmatrix}.
+        \end{align*}
+        Segue por indi\c{c}\~{a}o em $n$ que se $B = C - v w^t / \alpha$ \'{e} estritamente diagonal dominante ent\~{a}o $A$ possue fatora\c{c}\~{a}o LU, pois se $B = L_1 U_1$ ent\~{a}o
+        \begin{align*}
+            A = \begin{bmatrix}
+                1 & 0 \\
+                v / \alpha & L_1
+            \end{bmatrix} \begin{bmatrix}
+                \alpha & w^t \\
+                0 & U_1
+            \end{bmatrix} = L U.
+        \end{align*}
+        Para provar que $B$ \'{e} estritamente diagonal dominante, segue da defini\c{c}\~{a}o que
+        \begin{align*}
+            \sum_{i = 1, i \neq j}^{n - 1} | b_{ij} | &= \sum_{i = 1, i \neq j}^{n - 1} | c_{ij} - v_i w_j / \alpha | \\
+            &\leq \sum_{i = 1, i \neq j}^{n - 1} | c_{ij} | + \left( | w_j | / | \alpha | \right) \sum_{i = 1, i \neq j}^{n - 1} | v_i | && \text{desigualdade triangular} \\
+            &\leq \left( | c_{jj} | - | w_j | \right) + \left( | w_j | / | \alpha | \right) \left( | \alpha | - | v_j | \right) && \text{pois $A$ \'{e} diagonalmente dominante} \\
+            &\leq \left\| c_{jj} - w_j v_j / \alpha \right\| \\
+            &= \| b_{jj} \|.
+        \end{align*}
     \end{solution}
 
-    \question Considere o sistema linear $A x = b$, $A : n \times n$ n\~{a}o singular. O objetivo \'{e} analisar as solu\c{c}\~{o}es dos sistemas: $A x = b$ e $A (x + \delta x) = b + \delta b$, (introduzimos uma permuta\c{c}\~{a}o no vetor $b$). \'{E} desej\'{a}vel que se esta permuta\c{c}\~{a}o for pequena ent\~{a}o a permuta\c{c}\~{a}o na solu\c{c}\~{a}o tamb\'{e}m seja pr\'{o}xima de zero. Analisando em termos relativos aos vetores originais estamos perguntando se vale a rela\c{c}\~{a}o: $\| \delta b\| / \| b \| \approx 0 \rightarrow \| \delta x \| / \| x \| \approx 0$.
+    \question Considere o sistema linear $A x = b$, $A : n \times n$ n\~{a}o singular. O objetivo \'{e} analisar as solu\c{c}\~{o}es dos sistemas: $A x = b$ e $A (x + \delta x) = b + \delta b$, (introduzimos uma pertuba\c{c}\~{a}o no vetor $b$). \'{E} desej\'{a}vel que se esta pertuba\c{c}\~{a}o for pequena ent\~{a}o a pertuta\c{c}\~{a}o na solu\c{c}\~{a}o tamb\'{e}m seja pr\'{o}xima de zero. Analisando em termos relativos aos vetores originais estamos perguntando se vale a rela\c{c}\~{a}o: $\| \delta b\| / \| b \| \approx 0 \rightarrow \| \delta x \| / \| x \| \approx 0$.
     \begin{parts}
         \part Demonstre que $\| \delta x \| \| x \| \leq \text{cond}(A) \| \delta b \| / \| b \|$ e analise se a rela\c{c}\~{a}o acima \'{e} verdadeira ou falsa.
         \begin{solution}

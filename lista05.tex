@@ -1,15 +1,15 @@
 % Filename: lista05.tex
-% This code is part of solu\c{c}\~{o}es de matrizes
+% This code is part of 'Listas de Matrizes'
 % 
-% Description: lista 05
+% Description: Lista 05.
 % 
 % Created: 25.03.12 11:12:39 AM
-% Last Change: 25.03.12 11:39:30 AM
+% Last Change: 26.04.12 11:47:00 PM
 % 
-% Author: Raniere Gaia C. da Silva, r.gaia.cs@gmail.com
-% Organization: UNICAMP
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
 % 
-% Copyright (c) 2012, Raniere Gaia C. da Silva. All rights reserved.
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
 % 
 % This file is license under the terms of 
 %
@@ -48,52 +48,153 @@
 \begin{questions}
     \question Considere a matriz $A \in \mathbb{R}^{n \times n}$ e uma norma vetorial $p$. Demonstre que se $A$ tem posto completo, ent\~{a}o $\| v \|_A = \| A v \|_p$ \'{e} uma norma vetorial em $\mathbb{R}$.
     \begin{solution}
-        
+        Para que $\| v \|_A = \| A v \|_p$ seja uma norma vetorial em $\mathbb{R}$ ela deve satisfazer as seguintes propriedades:
+        \begin{enumerate}
+            \item $\| v \|_A \geq 0$ e $\| v \|_A = 0 \leftrightarrow v = 0$:
+
+                Como $\| v \|_A = \| A v \|_p$ temos que $\| v \|_A \geq 0$ pois $\| A v \|_p \geq 0$. Como $A$ tem posto completo ent\~{a}o $\text{N}(A) = 0$ e portanto $\| v \|_A = \| A v \|_p = \| 0 \|_p = 0 \leftrightarrow v = 0$.
+
+            \item $\| \alpha v \|_A = | \alpha | \| v \|$:
+
+                Temos que $\| \alpha v \|_A = \| A \left( \alpha v \right) \|_p = \| \alpha \left( A v \right) \|_p = | \alpha | \| A v \|_p$.
+
+            \item $\| v + w \|_A \leq \| v \|_A + \| w \|_A$:
+
+                Temos que $\| v + w \|_A = \| A \left( v + w \right) \|_p = \| A v + A w \|_p \leq \| A v \|_p + \| A w \|_p = \| v \|_A + \| w \|_A$.
+        \end{enumerate}
     \end{solution}
 
-    \question Seja $A \in \mathbb{R}^{n \times n}$ sim\'{e}trica. Demonstre que $\| v \|_A = \sqrt{v^t A v}$ \'{e} uma norma em $mathbb{R}^n$ se e somente se $A$ \'{e} definida positiva. ($A$ \'{e} definida positiva se $v^t A v > 0, \forall v \in \mathbb{R}^n, v \neq 0$.)
+    \question Seja $A \in \mathbb{R}^{n \times n}$ sim\'{e}trica. Demonstre que $\| v \|_A = \sqrt{v^t A v}$ \'{e} uma norma em $\mathbb{R}^n$ se e somente se $A$ \'{e} definida positiva. ($A$ \'{e} definida positiva se $v^t A v > 0, \forall v \in \mathbb{R}^n, v \neq 0$.)
     \begin{solution}
-        
+        Para que $\| v \|_A = \sqrt{v^t A v}$ seja uma norma em $\mathbb{R}^n$ ela deve satisfazer as seguintes propriedades:
+        \begin{enumerate}
+            \item $\| v \|_A \geq 0$ e $\| v \|_A = 0 \leftrightarrow v = 0$:
+
+                Para que $\| v \|_A \geq 0$ temos que $v^t A v \geq 0$, i.e., que a matriz $A$ seja semi-definida positiva. E para que $\| v \|_A = 0 \leftrightarrow v = 0$ temos que $v^t A v = 0 \leftrightarrow v = 0$, i.e., que a matriz $A$ seja definida positiva.
+
+            \item $\| \alpha v \|_A = | \alpha | \| v \|$:
+
+                Temos que $\| \alpha v \|_A = \sqrt{ \left( \alpha v \right)^t A \left( \alpha v \right) } = \sqrt{\alpha^2 v^t A v} = \alpha \sqrt{v^t A v} = \alpha \| v \|_A$.
+
+            \item $\| v + w \|_A = \| v \|_A + \| w \|_A$:
+
+                Temos que 
+                \begin{align*}
+                    \| v + w \|_A &= \sqrt{ \left( v + w \right)^t A \left( v + w \right)} \\
+                    &= \sqrt{ \left( v^t A + w^t A \right) \left( v + w \right)} \\
+                    &= \sqrt{v^t A v + v^t A w + w^t A v + w^t A w} \\
+                    &\leq \sqrt{v^t A v + w^t A w} \\
+                    &\leq \sqrt{v^t A v} + \sqrt{w^t A w} \\
+                    &= \| v \|_A + \| w \|_A.
+                \end{align*}
+        \end{enumerate}
     \end{solution}
 
     \question Considere as matrizes de permuta\c{c}\~{a}o $P_1$ e $P_2$, ambas $n \times n$. Demonstre que:
     \begin{parts}
         \part $\| P v \|_p = \| v \|_p$;
         \begin{solution}
-            
+            Uma maneira de interpretar uma matriz de permuta\c{c}\~{a}o em com uma fun\c{c}\~{a}o $f : \left\{ 1, 2, \ldots, n \right\} \to \left\{ 1, 2, \ldots, n \right\}$ que \'{e} bijetiva. Ent\~{a}o
+            \begin{align*}
+                \| P v \|_p &= \| v_{f(i)} \|_p \\
+                &= \left( \sum_i | v_{f(i)} |^p \right)^{1 / p} && \text{defini\c{c}\~{a}o de norma-$p$} \\
+                &= \left( \sum_i | v_i |^p \right)^{1 / p}.
+            \end{align*}
         \end{solution}
 
         \part Para normas matriciais induzidas das normas vetoriais e para norma de Frobenius: $\| P_1 A P_2 \| = \| A \|$.
         \begin{solution}
-            
+            Uma maneira de interpretar uma matriz de permuta\c{c}\~{a}o em com uma fun\c{c}\~{a}o $f : \left\{ 1, 2, \ldots, n \right\} \to \left\{ 1, 2, \ldots, n \right\}$ que \'{e} bijetiva. Ent\~{a}o
+            \begin{align*}
+                \| P_1 A P_2 \| &= \| A_{f_1(i) f_2(j)} \|.
+            \end{align*}
+
+            Logo, para a norma de Frobenius temos
+            \begin{align*}
+                \| P_1 A P_2 \|_F^2 &= \| A_{f_1(i) f_2(j)} \|_F^2 \\
+                &= \sum_i \sum_j | a_{f_1(i) f_2(j)} |^2 \\
+                &= \sum_i \sum_j | a_{ij} |^2 \\
+                &= \| A \|_F^2.
+            \end{align*}
+
+            E para as normas matriciais induzidas das normas vetoriais temos
+            \begin{align*}
+                \| P_1 A P_2 \|_p &= \max_{\| x_{f_2(j)} \|_p = 1} \| A_{f_1(i) f_2(j)} x_{f_2(j)} \|_p \\
+                &= \max_{\| x \|_p = 1} \| A_{f_1(i) j} x \| \\
+                &= \max_{\| x \|_p = 1} \| A x \|.
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question[Golub\nocite{Golub:1996:matrix}, corol\'{a}rio 2.3.2] Se $A : m \times n$, ent\~{a}o: $\| A \|_2 \leq \sqrt{\| A \|_1 \| A \|_\infty}$.
+    \question[Corol\'{a}rio 2.3.2, p\'{a}gina 57, do Golub\nocite{Golub:1996:matrix}] Se $A : m \times n$, ent\~{a}o: $\| A \|_2 \leq \sqrt{\| A \|_1 \| A \|_\infty}$.
     \begin{solution}
-        
+        Primeiramente devemos lembrar que $\| A \|_2^2 = \lambda_{\max}$, $\lambda_{\max}$ \'{e} o maior autovalor de $A^t A$.
+
+        Seja $z \neq 0$ \'{e} tal que $A^t A z = \mu^2 z$ com $\mu = \| A \|_2$, ent\~{a}o
+        \begin{align*}
+            \mu^2 \| z \|_1 &= \| \mu^2 z \| && \mu \in \mathbb{R} \\
+            &= \| A^t A z \|_1 && \text{por hip\'{o}tese} \\
+            &\leq \| A^t \|_1 \| A \|_1 \| z \|_1 && \text{ver exerc\'{i}cio 8(a) e 8(b) da lista 4} \\
+            &= \| A \|_\infty \| A \|_1 \| z \|_1 && \text{ver exerc\'{i}cio 13 da lista 4}.
+        \end{align*}
     \end{solution}
 
     \question Considere a matriz $A: n \times n$ e a matriz unit\'{a}ria $Q : n \times n$. Demonstre que matrizes unit\'{a}rias preservam norma-2 de vetores e matrizes e preservam a norma de Frobenius de matrizes:
     \begin{parts}
         \part $\| Q \|_2 = 1$;
         \begin{solution}
-            
-        \end{solution}
-
-        \part $\| Q A \|_2 = \| A Q \|_2 = \| A \|_2$;
-        \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| Q \|_2^2 &= \left( \max_{\| x \| = 1} \| Q x \|_2 \right)^2\\
+                &= \max_{\| x \|_2 = 1} \| Q x \|_2^2 \\
+                &= \max_{\| x \|_2 = 1} x^* Q^* Q x \\
+                &= \max_{\| x \|_2 = 1} x^* x && Q^* Q = Q Q^* = I \\
+                &= \max_{\| x \|_2 = 1} \| x \|_2 \\
+                &= 1.
+            \end{align*}
         \end{solution}
 
         \part $\| Q v \|_2 = \| v \|_2$;
         \begin{solution}
-            
+           Temos que
+           \begin{align*}
+               \| Q v \|_2^2 &= v^* Q^* Q v \\
+               &= v^* v && Q^* Q = Q Q^* = I \\
+               &= \| v \|_2^2.
+           \end{align*}
+        \end{solution}
+
+        \part $\| Q A \|_2 = \| A Q \|_2 = \| A \|_2$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \| Q A \|_2^2 &= A^* Q^* Q A \\
+                &= A^* A && Q^* Q = Q Q^* = I \\
+                &= \| A \|_2^2
+            \end{align*}
+            e
+            \begin{align*}
+                \| A Q \|_2^2 &= Q^* A^* A Q \\
+                &= Q^* \| A \|_2^2 Q \\
+                &= \| A \|_2^2 && Q^* Q = Q Q^* = I.
+            \end{align*}
         \end{solution}
 
         \part $\| Q A \|_F = \| A Q \|_F = \| A \|_F$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| Q A \|_F^2 &= \text{tr}\left( A^* Q^* Q A \right) \\
+                &= \text{tr}\left( A^* A \right) && Q^* Q = Q Q^* = I \\
+                &= \| A \|_F^2
+            \end{align*}
+            e
+            \begin{align*}
+                \| A Q \|_F^2 &= \text{tr}\left( Q^* A^* A Q \right) \\
+                &= \text{tr}\left( Q^* \| A \|_2^2 Q \right) \\
+                &= \text{tr}\left( A^* A \right) && Q^* Q = Q Q^* = I \\
+                &= \| A ||_F^2.
+            \end{align*}
         \end{solution}
     \end{parts}
 
@@ -101,17 +202,36 @@
     \begin{parts}
         \part $\cond_p(A) \geq 1$;
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                I &= A A^{-1}, \\
+                1 = \| I \| &= \| A A^{-1} \| \leq \| A \| \| A^{-1} \| && \text{exerc\'{i}cio 8(b) da lista 4}.
+            \end{align*}
+            Pela defini\c{c}\~{a}o, temos $\text{cond}_p \left( A \right) = \| A \| \| A^{-1} \|$ e portanto $\text{cond}_p \left( A \right) \geq 1$.
         \end{solution}
 
         \part $\cond(\alpha A) = \cond(A)$;
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| \alpha A \| = | \alpha | \| A \|
+            \end{align*}
+            e, portanto,
+            \begin{align*}
+                I &= \left( \alpha / \alpha \right) A A^{-1} = \left( \alpha A \right) \left( \alpha^{-1} A^{-1} \right).
+            \end{align*}
+            Logo, $\text{cond}\left( \alpha A \right) = \text{cond}\left( A \right)$.
         \end{solution}
 
         \part $\cond(AB) \leq \cond(A)\cond(B)$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \text{cond}\left( A B \right) &= \| A B \| \| \left( A B \right)^{-1} \| \\
+                &= \| A B \| \| B^{-1} A^{-1} \| \\
+                &\leq \| A \| \| B \| \| B^{-1} \| \| A^{-1} \| && \text{exerc\'{i}cio 8(b) da lista 4} \\
+                &= \text{cond}\left( A \right) \text{cond}\left( B \right).
+                \end{align*}
         \end{solution}
     \end{parts}
 
@@ -119,23 +239,68 @@
     \begin{parts}
         \part $(1/n) \cond_2(A) \leq \cond_1(A) \leq n\cond_2(A)$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o, temos
+            \begin{align*}
+                \text{cond}_1(A) &= \| A \|_1 \| A^{-1} \|_1 \\
+                &\geq \left( \| A \|_2 / \sqrt{n} \right) \| A^{-1} \|_1 && \text{exerc\'{i}cio 15(c) da lista 4} \\
+                &\geq \left( \| A \|_2 / \sqrt{n} \right) \left( \| A^{-1} \|_2 / \sqrt{n} \right) && \text{exerc\'{i}cio 15(c) da lista 4} \\
+                &= \left( 1 / n \right) \text{cond}_2(A), \\
+                \text{cond}_1(A) &= \| A \|_1 \| A^{-1} \|_1 \\
+                &\leq \left( \sqrt{n} \| A \|_2 \right) \| A^{-1} \|_1 && \text{exerc\'{i}cio 15(c) da lista 4} \\
+                &\leq \left( \sqrt{n} \| A \|_2 \right) \left( \sqrt{n} \| A^{-1} \|_2 \right) && \text{exerc\'{i}cio 15(c) da lista 4} \\
+                &= n \text{cond}_2(A).
+            \end{align*}
+            Logo, $(1/n) \cond_2(A) \leq \cond_1(A) \leq n\cond_2(A)$.
         \end{solution}
 
         \part $(1/n)\cond_\infty(A) \leq \cond_2(A) \leq n\cond_\infty(A)$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o, temos
+            \begin{align*}
+                \text{cond}_2(A) &= \| A \|_2 \| A^{-1} \|_2 \\
+                &\geq \left( \| A \|_\infty / \sqrt{n} \right) \| A^{-1} \|_2 && \text{exerc\'{i}cio 15(a) da lista 4} \\
+                &\geq \left( \| A \|_\infty / \sqrt{n} \right) \left( \| A^{-1} \|_\infty / \sqrt{n} \right) && \text{exerc\'{i}cio 15(a) da lista 4} \\
+                &= \left( 1 / n \right) \text{cond}_\infty(A), \\
+                \text{cond}_2(A) &= \| A \|_2 \| A^{-1} \|_2 \\
+                &\leq \left( \sqrt{n} \| A \|_\infty \right) \| A^{-1} \|_2 && \text{exerc\'{i}cio 15(a) da lista 4} \\
+                &\leq \left( \sqrt{n} \| A \|_\infty \right) \left( \sqrt{n} \| A^{-1} \|_\infty \right) && \text{exerc\'{i}cio 15(a) da lista 4} \\
+                &= n \text{cond}_\infty(A).
+            \end{align*}
+            Logo, $(1/n)\cond_\infty(A) \leq \cond_2(A) \leq n\cond_\infty(A)$.
         \end{solution}
 
         \part $(1/n^2)\cond_1(A) \leq \cond_\infty(A) \leq n^2\cond_1(A)$.
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o, temos
+            \begin{align*}
+                \text{cond}_\infty(A) &= \| A \|_\infty \| A^{-1} \|_\infty \\
+                &\geq \left( \| A \|_1 / n \right) \| A^{-1} \|_\infty && \text{exerc\'{i}cio 15(b) da lista 4} \\
+                &\geq \left( \| A \|_1 / n \right) \left( \| A^{-1} \|_1 / n \right) && \text{exerc\'{i}cio 15(b) da lista 4} \\
+                &= \left( 1 / n^2 \right) \text{cond}_1(A), \\
+                \text{cond}_\infty(A) &= \| A \|_\infty \| A^{-1} \|_\infty \\
+                &\leq \left( n \| A \|_1 \right) \| A^{-1} \|_\infty && \text{exerc\'{i}cio 15(b) da lista 4} \\
+                &\leq \left( n \| A \|_1 \right) \left( n \| A^{-1} \|_1 \right) && \text{exerc\'{i}cio 15(b) da lista 4} \\
+                &= n^2 \text{cond}_1(A).
+            \end{align*}
+            Logo, $(1/n^2)\cond_1(A) \leq \cond_\infty(A) \leq n^2\cond_1(A)$.
         \end{solution}
     \end{parts}
 
     \question Considere $A: n \times n$ e as matrizes $Q: n \times n$, ortogonal e $R: n \times n$ triangula superior tais que $A = QR$. Demonstre que $\left( 1 / \sqrt(n) \right) \| A \|_1 \leq \| R \|_1 \leq \sqrt{n} \| A \|_1$.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            \| A \| &= \| Q R \|_1 \\
+            &\leq \| Q \|_1 \| R \|_1 && \text{exerc\'{i}cio 8(b) da lista 4} \\
+            &\leq \sqrt{n} \| Q \|_2 \| R \|_1 && \text{exerc\'{i}cio 15(c) da lista 4} \\
+            &= \sqrt{n} \| R \|_1 && \text{exerc\'{i}cio 5(a)}, \\
+            \| R \|_1 &= \| Q^t Q R \|_1 \\
+            &= \| Q^t A \|_1 \\
+            &\leq \| Q^t \|_1 \| A \|_1 && \text{exerc\'{i}cio 8(b) da lista 4} \\
+            &= \| Q \|_\infty \| A \|_1 && \text{exerc\'{i}cio 13 da lista 4} \\
+            &\leq n \| Q \|_2 \| A \|_1 && \text{exerc\'{i}cio 15(a) da lista 4} \\
+            &= n \| A \|_1 && \text{exerc\'{i}cio 5(a)}.
+        \end{align*}
     \end{solution}
 
     \question Demonstre que se $B$ \'{e} uma submatriz qualquer de $A$ ent\~{a}o $\| B \|_p \leq \| A \|_p$.
@@ -143,9 +308,22 @@
         
     \end{solution}
 
-    \question Demonstre que a matriz $A = \frac{v u^t}{u^t u}$ \'{e} a matriz de norma-2 m\'{i}nima que satistaz $A u = v$.
+    \question Demonstre que a matriz $A = (v u^t) / (u^t u)$ \'{e} a matriz de norma-2 m\'{i}nima que satistaz $A u = v$.
     \begin{solution}
-        
+        Procuramos por $A$ tal que
+        \begin{align*}
+            \min_{A u = v} \| A \|_2 &= \min_{A u = v} \max_{\| x \| = 1} \| A x \|_2 \\
+            &= \min_{A u = v} \max_{\| x \| = 1} \| A x \|_2^2 \\
+            &= \min_{A u = v} \max_{\| x \| = 1} x^t A^t A x \\
+            &= \max_{\| x \| = 1} \min_{A u = v} x^t A^t A x.
+        \end{align*}
+        Derivando e igualando a zero, temos
+        \begin{align*}
+            \begin{cases}
+                A^t A x = 0 \\
+                A u = v
+            \end{cases}
+        \end{align*}
     \end{solution}
 \end{questions}
 \bibliographystyle{plain}

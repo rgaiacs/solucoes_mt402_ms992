@@ -1,6 +1,18 @@
-%        File: template.tex
-%     Created: qua mar 07 04:00  2012 HodB
-% Last Change: qua mar 07 04:00  2012 HodB
+<+	+>	!comp!	!exe!
+% Filename: !comp!expand("%:p:t")!comp!
+% This code is part of 'Listas de Matrizes'
+% 
+% Description: Lista <+NUMBER+>.
+% 
+% Created: !comp!strftime("%d.%m.%y %X")!comp!
+% Last Change: !comp!strftime("%d.%m.%y %X")!comp!
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms of
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -33,12 +45,7 @@
 
 \begin{document}
 \thispagestyle{headandfoot}
-\begin{questions}
-    \question Come\c{c}ar aqui.
-  \begin{solution}
-	
-  \end{solution}
-\end{questions}
+<++>
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}
-
-

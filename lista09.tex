@@ -1,0 +1,482 @@
+% Filename: lista09.tex
+% This code is part of 'Listas de Matrizes'
+% 
+% Description: Lista 09.
+% 
+% Created: 23.04.12 07:00:39 PM
+% Last Change: 25.04.12 09:18:38 AM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms of
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 9}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Seja $w \in \mathbb{R}^n$ tal que $\| w \|_2 = 1$ e defina $Q : n \times n$ por $Q = I - 2 w w^t = I - 2 P$ onde $P = w w^t$. Demonstre que
+    \begin{parts}
+        \part $Q w = - w$;
+        \begin{solution}
+            \begin{align*}
+                Q w &= \left( I - 2 w w^t \right) w \\
+                &= w - 2 w w^t w \\
+                &= w - 2 w && w^t w = \| w \|_2 = 1 \\
+                &= -w.
+            \end{align*}
+        \end{solution}
+
+        \part $Q v = v$ se $<w, v> = 0$;
+        \begin{solution}
+            \begin{align*}
+                Q v &= \left( I - 2 w w^t \right) v \\
+                &= v - 2 w w^t v \\
+                &= v - \left( 2 w \right) 0 && w^t v = <w, v> = 0 \\
+                &= v.
+            \end{align*}
+        \end{solution}
+
+        \part $Q$ \'{e} sim\'{e}trica e ortogonal.
+        \begin{solution}
+            Primeiro vamos mostrar que $Q$ \'{e} sim\'{e}trica, i.e., $Q = Q^t$.
+            \begin{align*}
+                Q^t &= (I - 2 P)^t \\
+                &= I^t - 2 P^t \\
+                &= I - 2 P = Q && \text{$P$ \'{e} sim\'{e}trica.}
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Dado $z = (5, 2)^t$. Defina: $v = \left( -\| z \|_2, 0 \right)^t$ e $u = z - v$. Interprete geometricamente a a\c{c}\~{a}o das matrizes $P = \left( u u^t \right) / u^t u$, $R = I - P$ e $Q = I - 2P$ em vetores do $\mathbb{R}^2$.
+    \begin{solution}
+        Pela defini\c{c}\~{a}o apresentada:
+        \begin{align*}
+            v &= \left( -\sqrt{29}, 0 \right)^t \sim \left( -5.39, 0 \right)^t, \\
+            u &= \left( 5 + \sqrt{29}, 2 \right)^t \sim \left( 10.39, 0 \right)^t, \\
+            P &= \frac{1}{2 \left( 29 + \sqrt{29} \right)} \begin{bmatrix}
+                \left( 5 + \sqrt{29} \right)^2 & 2 \left( 5 + \sqrt{29} \right) \\
+                2 \left( 5 + \sqrt{29} \right) & 2^2
+            \end{bmatrix} \sim \begin{bmatrix}
+                0.96 & 0.19 \\
+                0.19 & 0.04
+            \end{bmatrix}, \\
+            R &= \begin{bmatrix}
+                1 - \left( 5 + \sqrt{29} \right)^2 / \left[ 2 \left( 29 + \sqrt{29} \right) \right] & \left( 5 + \sqrt{29} \right) / \left( 29 + \sqrt{29} \right) \\
+                \left( 5 + \sqrt{29} \right) / \left( 29 + \sqrt{29} \right) & 1 - 2^2 / \left[ 2 \left( 29 + \sqrt{29} \right) \right]
+            \end{bmatrix} \sim \begin{bmatrix}
+                0.04 & -0.19 \\
+                -0.19 & 0.96
+            \end{bmatrix}, \\
+            Q &= \begin{bmatrix}
+                1 - 2 \left( 5 + \sqrt{29} \right)^2 / \left[ 2 \left( 29 + \sqrt{29} \right) \right] & - 2 \left( 5 + \sqrt{29} \right) / \left( 29 + \sqrt{29} \right) \\
+                - 2 \left( 5 + \sqrt{29} \right) / \left( 29 + \sqrt{29} \right) & 1 - 2 \cdot 2^2 / \left[ 2 \left( 29 + \sqrt{29} \right) \right]
+            \end{bmatrix} \sim \begin{bmatrix}
+                -0.93 & -0.37 \\
+                -0.37 & 0.93
+            \end{bmatrix}.
+        \end{align*}
+
+        As matrizes $P$, $R$ e $Q$ correspondem, respectivamente, a um projetor, um projetor orgotonal e um refletor. Geometricamente temos
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-6, 0) -- (10, 0) node[below right] {$x$};
+                \draw[->] (0, -1) -- (0, 3) node[above right] {$y$};
+
+                \draw[->, blue] (0,0) -- (5,2) node[below right, black] {$z$};
+                \draw[->, blue] (0,0) -- (sqrt{29}, 0) node[below right, black] {$v$};
+                \draw[->, blue] (0,0) -- (5 + sqrt{29}, 2) node[below right, black] {$u$};
+                \draw[->, blue] (0,0) -- (5.1926, 1.0000) node[below right, black] {$P z$};
+                \draw[->, blue] (0,0) -- (-0.19258, 1.00000) node[below right, black] {$R z$};
+                \draw[->, blue] (0,0) -- (-5.38516, 0.00000) node[below right, black] {$Q z$};
+            \end{tikzpicture}
+        \end{center}
+    \end{solution}
+
+    \question Considere $u : n \times 1$, $\| u \|_2 = 1$ e $P = u u^t$. Justificando todos os argumentos usados:
+    \begin{parts}
+        \part fa\c{c}a uma interpreta\c{c}\~{a}o geom\'{e}trica da a\c{c}\~{a}o das matrizes $P$, $I - P$ e $I - 2P$ em $v \in \mathbb{R}^n$;
+        \begin{solution}
+            As matrizes $P$, $I - P$ e $I - 2P$ correspondem, respectivamente, a um projetor, um projetor ortogonal e um refletor.
+            
+            Em maiores detalhes temos:
+            \begin{itemize}
+                \item $P v$ corresponde a proje\c{c}\~{a}o de $v$ em $u$;
+                \item $\left( I - P \right) v$ corresponde a proje\c{c}\~{a}o de $v$ no plano perpendicular a $u$;
+                \item $\left( I - 2 P \right) v$ corresponde a reflex\~{a}o de $v$ no plano perpendicular a $u$.
+            \end{itemize}
+        \end{solution}
+
+        \part o que podemos afirmar a respeito do posto de cada uma das matrizes do item anterior?
+        \begin{solution}
+            O posto da matriz $P$ \'{e} 1 pois as linhas s\~{a}o múltiplos do vetor $u$. O posto da matriz $I - P$ \'{e} $n - 1$ pois $\text{Im}(I - P) = \text{N}(P)$. E o posto de $I - 2 P$ \'{e} $n$ pois a matriz \'{e} n\~{a}o singular.
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre que se $P$ \'{e} um projetor ortogonal ent\~{a}o $I - 2 P$ \'{e} uma matriz sim\'{e}trica e ortogonal. Interprete geometricamente.
+    \begin{solution}
+        Se $P$ \'{e} um projetor ortogonal ent\~{a}o $P^2 = P$ e $P^t = P$.
+
+        Primeiro vamos mostrar que $I - 2 P$ \'{e} sim\'{e}trica.
+        \begin{align*}
+            \left( I - 2 P \right)^t &= I^t - 2 P^t \\
+            &= I - 2 P && P^t = P.
+        \end{align*}
+
+        Agora vamos mostrar que $I - 2 P$ \'{e} ortogonal.
+        \begin{align*}
+            \left( I - 2 P \right)^t \left( I - 2 P \right) &= \left( I - 2 P \right) \left( I - 2 P \right) \\
+            &= I - 2 P - 2 P + 4 P P \\
+            &= I - 4 P + 4 P && P P = P \\
+            &= I.
+        \end{align*}
+    \end{solution}
+    
+    \question Fatora\c{c}\~{a}o QR reduzida
+
+    Se $A : m \times n$, $\text{posto}(A) = n$. O processo de Gram Schmidt pode ser aplicado para construir as matrizes $\hat{Q} : m \times n$ and $\hat{R} : n \times n$, $r_{ij} = 0$, $i > j$, denominada fatora\c{c}\~{a}o ortogonal reduzida de $A$. 
+    
+    Esta fatora\c{c}\~{a}o \'{e} deduzida, impondo que dados os vetores colunas de $A : \left\{ a_1, a_2, \ldots, a_n \right\}$ queremos obter os vetores $\left\{ q_1, q_2, \ldots, q_n \right\}$ de modo que estes vetores sejam ortogonais e gerem o mesmo subespa\c{c}o, isto \'{e}, $\text{Im}(A) = \text{Im}(\hat{Q})$. Esta condi\c{c}\~{a}o \'{e} satisfeita se escrevermos $A$ como o produto de $\hat{Q}$ por uma outra matriz, que denonominaremos $\hat{R}$. ($A = \hat{Q} \hat{R}$: colunas de $A$ s\~{a}o combina\c{c}\~{o}es lineares das colunas de $R$ e as linhas de $A$ s\~{a}o combina\c{c}\~{o}es lineares das linhas de $\hat{R}$). Al\'{e}m disto, podemos impor que $\hat{R}$ seja triangular superior. Da equa\c{c}\~{a}o matricial: $A = \hat{Q} \hat{R}$, e do fato que as colunas de $\hat{Q}$ devem ser ortogonais e $\hat{R}$ triangular superior, deduzimos as f\'{o}rmulas para os vetores $q_j$ e elementos $r_{ij}$, que \'{e} o processo de Gram Schmidt. Verifique que as colunas $q_j$ de $\hat{Q}$ e os elementos $r_{ij}$ de $\hat{R}$ s\~{a}o dados por:
+    \begin{algorithmic}
+        \For{$j = 1, \ldots, n$}
+            \For{$i = 1, \ldots, j - 1$}
+                \State $r_{ij} \leftarrow q_i^t a_j$
+            \EndFor
+            \State $v_j = a_j = \sum_{i = 1}^{j - 1} r_{ij} q_i$
+            \State $r_{jj} = \| v_j \|_2$
+            \State $q_j = v_j / r_{jj}$
+        \EndFor
+    \end{algorithmic}
+    \begin{solution}
+        
+    \end{solution}
+
+    \question Considere a matriz $A: m \times n$. Sabendo que ao final do processo das transforma\c{c}\~{o}es de Householder, podemos escrever a express\~{a}o: $Q_m \ldots Q_2 Q_1 A = R$.
+    \begin{parts}
+        \part Em cada etapa $k$: qual o vetor que define a transforma\c{c}\~{a}o $Q_k$? Qual a express\~{a}o dessa matriz? Esta matriz \'{e} armazenada explicitamente? Como s\~{a}o armazenadas as informa\c{c}\~{o}es da matriz $Q_k$ que permite realizar posteriormente um produto da forma $Q_k v$, $v \in \mathbb{R}^m$?
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Como obter o produto $Q_k v$, $v \in \mathbb{R}^m$ sem calcular explicitamente a matriz $Q$?
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Qual a rela\c{c}\~{a}o entre as colunas da matriz $A$ e as colunas da matriz $R$? Justifique.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question Supor que em cada etapa $k$ a informa\c{c}\~{a}o da matriz $Q_k$ armazenada seja apenas o vetor $z$ que define a transforma\c{c}\~{a}o, no caso, formado pelos elementos $z = \left( a_{k, k}, a_{k + 1, k}, \ldots, a_{m, k} \right)^t$ e a norma-2 deste vetor. Quando for necess\'{a}rio aplicar a transforma\c{c}\~{a}o $Q_k$ sobre um vetor $y$, ser\'{a} preciso realizar: o produto interno $\beta = w^t y$, onde $w = z - v$ e $v = \left( \mp \| z \|_2, 0, \ldots, 0 \right)^t$ e o produto interno $\alpha = w^t w$ e finalmente uma opera\c{c}\~{a}o do tipo: $\hat{y} = y - \gamma w$, onde $\gamma = \left( 2 \beta \right) / \alpha$. Lembrando que apenas o vetor $z$ e sua norma-2 est\~{a}o armazenados, desenvolva f\'{o}rmulas simples para obter estes produtos internos e o vetor $\hat{y}$ somente em fun\c{c}\~{a}o das componentes de $z$ e de sua norma-2.
+    \begin{solution}
+        Como $z = \left( a_{k, k}, a_{k + 1, k}, \ldots, a_{m, k} \right)^t$ e $v = \left( \mp \| z \|_2, 0, \ldots, 0 \right)^t$ temos que $w = \left( a_{k, k} \pm \| z \|_2, a_{k + 1, k} \ldots, a_{m, k}  \right)^t$. Logo,
+        \begin{align*}
+            \hat{y} &= y - \gamma w \\
+            &= y - \frac{2 \beta}{\alpha} w \\
+            &= y - 2 \frac{w^t y}{w^t w} w.
+        \end{align*}
+
+        Em rela\c{c}\~{a}o ao produto interno $w^t w$ temos que
+        \begin{align*}
+            w^t w &= \left( a_{k, k} \pm \| z \|_2 \right)^2 + a_{k + 1, k}^2 + \ldots + a_{m, k}^2 \\
+            &= a_{k, k}^2 \pm 2 a_{k, k} \| z \|_2 + \| z \|_2^2 + a_{k + 1, k}^2 + \ldots + a_{m, k}^2 \\
+            &= 2 \| z \|_2^2 + 2 a_{k, k} \| z \|_2.
+        \end{align*}
+    \end{solution}
+
+    \question Considere a matriz $Q = I - 2 u u^t$, $\| u \|_2 = 1$, um refletor de Householder. Calcule os autovalores e o determinante de $Q$.
+    \begin{solution}
+       Primeiro vamos calcular os autovalores.
+
+       Suponhamos que $u$ \'{e} autovetor de $Q$, ent\~{a}o
+       \begin{align*}
+           Q u &= \left( I - 2 u u^t \right) u \\
+           &= u - 2 u u^t u \\
+           &= u - 2 u = -u && \| u \|_2 = 1.
+       \end{align*}
+       Logo, verificamos que $u$ \'{e} autovetor de $Q$ associado ao autovalor $-1$.
+
+       Suponhamos que um vetor $v$ ortogonal a $u$, i.e., $v^t u = u^t v = 1$, \'{e} autovetor de $Q$, ent\~{a}o
+       \begin{align*}
+           Q v &= \left( I - 2 u u^t \right) v \\
+           &= v - 2 u u^t v \\
+           &= v && u^t v = 0.
+       \end{align*}
+       Logo, verificamos que $v$ \'{e} autovetor de $Q$ associado ao autovalor $1$. Como existem $n - 1$ vetores ortogonais ao vetor $u$ temos que existem $n - 1$ autovalores iguais a $1$.
+
+       Agora vamos calcular o determinante de $Q$. Como o determinante \'{e} o produto dos autovalores da matriz $Q$ temos que $\text{det}{Q} = -1$.
+    \end{solution}
+
+    \question Considere o sistema linear $A x = b$,
+    \begin{align*}
+        A &= \begin{bmatrix}
+            1 & 1 \\
+            0 & 3 \\
+            0 & 4
+        \end{bmatrix} \text{ e } b = \begin{bmatrix}
+            2 \\
+            1 \\
+            3
+        \end{bmatrix}.
+    \end{align*}
+    \begin{parts}
+        \part Usando transforma\c{c}\~{o}es de Householder obtenha a proje\c{c}\~{a}o ortogonal de $b$ em $\text{Im}(A)$.
+        \begin{solution}
+            
+        \end{solution}
+
+        \part Obtenha a proje\c{c}\~{a}o ortogonal de $b$ em $\text{N}(A^t)$.
+        \begin{solution}
+            
+        \end{solution}
+    \end{parts}
+
+    \question A fatora\c{c}\~{a}o QR de uma matriz $A :  m \times n$ pode ser obtida atrav\'{e}s das Rota\c{c}\~{o}es de Givens. Pesquisar este assunto no livro do Watkins\nocite{Watkins:2004:fundamentals} e/ou Golub\nocite{Golub:1996:matrix}: matriz de rota\c{c}\~{a}o, caso $2 \times 2$ e como aplicar as rota\c{c}\~{o}es sobre uma matriz geral $A : m \times n$. Detalhar como s\~{a}o as matrizes $Q_k$ de cada etapa da transforma\c{c}\~{a}o. Como aplicar as transforma\c{c}\~{o}es para resolver um sistema linear $n \times n$ ou um problema de Quadrados M\'{i}nimos.
+    \begin{solution}
+        Retirado do Golub, p\'{a}gina 208.
+
+        Uma matriz ortogonal $Q : 2 \times 2$ \'{e} uma rota\c{c}\~{a}o se tem a forma
+        \begin{align*}
+            Q = \begin{bmatrix}
+                \cos \theta & \sin \theta \\
+                -\sin \theta & \cos \theta
+            \end{bmatrix}.
+        \end{align*}
+        Se $y = Q^t x$ ent\~{a}o $y$ \'{e} obtido por uma rota\c{c}\~{a}o de $x$, no sentido hor\'{a}rio, em um \^{a}gulo $\theta$.
+
+        Retirado do Golub, p\'{a}gina 215.
+
+        Uma matriz ortogonal $Q : n \times n$ \'{e} uma rota\c{c}\~{a}o se tem a forma
+        \begin{align*}
+            Q = \begin{bmatrix}
+                1      & \ldots & 0      & \ldots & 0       & \ldots & 0       \\
+                \vdots & \ddots & \vdots & \ddots & \vdots  & \ldots & \vdots  \\
+                0      & \ldots & c      & \ldots &  s      & \ldots & 0       \\
+                \vdots & \ddots & \vdots & \ddots & \vdots  & \ldots & \vdots  \\
+                0      & \ldots & -s     & \ldots &  c      & \ldots & 0       \\
+                \vdots & \ddots & \vdots & \ddots & \vdots  & \ldots & \vdots  \\
+                0      & \ldots & 0      & \ldots & 0       & \ldots & 1 
+            \end{bmatrix},
+        \end{align*}
+        onde $c = \cos \theta$ e $s = \sin \theta$ para algum $\theta$.
+
+        Se $x \in \mathbb{R}^n$ e $y = Q^t x$, ent\~{a}o
+        \begin{align*}
+            y_j = \begin{cases}
+                c x_i - s x_k, & j = i, \\
+                s x_i + c x_k, & j = k, \\
+                x_j, & j \neq i, k.
+            \end{cases}
+        \end{align*}
+        Ent\~{a}o podemos for\c{c}ar $y_k$ ser zero ao fazermos
+        \begin{align*}
+            c &= \frac{x_i}{\sqrt{x_i^2 + x_k^2}} \text{ e } s = \frac{-x_k}{\sqrt{x_i^2 + x_k^2}}.
+        \end{align*}
+    \end{solution}
+
+    \question Resolva o sistema linear $A x = b$,
+    \begin{align*}
+        A = \begin{bmatrix}
+            1 & 1 & 2 \\
+            0 & 0 & 1 \\
+            1 & 0 & 0
+        \end{bmatrix} \text{ e } b = \begin{bmatrix}
+            2 \\
+            1 \\
+            1
+        \end{bmatrix},
+    \end{align*}
+    atrav\'{e}s da fatora\c{c}\~{a}o QR, usando rota\c{c}\~{o}es de Givens.
+    \begin{solution}
+        Para resolver o sistema linear por rota\c{c}\~{o}es de Givens temos a seguinte sequencia de rota\c{c}\~{o}es:
+        \begin{enumerate}
+            \item zerar o elemento $a_{31}$:
+
+                Precisamos que
+                \begin{align*}
+                    c &= a_{11} / \left( a_{11}^2 + a_{31}^2 \right)^{1 / 2} \\
+                    &= 1 / \left( 2 \right)^{1 / 2}, \\
+                    s &= -a_{31} / \left( a_{11}^2 + a_{31}^2 \right)^{1 / 2} \\
+                    &= -1 / \left( 2 \right)^{1 / 2}.
+                \end{align*}
+                Ent\~{a}o
+                \begin{align*}
+                    Q &= \begin{bmatrix}
+                        0.71 & 0.00 & -0.71 \\
+                        0.00 & 1.00 & 0.00 \\
+                        0.71 & 0.00 & 0.71
+                    \end{bmatrix}, \\
+                    Q^t A &= \begin{bmatrix}
+                        1.41 & 0.71 & 1.41 \\
+                        0.00 & 0.00 & 1.00 \\
+                        0.00 & -0.71 & -1.41
+                    \end{bmatrix}.
+                \end{align*}
+
+            \item permutar as linhas $2$ e $3$:
+
+                Ent\~{a}o
+                \begin{align*}
+                    P &= \begin{bmatrix}
+                        1 & 0 & 0 \\
+                        0 & 0 & 1 \\
+                        0 & 1 & 0
+                    \end{bmatrix}, \\
+                    P \left( Q^t A \right) &= \begin{bmatrix}
+                        1.41 & 0.71 & 1.41 \\
+                        0.00 & -0.71 & -1.41 \\
+                        0.00 & 0.00 & 1.00
+                    \end{bmatrix}.
+                \end{align*}
+        \end{enumerate}
+
+        Agora efetuando a mesma rota\c{c}\~{a}o e permuta\c{c}\~{a}o no vetor $b$, temos
+        \begin{align*}
+            P \left( Q^t b \right) &= \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+            \end{bmatrix} \begin{bmatrix}
+                2.12 \\
+                1.00 \\
+                -0.71
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                2.12 \\
+                -0.71 \\
+                1.00
+            \end{bmatrix}.
+        \end{align*}
+
+        Por fim, temos que resolver o sistema linear
+        \begin{align*}
+            \begin{bmatrix}
+                1.41 & 0.71 & 1.41 \\
+                0.00 & -0.71 & -1.41 \\
+                0.00 & 0.00 & 1.00
+            \end{bmatrix} x &= \begin{bmatrix}
+                2.12 \\
+                -0.71 \\
+                1.00
+            \end{bmatrix}, \\
+            x &= \begin{bmatrix}
+                1 \\
+                -1 \\
+                1
+            \end{bmatrix}.
+        \end{align*}
+    \end{solution}
+
+    \question Obtenha a solu\c{c}\~{a}o de Quadrados M\'{i}nimos para o sistema linear $A x = b$,
+    \begin{align*}
+        A = \begin{bmatrix}
+            1 & 5 & 5 \\
+            2 & 3 & 7 \\
+            0 & 1 & 6 \\
+            0 & 7 & 9
+        \end{bmatrix} \text{ e } b = \begin{bmatrix}
+            1 \\
+            -1 \\
+            2 \\
+            -2
+        \end{bmatrix},
+    \end{align*}
+    usando o processo de fatora\c{c}\~{a}o ortogonal obtida atrav\'{e}s de rota\c{c}\~{o}es de Givens.
+    \begin{solution}
+        Para resolver o problema de Quadrados M\'{i}nimos por rota\c{c}\~{o}es de Givens temos a seguinte sequencia de rota\c{c}\~{o}es:
+        \begin{enumerate}
+            \item zerar o elemento $a_{21}$:
+
+                Precisamos que
+                \begin{align*}
+                    c &= a_{11} / \left( a_{11}^2 + a_{21}^2 \right)^{1 / 2} \\
+                    &= 1 / \left( 5 \right)^{1 / 2}, \\
+                    s &= - a_{21} / \left( a_{11}^2 + a_{21}^2 \right)^{1 / 2} \\
+                    &= -2 / \left( 5 \right)^{1 / 2}.
+                \end{align*}
+                Ent\~{a}o
+                \begin{align*}
+                    Q_1 &= \begin{bmatrix}
+                        0.45 & -0.89 & 0.00 & 0.00 \\
+                        0.89 & 0.45 & 0.00 & 0.00 \\
+                        0.00 & 0.00 & 1.00 & 0.00 \\
+                        0.00 & 0.00 & 0.00 & 1.00
+                    \end{bmatrix}, \\
+                    Q_1^t A &= \begin{bmatrix}
+                        2.24 & 4.92 & 8.50 \\
+                        0.00 & -3.13 & -1.34 \\
+                        0.00 & 1.00 & 6.00 \\
+                        0.00 & 7.00 & 9.00
+                    \end{bmatrix}.
+                \end{align*}
+
+            \item zerar o elemento $a_{32}$:
+
+                Precisamos que
+                \begin{align*}
+                    c &= a_{22} / \left( a_{22}^2 + a_{32}^2 \right)^{1 / 2} \\
+                    &= -3.13 / \left( 3.13^2 + 1^2 \right)^{1 / 2}, \\
+                    s &= - a_{32} / \left( a_{22}^2 + a_{32}^2 \right)^{1 / 2} \\
+                    &= -1 / \left( 3.13^2 + 1^2 \right)^{1 / 2}.
+                \end{align*}
+                Ent\~{a}o
+                \begin{align*}
+                    Q_2 &= \begin{bmatrix}
+                        1.00 & 0.00 & 0.00 & 0.00 \\
+                        0.00 & -0.95 & -0.30 & 0.00 \\
+                        0.00 & 0.30 & -0.95 & 0.00 \\
+                        0.00 & 0.00 & 0.00 & 1.00
+                    \end{bmatrix}, \\
+                    Q_2^t Q_1^t A &= \begin{bmatrix}
+                        2.24 & 4.92 & 8.50 \\
+                        0.00 & 3.29 & 3.10 \\
+                        0.00 & 0.00 & -5.31 \\
+                        0.00 & 7.00 & 9.00
+                    \end{bmatrix}.
+                \end{align*}
+
+            \item zerar o elemento $a_{42}$:
+
+        \end{enumerate}<++>
+    \end{solution}<++>
+\end{questions}<++>
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
+
+

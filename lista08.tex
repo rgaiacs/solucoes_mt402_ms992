@@ -1,0 +1,333 @@
+% Filename: lista08.tex
+% This code is part of 'Listas de Matrizes'
+% 
+% Description: Lista 08.
+% 
+% Created: 19.04.12 13:20:15
+% Last Change: 30.04.12 08:49:34 AM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms of 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 8}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+\newcommand{\EI}[1]{\text{Im}(#1)}
+\newcommand{\EN}[1]{\text{N}(#1)}
+\newcommand{\posto}[1]{\text{posto}(#1)}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question[Trefthen - Lecture 6] Um projetor \'{e} uma matriz $P : n \times n$ que satisfaz $P^2 = P$ (matriz idempotente).
+    \begin{parts}
+        \part Se $v \in \EI{P}$, ent\~{a}o $P v = v$.
+        \begin{solution}
+            $v \in \EI{P} \rightarrow v = P x, x \in \mathbb{R}^n$. Ent\~{a}o, $P v = P (Px) = P^2(x) = Px = v$.
+        \end{solution}
+
+        \part O vetor $(v - Pv)$ pertence a $\EN{P}$.
+        \begin{solution}
+            $P (v - Pv) = Pv - P^2v = Pv - Pv = 0$.
+        \end{solution}
+
+        \part No item anterior foi introduzida a matriz $I - P$ uma vez que, $v - Pv = (I - P)v$. $I - P$ tamb\'{e}m \'{e} um projetor.
+        \begin{solution}
+            $(I - P)^2 - (I - P)(I - P) = I - 2P + P^2 = I - 2P + P = I - P$.
+
+            Resultado: se $P$ \'{e} projetor, ent\~{a}o, $I - P$ tamb\'{e} \'{e} projetor.
+        \end{solution}
+        
+        \part $\EI{I - P} = \EN{P}$.
+        \begin{solution}
+            Primeiro vamos provar que $\EI{I - P} \subseteq \EN{P}$.
+
+            Se $w \in \EI{I - P}$, ent\~{a}o $w = (I - P) y$, $y \in \mathbb{R}^n$, e $P w = P (I - P) y = P y - P^2 y = P y - P y = 0$, portanto, $w \in \EN{P}$.
+
+            Agora vamos provar que $\EN{P} \subseteq \EI{I - P}$.
+
+            $z \in \EN{P} \rightarrow P z = 0 \rightarrow P z - z + z = 0 \rightarrow (I - P) z = z \rightarrow z \in \mathbb{I - P}$.
+
+            Resultado: $\EI{I - P} = \EN{P}$ e $\EI{P} = \EN{I - P}$.
+        \end{solution}
+
+        \part $\EI{P}$ e $\EN{P}$ s\~{a}o subespa\c{c}os complementares em $\mathbb{R}^n$.
+
+        \begin{solution}
+            %$\EI{P} \cap \EN{P} = \{0\} 
+            $\forall w \in \EI{P} \cap \EN{P}$, tem-se que $P w = w$ e $P w = 0$, logo, $\EI{P} \cap \EN{P} = {0}$. $\forall v \in \mathbb{R}^n : v = v - P v + Pv = Pv + (I - P)v = v_1 + v_2$ com $v_1 \in \EI{P}$ e $v_2 \in \EI{I - P}$ (e pelo resultado do item anterior: $v_2 \in \EN{P}$).
+
+            E, esta forma de representar $v$ \'{e} única, pois: se existir outra representa\c{c}\~{a}o para $v$, $v = r_1 + r_2$ com$r_1 \in \EI{P}$ e $r_2 \in \EN{P}$ e $r_2 \in \EN{P}$, subtraindo esta representa\c{c}\~{a}o da anterior, teremos: $0 = P v + (I - P)v - (r_1 + r_2) = (Pv - r_1) + ((I - P)v - r_2)) \rightarrow (P v - r_1) = -( (I - P) v - r_2) $ com $(P v - r_1) \in \EI{P}$ e $( (I - P)v - r_2) \in \EI{I - P} = \EN{P}$. Logo estes veores est\~{a}o na interse\c{c}\~{a}o de $\EI{P}$ e $\EN{P}$, e portanto, s\~{a}o iguais ao vetor nulo. Logo, $r_1 = P v$ e $r_2 = (I - P)v$ e portanto a representa\c{c}\~{a}o \'{e} única.
+
+            Resultado: $\mathbb{R}^n = \EI{P} + \EN{P}$ ou $\mathbb{R}^n = \EI{P} + \EI{I - P}$ e portanto, se $\posto{P} = r$, temos $\posto{\EI{I - P}} = \posto{\EN{P}} = n - r$.
+        \end{solution}
+    \end{parts}
+
+    \question Encontre um exemplo de matriz $P : 2 \times 2$ que seja um projetor (n\~{a}o deve ser ortogonal). Interprete geometricamente esta proje\c{c}\~{a}o mostrando os subespa\c{c}os $\EI{P}$ e $\EN{P}$.
+    \begin{solution}
+        Se $P$ \'{e} um projetor ent\~{a}o $P^2 = P$ que implica em $P^2 - P = P(I - P) = 0$. Logo,
+        \begin{align*}
+            P &= \begin{bmatrix}
+                1 / 2 & 1 / 4 \\
+                1 & 1 / 2
+            \end{bmatrix}
+        \end{align*}
+        \'{e} um projetor n\~{a}o ortogonal.
+    \end{solution}
+
+    \question[Equa\c{c}\~{a}o 5.13.9, p\'{a}gina 433, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que um projetor $P$ \'{e} ortogonal se e somente se $P = P^t$.
+    \begin{solution}
+        Se $P$ \'{e} um projetor ortogonal, ent\~{a}o
+        \begin{align*}
+            P_M &= M \left( M^t M \right)^{-1} M^t
+        \end{align*}
+        garante que $P$ \'{e} sim\'{e}trico. E se $P$ \'{e} sim\'{e}trico, ent\~{a}o $P$ deve ser projetor ortogonal pois $\text{Im}(A)^\perp = \text{N}(A^t)$ e $\text{N}(A)^\perp = \text{Im}(A^t)$ que permite escrever $P = P^t \rightarrow \text{Im}(P) = \text{Im}(P^t) \rightarrow \text{Im}(P) \perp \text{N}(P)$.
+    \end{solution}
+
+    \question Demonstre que se $P$ \'{e} um projetor ent\~{a}o para qualquer norma matricial induzida de normas vetoriais (norma-p): $\| P \|_p \geq 1$.
+    \begin{solution}
+        Se $P$ \'{e} um projetor e $x \in \text{Im}(P)$ ent\~{a}o a igualdade a seguir \'{e} v\'{a}lida para todo $v$:
+        \begin{align*}
+            P^2 v = P \left( P v \right) = P x = x = P v.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            \| P \|_P &= \max_{v \neq 0} \| P v \|_p / \| v \|_p \\
+            &\geq \| P x \|_p / \| x \|_p \\
+            &= \| x \|_p / \| x \|_p = 1.
+        \end{align*}
+    \end{solution}
+
+    \question[Equa\c{c}\~{a}o 5.13.10, p\'{a}gina 4.33, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que se $P$ \'{e} um projetor ortogonal ent\~{a}o $\| P \|_2 = 1$.
+    \begin{solution}
+        Se $M$ e $N$ s\~{a}o subespa\c{c}os complementares e se $P_{MN}$ \'{e} o projetor obl\'{i}quo de $M$ em $N$ ent\~{a}o
+        \begin{align*}
+            \sin(\theta_{m \times n}) &= 1 / \| P_{MN} \|_2
+        \end{align*}
+        e, consequentemente, $\| P \|_2 = 1 / \sin(\theta)$, onde $\theta$ \'{e} o \^{a}ngulo entre $\text{Im}(P)$ e $\text{N}(P)$. Deste modo fica claro que $\| P \|_2 \geq 1$ para todo projetor e $\| P \|_2 = 1$ se e somente se $\theta = \pi / 2$, i.e., se e somente se $\text{Im}(P) \perp \text{N}(P)$.
+    \end{solution}
+
+    \question Seja $w \in \mathbb{R}^n$ e a matriz $P = \left( w w^t \right) / \left( w^t w \right)$. Demonstre que $P$ \'{e} um projetor orotogonal. Interprete geometricamente a a\c{c}\~{a}o da matriz $P$ em vetore do $\mathbb{R}^n$. Fa\c{c}a um gr\'{a}fico considerando $n = 2$.
+    \begin{solution}
+        Pela defini\c{c}\~{a}o temos que $P$ \'{e} um projetor ortogonal se e somente se
+        \begin{enumerate}
+            \item $P^2 = P$:
+                
+                Temos que
+                \begin{align*}
+                    P^2 &= P P \\
+                    &= \left( \frac{w w^t}{w^t w} \right) \left( \frac{w w^t}{w^t w} \right) \\
+                    &= \left( w w^t w w^t \right) / \| w \|_2^4 \\
+                    &= \| w \|_2^2 \left( w w^t \right) / \| w \|_2^4 \\
+                    &= w w^t / w^t w = P.
+                \end{align*}
+
+            \item $P = P^t$:
+                
+                Verificamos que $P = P^t$ pois $w w^t = \left( w w^t \right)^t$.
+        \end{enumerate}
+
+        A interpreta\c{c}\~{a}o geom\'{e}trica \'{e} que $\text{Im}(P)$ \'{e} o plano definido por $w w^t$.
+
+        Para $n = 2$ temos
+        \begin{center}
+            \begin{tikzpicture}[scale=2]
+                \draw[->] (-0.2, 0) -- (6.2, 0) node[below right] {$x_1$};
+                \draw[->] (0, -0.2) -- (0, 3.2) node[above right] {$x_2$};
+
+                \draw[->, color=red] (0,0) -- (1, 0.5) node[below right] {$(1 ,0.5)^t$};
+                \draw[->, color=red] (0,0) -- (5, 2.5) node[below right] {$P (1, 0.5)^t$};
+
+                \draw[->, color=green] (0,0) -- (0.5, 1) node[above right] {$(0.5, 1)^t$};
+                \draw[->, color=green] (0,0) -- (4, 2) node[below right] {$P (0.5, 1)^t$};
+
+                \draw[->, color=blue] (0,0) -- (0.5, 0.5) node[above right] {$(0.5 ,0.5)^t$};
+                \draw[->, color=blue] (0,0) -- (3, 1.5) node[below right] {$P (0.5 ,0.5)^t$};
+
+                \draw[dotted] (0,0) -- (4,2);
+                \draw[->] (0,0) -- (2,1) node[below right] {$w$};
+            \end{tikzpicture}
+        \end{center}
+    \end{solution}
+
+    \question Projetores com Bases Orotogonais: Considere a matriz $\hat{Q} : m \times n$ com vetores coluna $q_j$ tais que $q_j^* q_i = 0$, $i \neq j$, e $q_j^* q_j = 1$. Demonstre que a matriz $P = \hat{Q} \hat{Q}^*$ \'{e} um projetor ortogonal.
+    \begin{solution}
+        Pela defini\c{c}\~{a}o temos que $P$ \'{e} um projetor ortogonal se e somente se
+        \begin{enumerate}
+            \item $P^2 = P$:
+                
+                Temos que
+                \begin{align*}
+                    P^2 &= P P \\
+                    &= \hat{Q} \hat{Q}^* \hat{Q} \hat{Q}^* \\
+                    &= \hat{Q} I \hat{Q}^* && \text{$q_j^* q_i = 0$, $i \neq j$, e $q_j^* q_j = 1$} \\
+                    &= \hat{Q} \hat{Q}^* = P.
+                \end{align*}
+
+            \item $P = P^*$:
+                
+                Verificamos que $P = P^t$ pois $\hat{Q} \hat{Q}^* = \left( \hat{Q} \hat{Q}^* \right)^*$.
+        \end{enumerate}
+    \end{solution}
+
+    \question[Exemplo 5.13.3, p\'{a}gina 434, do Meyer\nocite{Meyer:2000:matrix}] Projetores com Bases Arbitr\'{a}rias: Considere $A : m \times n$, $\posto{A} = n$ e o subespa\c{c}o $\EI{A}$. Deduza a express\~{a}o para $P$, projetor ortogonal sobre $\EI{A}$.
+    \begin{solution}
+        Seja $B_{m \times r}$ e $N_{n \times n - r}$ matrizes cujas colunas s\~{a}o bases de $\text{Im}(A)$ e $\text{N}(A)$, respectivamente. O Teorema da decomposi\c{c}\~{a}o ortogonal diz que $\text{Im}(A)^\perp = \text{N}(A^t)$ e $\text{N}(A)^\perp = \text{Im}(A^t)$, ent\~{a}o utilizando
+        \begin{align*}
+            P_M &= M \left( M^t M \right)^{-1} M^t, \\
+            P_{M^\perp} &= N \left( N^t N \right)^{-1} N^t, \\
+            P_{M^\perp} & = I - P_M,
+        \end{align*}
+        podemos escrever
+        \begin{align*}
+            P_{\text{Im}(A)} &= B \left( B^t B \right)^{-1} B^t, \\
+            P_{\text{N}(A^t)} &= P_{\text{Im}(A)^\perp} = I - P_{\text{Im}(A)} = I - B \left( B^t B \right)^{-1} B^t, \\
+            P_{\text{N}(A)} &= N \left( N^t N \right)^{-1} N^t, \\
+            P_{\text{Im}(A^t)} &= P_{\text{N}(A)^\perp} = I - P_{\text{N}(A)} = I - N \left( N^t N \right)^{-1} N^t.
+        \end{align*}
+
+        E quando $\text{posto}(A) = n$, todas as colunas de $A$ s\~{a}o bas\'{i}cas e
+        \begin{align*}
+            P_{\text{Im}(A)} &= A \left( A^t A \right)^{-1} A^t.
+        \end{align*}
+    \end{solution}
+
+    \question Seja $w \in \mathbb{R}^n$ tal que $\| w \|_2 = 1$ e defina $Q : n \times n$ por $Q = I - 2 w w^t = I - 2P$ onde $P = w w^t$. Demonstre que:
+    \begin{parts}
+        \part $Q w = - w$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                Q w &= \left( I - 2 w w^t \right) w \\
+                &= w - 2 w w^t w \\
+                &= w - 2 w \| w \|_2^2 \\
+                &= -w && \| w \|_2 = 1.
+            \end{align*}
+        \end{solution}
+
+        \part $Q v = v$ se $<w, v> = 0$.
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                Q v &= \left( I - 2 w w^t \right) v \\
+                &= v - 2 w w^t v \\
+                &= v - 2 w <w, v> \\
+                &= v && <w, v> = 0.
+            \end{align*}
+        \end{solution}
+
+        \part $Q$ \'{e} sim\'{e}trica e ortogonal.
+        \begin{solution}
+            Primeiro vamos mostrar que $Q$ \'{e} sim\'{e}trica:
+            \begin{align*}
+                Q^t &= \left( I - 2 w w^t \right)^t \\
+                &= I^t - 2 \left( w w^t \right)^t \\
+                &= I - 2 \left( w^t \right)^t w^t \\
+                &= I - 2 w w^t = Q.
+            \end{align*}
+
+            E agora que $Q$ \'{e} ortogonal, i.e., $Q^2 = I$:
+            \begin{align*}
+                Q Q &= \left( I - 2 w w^t \right) \left( I - 2 w w^t \right) \\
+                &= I - 2 w w^t - 2 w w^t + 4 w w^t w w^t \\
+                &= I - 4 w w^t + 4 \| w \|_2^2 w w^t \\
+                &= I && \| w \|_2 = 1.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Dado $z = (5, 2)^t$. Defina: $v = (-\| z \|_2, 0)^t$ e $u = z - v$. Interprete geometricamente a a\c{c}\~{a}o das matrizes $P = (u u^t) / (u^t u)$, $R = I - P$ e $Q = I - 2p$ em vetores do $\mathbb{R}^2$.
+    \begin{solution}
+        Temos que $v = (- \sqrt{29}, 0^t$ e $u = (5 + \sqrt{29}, 2)^t$. Logo,
+        \begin{align*}
+            P &= \begin{bmatrix}
+                10.20 & 1.96 \\
+                1.96 & 0.38
+            \end{bmatrix}, \\
+            R &= \begin{bmatrix}
+                -9.20 & -1.96 \\
+                -1.96 & 0.62
+            \end{bmatrix}, \\
+            Q &= \begin{bmatrix}
+                -19.39 & -3.93 \\
+                -3.93 & 0.24
+            \end{bmatrix},
+        \end{align*}
+        onde $P$ \'{e} um projetor ortogonal, $R = I - P$ \'{e} o projetor complementar e $Q = I - 2P$ \'{e} um refletor.
+
+        A seguir uma ilustra\c{c}\~{a}o, fora de escala, da a\c{c}\~{a}o de cada um destes operadores.
+        \begin{center}
+            \begin{tikzpicture}[xscale=0.25]
+                \draw[->] (-16.2, 0) -- (16.2, 0) node[below right] {$x_1$};
+                \draw[->] (0, -4.2) -- (0, 4.2) node[above right] {$x_2$};
+
+                \draw[->, color=blue] (0,0) -- (1,1) node[above right] {$(1, 1)^t$};
+                \draw[->, color=blue] (0,0) -- (12.16, 2.34) node[above right] {$P (1, 1)^t$};
+                \draw[->, color=blue] (0,0) -- (-11.16, -1.34) node[above left] {$R (1, 1)^t$};
+                \draw[->, color=blue] (0,0) -- (-23.32, -3.68) node[below right] {$Q (1, 1)^t$};
+
+                \draw[->, color=red] (0,0) -- (-0.5, 1.00) node[above left] {$(-0.5 ,1)^t$};
+                \draw[->, color=red] (0,0) -- (-3.13, -0.60) node[below right] {$P (-0.5, 1)^t$};
+                \draw[->, color=red] (0,0) -- (2.63, 1.60) node[above left] {$R (-0.5, 1)^t$};
+                \draw[->, color=red] (0,0) -- (5.77, 2.20) node[above left] {$Q (-0.5, 1)^t$};
+
+                \draw[->] (0,0) -- (5,2) node[below right] {$z$};
+                \draw[dotted] (-15.57, -3.00) -- (15.57, 3.00);
+                \draw[->] (0,0) -- (10.38, 2.00) node[below right] {$z$};
+            \end{tikzpicture}
+        \end{center}
+    \end{solution}
+
+    \question Demonstre que se $P$ \'{e} um projetor ortogonal ent\~{a}o $I - 2P$ \'{e} uma amtriz sim\'{e}trica e ortogonal. Interprete geometricamente.
+    \begin{solution}
+        Se $P$ \'{e} um projetor ortogonal ent\~{a}o $P^2 = P$ e $P = P^t$.
+        
+        Primeiro vamos mostrar que $I - 2P$ \'{e} sim\'{e}trica:
+        \begin{align*}
+            \left( I - 2 P \right)^t &= I^t - 2 P^t \\
+            &= I - 2 P && P = P^t .
+        \end{align*}
+
+        E agora que $I - 2P$ \'{e} ortogonal, i.e., $\left( I - 2 P \right)^2 = I$:
+        \begin{align*}
+            \left( I - 2 P \right) \left( I - 2 P \right) &= I - 2 P - 2 P + 4 P P \\
+            &= I - 4 P + 4 P && P^2 = P \\
+            &= I .
+        \end{align*}
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
+
+

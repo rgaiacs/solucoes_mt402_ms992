@@ -1,15 +1,15 @@
 % Filename: lista04.tex
-% This code is part of Listas de Matrizes
+% This code is part of 'Listas de Matrizes'
 % 
-% Description: Lista 04
+% Description: Lista 04.
 % 
 % Created: 18.03.12 12:15:06 PM
-% Last Change: 18.03.12 03:44:05 PM
+% Last Change: 26.04.12 10:05:40 PM
 % 
-% Author: Raniere Gaia Costa da Silva, r.gaia.cs@gmail.com
-% Organization: UNICAMP
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
 % 
-% Copyright (c) 2012, Raniere Gaia Costa da Silva. All rights reserved.
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
 % 
 % This file is license under the terms of
 %
@@ -22,7 +22,7 @@
 \usepackage{hyperref}
 
 % Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 04}{1º semestre de 2012}
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 4}{1º semestre de 2012}
 \firstpageheadrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
 \footrule 
@@ -45,28 +45,104 @@
 \begin{document}
 \thispagestyle{headandfoot}
 \begin{questions}
-    \question[exerc\'{i}cio 5.1.12, Meyer\nocite{Meyer:2000:matrix}] Desigualdade de Holder: para vetores $u$ e $v$ em $\mathbb{C}^n$, demonstre que:
+    \question[Exerc\'{i}cio 5.1.12, p\'{a}gina 278, do Meyer\nocite{Meyer:2000:matrix}] Desigualdade de Holder: para vetores $u$ e $v$ em $\mathbb{C}^n$, demonstre que:
     \[
-    | u^* v | \leq \sum_i \left( | u_i |^p \right)^{1/p} \left( | v_i |^q \right)^{1/q}a,
+    | u^* v | \leq \sum_i \left( | u_i |^p \right)^{1/p} \left( | v_i |^q \right)^{1/q},
     \]
     onde $p > 1$, $q > 1$ e $\frac{1}{p} + \frac{1}{q} = 1$.
     \begin{solution}
-        
+        Seja $f(t) = \left( 1 - \lambda \right) + \lambda t - t^\lambda$, $0 < \lambda < 1$. Derivando $f(t)$ temos
+        \begin{align*}
+            f'(t) &= \lambda - \lambda t^{\lambda - 1}.
+        \end{align*}
+        Verificamos ent\~{a}o que $f'(1) = 0$, $f'(t > 1) < 0$ e $f'(t < 1) > 0$. Portanto $f(t) \geq f(1) = 0$ 
+
+        E para $t = \alpha / \beta$ temos
+        \begin{align*}
+            f(\alpha / \beta &= \left( 1 - \lambda \right) + \lambda \left( \alpha / \beta \right) - \left( \alpha / \beta \right)^\lambda \\
+            &= \left[ \left( 1 - \lambda \right) \beta^\lambda + \lambda \alpha \beta^{\lambda - 1} - \alpha^\lambda \right] / \beta^\lambda \\
+            0 &\leq \left[ \left( 1 - \lambda \right) \beta^\lambda + \lambda \alpha \beta^{\lambda - 1} - \alpha^\lambda \right] / \beta^\lambda && f(t) \geq 0 \\
+            0 &\leq \left( 1 - \lambda \right) \beta^\lambda + \lambda \alpha \beta^{\lambda - 1} - \alpha^\lambda && \beta > 0 \\
+            \alpha^\lambda &\leq \left( 1 - \lambda \right) \beta^\lambda + \lambda \alpha \beta^{\lambda - 1} \\
+            \alpha^\lambda \beta^{1 - \lambda} &\leq \left( 1 - \lambda \right) \beta + \lambda \alpha
+        \end{align*}
+
+        Fazendo $\alpha = | \hat{x}_i |^p$, $\beta = | \hat{y}_i |^q$, $\lambda = 1 / p$ e $(1 - \lambda) = 1 / q$ temos
+        \begin{align*}
+            | \hat{x}_i |^{p \left( 1 / p \right)} | \hat{y}_i |^{q \left( 1 / q \right)} &\leq \left( 1 / q \right) | \hat{y}_i |^q + \left( 1 / p \right) | \hat{x}_i |^p.
+        \end{align*}
+        Consequentemente
+        \begin{align*}
+            \sum_i | \hat{x}_i |^{p \left( 1 / p \right)} | \hat{y}_i |^{q \left( 1 / q \right)} &= \sum_i | \hat{x}_i | | \hat{y}_i | \\
+            &\leq \sum_i \left( \left( 1 / q \right) | \hat{y}_i |^q + \left( 1 / p \right) | \hat{x}_i |^p \right) \\
+            &= \left( 1 / p \right) \sum_i | \hat{x}_i |^p + \left( 1 / q \right) \sum_i | \hat{y}_i |^q = 1.
+        \end{align*}
+
+        Fazendo $\hat{x}_i = x_i / \| x \|_p$ e $\hat{y}_i = y_i / \| y \|_q$ temos
+        \begin{align*}
+            \sum_i \left( | x_i | / \| x \|_p \right) \left( | y_i | / \| y \|_q \right) &\leq \left( 1 / p \right) \sum_i \left( | x_i | / \| x \|_p \right)^p + \left( 1 / q \right) \sum_i \left( | y_i | / \| y \|_q \right)^q.
+        \end{align*}
+        Aplicando a desigualdade triangular
+        \begin{align*}
+            | x^* y | &= \left| \sum_i \bar{x_i} y_i \right| \\
+            &\leq \sum_i | \bar{x_i} | | y_i | \\
+            &= \sum_i | x_i y_i | \\
+            &\leq \left( \sum_i | x_i |^p \right)^{1 / p} \left( \sum_i | y_i |^q \right)^{1 / q} \\
+            &= \| x \|_p \| y \|_q.
+        \end{align*}
     \end{solution}
 
     Em particular, se $p = q = 2$ tem-se a desigualdade de Cauchy-Schwarz.
     \begin{solution}
-        
+        A desigualdade de Cauchy-Schwarz corresponde a
+        \begin{align*}
+            | x^* y | \leq \| x \| \| y \| \quad \forall x, y \in \mathbb{C}^{n \times n}.
+        \end{align*}
     \end{solution}
 
-    \question Para vetores $v$ e $w$ em $\mathbb{C}^n$, n\~{a}o nulos, a rela\c{c}\~{a}o de Cauchy-Schwarz \'{e} satisfeita na igualdade se e somente se \dots
+    \question[Exerc\'{i}cio 5.1.9, p\'{a}gina 277, do Meyer\nocite{Meyer:2000:matrix}] Para vetores $v$ e $w$ em $\mathbb{C}^n$, n\~{a}o nulos, a rela\c{c}\~{a}o de Cauchy-Schwarz \'{e} satisfeita na igualdade se e somente se \dots
     \begin{solution}
-        
+        A rela\c{c}\~{a}o de Cauchy-Schwarz \'{e}
+        \[
+        | x^* y | \leq \| x \| \| y \|, \forall x, y \in \mathbb{C}^{n \times 1}.
+        \]
+        E a igualdade \'{e} satisfeita se e somente se $y = \alpha x$ para $\alpha = x^* y / x^* x$.
+
+        Primeiro vamos mostrar que se $y = \alpha x$ ent\~{a}o $| x^* y | = \| x \| \| y \|$:
+        \begin{align*}
+            | x^* y | &= | x^* \alpha x | && \text{pois $y = \alpha x$} \\
+            &= | \alpha | | x^* x | \\
+            &= | \alpha | \| x \|^2 \\
+            &= | \alpha | \| x \| \| x \| \\
+            &= \| x \| \| \alpha x \| \\
+            &= \| x \| \| y \| && \text{pois $y = \alpha x$.}
+        \end{align*}
+
+        Agora vamos mostrar que se $| x^* y | = \| x \| \| y \|$ ent\~{a}o $y = \alpha x$. Seja $\alpha = x^* y / \| x \|^2$, ent\~{a}o:
+        \[
+        0 \leq \| \alpha x - y \|^2 = \frac{\| y \| ^2 \| x \|^2 - \left( x^* y \right) \left( y^* x \right)}{\| x \|^2}.
+        \]
+        Logo, $\| \alpha x - y \| = 0$. Mas pela defini\c{c}\~{a}o de norma $\| \alpha x - y \| = 0 \iff \alpha x - y = 0$, portanto $y = \alpha x$.
     \end{solution}
 
     \question Demonstre que $| u^* v | \leq \| u \|_1 \| v \|_\infty$.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            \left| u^* v \right| &= \left| \sum_i \bar{u_i} v_i \right| && \text{pela defini\c{c}\~{a}o} \\
+            &\leq \sum_i \left| \bar{u_i} v_i \right| && \text{pela desigualdade triangular} \\
+            &\leq \sum_i \left| \bar{u_i} \right| \left| v_i \right| && \text{pela desigualdade de Cauchy-Schwarz} \\
+            &\leq \sum_i \left| u_i \right| \left| v_i \right|, \\
+            \| u \|_1 &= \sum_i | u_i | && \text{pela defini\c{c}\~{a}o,} \\
+            \| v \|_\infty &= \max_i | v_i | && \text{pela defini\c{c}\~{a}o,} \\
+            \| u \|_1 \| v \|_\infty &= \left( \sum_i | u_i | \right) \max_i | v_i | \\
+            &= \sum_i | u_i | \max_j | v_j |.
+        \end{align*}
+        Comparando $\sum_i | u_i | | v_i |$ com $\sum_i | u_i | \max_j | v_j |$ verificamos que
+        \[
+        \sum_i | u_i | | v_i | \leq \sum_i | u_i | \max_j | v_j |.
+        \]
+        Logo, concluimos que $| u^* v | \leq \| u \|_1 \| v \|_\infty$.
     \end{solution}
 
     \question Demonstre que para qualquer norma vetorial:
@@ -74,166 +150,505 @@
     | \| v \| - \| w \| | \leq \| v - w \|.
     \]
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            \| w \| &= \| w - v + v \| \\
+            &\leq \| w - v \| + \| v \| && \text{pela desigualdade triangular,} \\
+            \| v \| &= \| v - w + w \| \\
+            &\leq \| v - w \| + \| w \| && \text{pela desigualdade triangular.}
+        \end{align*}
+        Logo,
+        \begin{align*}
+            \| w \| - \| v \| &\leq \| w - v \|, \\
+            \| v \| - \| w \| &\leq \| v - w \|.
+        \end{align*}
+        Como $\| w - v \| = \| v - w \|$, temos que
+        \begin{align*}
+            | \| v \| - \| w \| | \leq \| v - w \|.
+        \end{align*}
     \end{solution}
 
     \question Demonstre que $\lim_{p \rightarrow \infty} \| v \|_p = \| v \|_\infty = \max_i \left\{ | v_i | \right\}$.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            \lim_{p \to \infty} \| v \|_p &= \lim_{p \to \infty} \left( | v_1 |^p + | v_2 |^p + \ldots + | v_n |^p \right)^{1 / p} && \text{pela defini\c{c}\~{a}o de norma} \\
+            &= \lim_{p \to \infty} \left[ V^p \left( \frac{| v_1 |^p}{V^p} + \frac{| v_2 |^p}{V^p} + \ldots + \frac{| v_n |^p}{V^p} \right) \right]^{1 / p} \\
+            &= \lim_{p \to \infty} \left( V^p \right)^{1 / p} \left( \frac{| v_1 |^p}{V^p} + \frac{| v_2 |^p}{V^p} + \ldots + \frac{| v_n |^p}{V^p} \right)^{1 / p} \\
+            &= \lim_{p \to \infty} V \cdot \lim_{p \to \infty} \left( \frac{| v_1 |^p}{V^p} + \frac{| v_2 |^p}{V^p} + \ldots + \frac{| v_n |^p}{V^p} \right)^{1 / p} && \text{pela propriedade do limite}\\
+            &= V \cdot 1,
+        \end{align*}
+        onde $V = \max_i | v_i |$.
     \end{solution}
 
-    \question Equival\^{e}ncia entre normas vetoriais: demonstre que para cada par de normas, $\| \cdot \|_p$ e $\| \cdot \|_q$, num espa\c{c}o vetorial $V$ de dimens\~{a}o $n$, existem constantes $\alpha$ e $\beta$ tais que: $\alpha \| v \|_q \leq \| v \|_p \leq \beta \| v \|_q$, $v \in V$, $v \neq 0$. (Usando o conjunto $S_q = \left\{ w \mid \| w \|_q = 1 \right\}$ e a constante $\mu = \min \| w \|_p$ estabela\c{c}a a rela\c{c}\~{a}o: $\| v \|_p \geq \mu \| v \|_q$. Use argumentos semelhantes para obter rela\c{c}\~{a}o da forma: $\| v \|_q \geq \sigma \| v \|_p$).
+    \question[Exemplo 5.1.3, p\'{a}gina 276, do Meyer\nocite{Meyer:2000:matrix}.] Equival\^{e}ncia entre normas vetoriais: demonstre que para cada par de normas, $\| \cdot \|_p$ e $\| \cdot \|_q$, num espa\c{c}o vetorial $V$ de dimens\~{a}o $n$, existem constantes $\alpha$ e $\beta$ tais que: $\alpha \| v \|_q \leq \| v \|_p \leq \beta \| v \|_q$, $v \in V$, $v \neq 0$. (Usando o conjunto $S_q = \left\{ w \mid \| w \|_q = 1 \right\}$ e a constante $\mu = \min \| w \|_p$ estabela\c{c}a a rela\c{c}\~{a}o: $\| v \|_p \geq \mu \| v \|_q$. Use argumentos semelhantes para obter rela\c{c}\~{a}o da forma: $\| v \|_q \geq \sigma \| v \|_p$).
     \begin{solution}
-        
+        Para $S_b = \left\{ y \mid \| y \|_b = 1 \right\}$, seja $\mu = \min_{y \in S_b} \| y \|_a > 0$. Ent\~{a}o
+        \begin{align*}
+            \frac{x}{\| x \|_b} \in S_b \implies \| x \|_a = \| x \|_b \left\| \frac{x}{\| x \|_b} \right \|_a \geq \| x \|_b \min_{y \in S_b} \| y \|_a = \| x \|_b \mu.
+        \end{align*}
+         Portanto, $\alpha = \mu$ e $b = 1 / v$.
     \end{solution}
 
     \question Demonstre as rela\c{c}\~{o}es:
     \begin{parts}
         \part $\| v \|_2 \leq \| v \|_1 \leq \sqrt{n} \| v \|_2$;
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| v \|_2 &=  \left( \sum_i v_i^2 \right)^{1 / 2} && \text{pela defini\c{c}\~{a}o de norma,} \\
+                \| v \|_2^2 &= \sum_i v_i^2, \\
+                \sqrt{n} \| v \|_2 &= \| \sqrt{n} v \| \\
+                &= \left( \sum_i n v_i^2 \right)^{1 / 2}, \\
+                \| v \|_1 &= \sum_i | v_i | && \text{pela defini\c{c}\~{a}o de norma,} \\
+                \| v \|_1^2 &= \left( \sum_i \| v_i \| \right)^2 \\
+                &= \left( \sum_i v_i^2 \right) + 2 \left( \sum_{i \neq j} \| v_i \| \| v_j \| \right). \\
+            \end{align*}
+            Logo, notamos que
+            \begin{align*}
+                \| v \|_i^2 = \left( \sum_i v_i^2 \right) + \ldots \geq \sum_i v_i^2 = \| v \|_2^2
+            \end{align*}
+            e portanto $\| v \|_1 \geq \| v \|_2$. Tamb\'{e}m notamos que
+            \begin{align*}
+                \| v \|_1^2 = \left( \sum_i v_i^2 \right) + \ldots \leq \sum_i n v_i^2 = n \| v \|_2^2
+            \end{align*}
+            e portanto $\| v \|_1 \leq \sqrt{n} \| v \|_2$.
         \end{solution}
 
         \part $\| v \|_\infty \leq \| v \|_2 \leq \sqrt{n} \| v \|_\infty$;
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| v \|_\infty &= \max_i | v_i | && \text{pela defini\c{c}\~{a}o de norma,} \\
+                \| v \|_\infty^2 &= \left( max_i | v_i | \right)^2, \\
+                \sqrt{n} \| v \|_\infty &= \| \sqrt{n} v \|_\infty \\
+                &= \max_i | \sqrt{n} v_i |, \\
+                \| v \|_2 &= \left( \sum_i v_i^2 \right)^{1 / 2} && \text{pela defini\c{c}\~{a}o de norma,} \\
+                \| v \|_2^2 &= \sum_i v_i^2,
+            \end{align*}
+            Logo, notamos que
+            \begin{align*}
+                \| v \|_2^2 = \sum_i v_i^2 \geq \left( \max_i | v_i | \right)^2 = \| v \|_\infty^2
+            \end{align*}
+            e portanto $\| v \|_2 \geq \| v \|_\infty$. Tamb\'{e}m notamos que
+            \begin{align*}
+                \| v \|_2^2 = \sum_i v_i^2 \leq \sum_i n \max_j | v_j | = \| \sqrt{n} v \|_\infty^2
+            \end{align*}
+            e portanto $\| v \|_2 \leq \sqrt{n} \| v \|_\infty$.
         \end{solution}
 
         \part $\| v \|_\infty \leq \| v \|_1 \leq n \| v \|_\infty$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| v \|_\infty &= \max_i | v_i | && \text{pela defini\c{c}\~{a}o,} \\
+                \| v \|_1 &= \sum_i | v_i | && \text{pela defini\c{c}\~{a}o.} \\
+            \end{align*}
+
+            Logo, notamos que
+            \begin{align*}
+                \| v \|_\infty \leq \| v \|_1 \leq n \| v \|_\infty.
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question Demonstre as rela\c{c}\~{o}es para normas matricias induzidas a partir das normas-p vetoriais:
+    \question[Ver exerc\'{i}cio 5.2.5, p\'{a}gina 285, do Meyer\nocite{Meyer:2000:matrix}] Demonstre as rela\c{c}\~{o}es para normas matricias induzidas a partir das normas-p vetoriais:
     \begin{parts}
         \part $\| A x \|_p \leq \| A \|_p \| x \|_p$;
         \begin{solution}
-            
+            Temos, pela defini\c{c}\~{a}o, que
+            \begin{align*}
+                \| A \|_p &= \max \left( \| A x \|_p / \| x \|_p \right).
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \| A \|_p &\geq \| A x \|_p / \| x \|_p, \\
+                \| A x \|_p &\leq \| A \|_p \| x \|_p.
+            \end{align*}
         \end{solution}
 
         \part $\| A B \|_p \leq \| A \|_p \| B \|_p$;
         \begin{solution}
-            
+            Seja $x_0$ um vetor tal que $\| x_0 \| = 1$ e
+            \begin{align*}
+                \| A B x_0 \| &= \max_{\| x \| = 1} \| A B x \| = \| A B \|.
+            \end{align*}
+            Ent\~{a}o
+            \begin{align*}
+                \| A B \| &= \| A B x_0 \| \\
+                &\leq \| A \| \| B x_0 \| && \text{pelo item anterior} \\
+                &\leq \| A \| \| B \| \| x_0 \| && \text{pelo item anterior} \\
+                &= \| A \| \| B \| && \| x_0 \| = 1.
+            \end{align*}
         \end{solution}
 
         \part $\| I_n \| _p = 1$.
         \begin{solution}
-            
+            Temos, pela defini\c{c}\~{a}o, que
+            \begin{align*}
+                \| I \|_p &= \max \left( \| I x \|_p / \| x \|_p \right) \\
+                &= \max \left( \| x \|_p / \| x \|_p \right) && I x = x \\
+                &= \max 1 = 1.
+            \end{align*}
         \end{solution}
     \end{parts}
     
     \question Para as express\~{o}es abaixo, demonstrar inicialmente que as normas s\~{a}o limitadas superiomente pelos valores respectivos. Em seguinda, encontra um vetor $x$ que satisfa\c{c}a a rela\c{c}\~{a}o na igualdade. Sugest\~{a}o: empregue vetores canônicos e /ou vetores com componentes convenientemente escolhidas, iguais a $\left( +1 \right)$ ou $\left( -1 \right)$, de modo a conseguir a igualdade.
     \begin{parts}
-        \part $\| A \|_1 = \max_j \sum_i | a_{ij} |$,
+        \part[Equa\c{c}\~{a}o (5.2.14), p\'{a}gina 283, do Meyer\nocite{Meyer:2000:matrix}] $\| A \|_1 = \max_j \sum_i | a_{ij} |$,
         \begin{solution}
-            
+            Tomando $x$ tal que $\| x \|_1 = 1$, temos que
+            \begin{align*}
+                \| A x \|_1 &= \sum_i | A_{i \mdot} x | && \text{pela defini\c{c}\~{a}o} \\
+                &= \sum_i \left| \sum_j a_{ij} x_j \right| \\
+                &\leq \sum_i \sum_j \left| a_{ij} x_j \right| && \text{pela desigualdade de Cauchy-Schwarz} \\
+                &\leq \sum_i \sum_j | a_{ij} | | x_j | && \text{pela desigualdade triangular} \\
+                &= \sum_j \left( | x_j | \sum_i | a_{ij} | \right) \\
+                &\leq \left( \sum_j | x_j | \right) \left( \max_j \sum_i | a_{ij} | \right) \\
+                &= \max_j \sum_i | a_{ij} | && \| x \|_1 = 1.
+            \end{align*}
+
+            A igualdade pode ser obtida pois se $A_{\mdot k}$ \'{e} a coluna com a maior soma absoluta tomamos $x = e_k$ e consquentemente $\| A e_k \|_1 = \| A_{\mdot k} \|_1 = \max_j \sum_{j} | a_{ij} |$.
         \end{solution}
 
-        \part $\| A \|_\infty = \max_i \sum_j | a_{ij} |$.
+        \part[Equa\c{c}\~{a}o (5.2.15), p\'{a}gina 283, do Meyer\nocite{Meyer:2000:matrix}] $\| A \|_\infty = \max_i \sum_j | a_{ij} |$.
         \begin{solution}
-            
+            Tomando $x$ tal que $\| x \|_\infty = 1$, temos
+            \begin{align*}
+                \| A x \|_\infty &= \max_i \left| A_{i \mdot} x \right| && \text{pela defini\c{c}\~{a}o} \\
+                &= \max_i \left| \sum_j a_{ij} x_j \right| \\
+                &\leq \max_i \sum_j | a_{ij} x_j | && \text{pela desigualdade triangular} \\
+                &\leq \max_i \sum_j | a_{ij} | | x_j | && \text{pela desigualdade de Cauchy-Schwarz} \\
+                &\leq \max_i \sum_j | a_{ij} | && \| x \|_\infty = 1.
+            \end{align*}
+
+            A igualdade pode ser obtida pois se $A_{k \mdot}$ \'{e} a linha com maior soma absoluta e $x$ \'{e} o vetor tal que
+            \begin{align*}
+                x_j &= \begin{cases}
+                    1, & \text{se $a_{kj} \geq 0$}, \\
+                    -1, & \text{se $a_{kj} < 0$},
+                \end{cases}
+            \end{align*}
+            ent\~{a}o
+            \begin{align*}
+                | A_{i \mdot} x | &= \left| \sum_j a_{ij} x_j \right| \\
+                &\leq \sum_j | a_{ij} | \quad \forall i, \\
+                | A_{k \mdot} x | &= \sum_j | a_{kj} | \\
+                &= \max_i \sum_j | a_{ij} |.
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question Considere a matriz $A : m \times n$, e a norma de Frobenius: $\| A \|_F^2 = \sum_{i = 1}^m \sum_{j = 1}^n | a_{ij} |^2$. Demonstre que:
+    \question[Ver equa\c{c}\~{a}o (5.2.1), p\'{a}gina 279, do Meyer\nocite{Meyer:2000:matrix}] Considere a matriz $A : m \times n$, e a norma de Frobenius: $\| A \|_F^2 = \sum_{i = 1}^m \sum_{j = 1}^n | a_{ij} |^2$. Demonstre que:
     \begin{parts}
         \part As tr\^{e}s condi\c{c}\~{o}es de defini\c{c}\~{a}o de norma de matrizes se verificam.
         \begin{solution}
-            
+            \begin{enumerate}
+                \item $\| A \|_F \geq 0$ e $\| A \|_F = 0 \leftrightarrow A = 0$.
+
+                    Pela defini\c{c}\~{a}o da norma de Frobenius, temos
+                    \begin{align*}
+                        \| A \|_F^2 = \sum_i \sum_j | a_{ij} |^2.
+                    \end{align*}
+                    Como $| a_{ij} | \geq 0$ temos que $\| A \|_F^2 \geq 0$ e portanto $\| A \|_F \geq 0$.
+
+                    E como $| a_{ij} | = 0 \leftrightarrow a_{ij} = 0$ temos que $\| A \|_F^2 = 0 \leftrightarrow A = 0$ e portanto $\| A \|_F = 0 \leftrightarrow A = 0$.
+
+                \item $\| \alpha A \|_F = | \alpha | \| A \|_F$.
+
+                    utilizando a defini\c{c}\~{a}o da norma de Frobenius, temos
+                    \begin{align*}
+                        \| \alpha A \|_F^2 &= \sum_i \sum_j | \alpha a_{ij} |^2 \\
+                        &= \sum_i \sum_j | \alpha |^2 | a_{ij} |^2 \\
+                        &= | \alpha |^2 \sum_i \sum_j | a_{ij} |^2 \\
+                        &= | \alpha |^2 \| A \|_F^2
+                    \end{align*}
+                    e portanto $\| \alpha A \|_F = | \alpha | \| A \|_F$.
+
+                \item $\| A + B \|_F \leq \| A \|_F + \| B \|_F$.
+
+                    Utilizando a defini\c{c}\~{a}o da norma de Frobenius, temos
+                    \begin{align*}
+                        \| A + B \|_F^2 &= \sum_i \sum_j | a_{ij} + b_{ij} |^2 \\
+                        &= \sum_i \sum_j | a_{ij}^2 + 2 a_{ij} b_{ij} + b_{ij}^2 | \\
+                        &\leq \sum_i \sum_j | a_{ij}^2 | + | 2 a_{ij} b_{ij} | + | b_{ij}^2 | && \text{pela desigualdade triangular} \\
+                        &\leq \sum_i \sum_j | a_{ij}^2 | + | b_{ij}^2 | \\
+                        &= \sum_i \sum_j | a_{ij} |^2 + | b_{ij} |^2 \\
+                        &= \left( \sum_i \sum_j | a_{ij} |^2 \right) + \left( \sum_i \sum_j | b_{ij} |^2 \right) \\
+                        &= \| A \|_F^2 + \| B \|_F^2.
+                    \end{align*}
+                    Portanto, $\| A + B \|_F^2 \leq \| A \|_F^2 + \| B \|_F^2$ e, consequentemente, $\| A + B \| \leq \| A \|_F + \| B \|_F$.
+            \end{enumerate}
         \end{solution}
 
         \part $\| A \|_F^2 = \text{tr} \left( A^* A \right)$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                A^* A &= \begin{bmatrix}
+                    \overline{A_{\mdot 1}}^t A_{\mdot 1} & \overline{A_{\mdot 2}}^t A_{\mdot 1} & \ldots &\overline{A_{\mdot n}}^t A_{\mdot 1} \\
+                    \overline{A_{\mdot 1}}^t A_{\mdot 2} & \overline{A_{\mdot 2}}^t A_{\mdot 2} & \ldots & \overline{A_{\mdot n}}^t A_{\mdot 2} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    \overline{A_{\mdot 1}}^t A_{\mdot n} & \overline{A_{\mdot 2}}^t A_{\mdot n} & \ldots & \overline{A_{\mdot n}}^t A_{\mdot n}
+                \end{bmatrix}.
+            \end{align*}
+            Ent\~{a}o
+            \begin{align*}
+                \text{tr}(A^*A) &= \sum_i \overline{A_{\mdot i}}^t A_{\mdot i} \\
+                &= \sum_i \sum_j \overline{a_{ij}} a_{ij} \\
+                &= \sum_i \sum_j | a_{ij} |^2 \\
+                &= \| A \|_F^2.
+            \end{align*}
         \end{solution}
 
         \part $\| A B \|_F \leq \| A \|_F \| B \|_F$.
         \begin{solution}
-            
+            Temos que
+            \begin{align*}
+                \| A B \|_F^2 &= \sum_j \| \left( A B \right)_{\mdot j} \|_2^2 \\
+                &= \sum_j \| A B_{\mdot j} \|_2^2 \\
+                &\leq \sum_j \| A \|_F^2 \| B_{\mdot j} \|_2^2 \\
+                &= \| A \|_F^2 \sum_j \| B_{\mdot j} \|_2^2 \\
+                &= \| A \|_F^2 \| B \|_F^2.
+            \end{align*}
+            Portanto $\| A B \|_F \leq \| A \|_F \| B \|_F$.
         \end{solution}
     \end{parts}
 
-    \question Demonstrar que $\| A \|_2 = \max_{\| x \|_2 = 1} \| A x \|_2 = \sqrt{\lambda_\text{max}}$, onde $\lambda_\text{max}$ \'{e} o maior autovalor de $A^T A$. Sugest\~{a}o: considere o problema: $\max f(x) = \| A x \|_2^2 = \left( A x \right)^t \left( A x \right)$, $x^t x = 1$ e a fun\c{c}\~{a}o $L(x, \lambda) = f(x) - \lambda \left( x^t x - 1 \right)$.
+    \question[Equa\c{c}\~{a}o (5.2.7), p\'{a}gina 281, do Meyer\nocite{Meyer:2000:matrix}] Demonstrar que $\| A \|_2 = \max_{\| x \|_2 = 1} \| A x \|_2 = \sqrt{\lambda_\text{max}}$, onde $\lambda_\text{max}$ \'{e} o maior autovalor de $A^T A$.
+    
+    Sugest\~{a}o: considere o problema: $\max f(x) = \| A x \|_2^2 = \left( A x \right)^t \left( A x \right)$, $x^t x = 1$ e a fun\c{c}\~{a}o $L(x, \lambda) = f(x) - \lambda \left( x^t x - 1 \right)$. Analise pontos estacion\'{a}rios de $f(x)$ e \dots
     \begin{solution}
-        
+        Considerando o problema
+        \begin{align*}
+            \text{max } & f(x) = \| A x \|_2^2 = x^t A^t A x \\
+            \text{s.a } & g(x) = x^t x = 1
+        \end{align*}
+        utilizando o m\'{e}todo dos multiplicadores de Lagrange.
+
+        Introduzindo uma nova vari\'{a}vel $\lambda$ (o multiplicador de Lagrange), e considerando a fun\c{c}\~{a}o $h(x, \lambda) = f(x) = \lambda g(x)$ temos que o ponto no qual $f$ \'{e} m\'{a}ximo est\'{a} contido no conjunto de solu\c{c}\~{o}es da equa\c{c}\~{a}o $\partial h / \partial x_i = 0$ ($i = 1, 2, \ldots, n$) em que $g(x) = 1$. Derivando $h$ em rela\c{c}\~{a}o a $x_i$ obtemos
+        \begin{align*}
+            \left( A^t A - \lambda I \right) x = 0.
+        \end{align*}
+        Em outras palavras, $f$ \'{e} m\'{a}ximo no vetor $x$ para o qual $\left( A^t A - \lambda I \right) x = 0$  e $\| x \|_2 = 1$. Consequentemente, $\lambda$ must be a number such that $A^t A - \lambda I$ \'{e} singular (pois $x \neq 0$. Ent\~{a}o
+        \begin{align*}
+            x^t A^t A x = \lambda x^t x = \lambda,
+        \end{align*}
+        e segue que
+        \begin{align*}
+            \| A \|_2 = \max_{\| x \| = 1} \| A x \| = \max_{\| x \|^2 = 1} \| A x \| = \left( \max_{x^t x = 1} x^t A^t A x \right)^{1 / 2} = \sqrt{\lambda_{\max}},
+        \end{align*}
+        onde $\lambda_{\max}$ \'{e} o maior n\'{u}mero $\lambda$ para o qual $A^t A - \lambda I$ \'{e} singular.
     \end{solution}
 
-    Analise pontos estacion\'{a}rios de $f(x)$ e \dots
+    \question[Exerc\'{i}cio 5.2.6(a), p\'{a}gina 285, do Meyer\nocite{Meyer:2000:matrix}] Demonstre a seguinte propriedade v\'{a}lida para a norma-2 de matrizes: $\| A \|_2 = \max_x \max_y | y^t A x |$, para todo $x$ e $y$ tais que: $\| x \|_2 = \| y \|_2 = 1$.
     \begin{solution}
-        
-    \end{solution}
+        Aplicando a desigualdade de Cauchy-Schwarz temos
+        \begin{align*}
+            | y^* A x | \leq \| y \|_2 \| A x \|_2 &\leftarrow \max_{\| x \|_2 = 1, \| y \|_2 = 1} | y^* A x | \leq \max_{\| x \|_2 = 1} \| A x \|_2 = \| A \|_2.
+        \end{align*}
 
-    \question Demonstre a seguinte propriedade v\'{a}lida para a norma-2 de matrizes: $\| A \|_2 = \max_x \max_y | y^t A x |$, para todo $x$ e $y$ tais que: $\| x \|_2 = \| y \|_2 = 1$.
-    \begin{solution}
-        
+        Se $x_0$ \'{e} um vetor unit\'{a}rio tal que
+        \begin{align*}
+            \| A x_0 \|_2 = \max_{\| x \|_2 = 1} \| A x \|_2 = \| A \|_2
+        \end{align*}
+        e
+        \begin{align*}
+            y_0 = \left( A x_0 \right) / \| A x_0 \|_2 = \left( A x_0 \right) / \| A \|_2,
+        \end{align*}
+        ent\~{a}o
+        \begin{align*}
+            y_0^* A x_0 = \left( x_0^* A^* A x_0 \right) / \| A \|_2 = \left( \| A x_0 \|_2^2 \right) / \| A \|_2 = \| A \|_2^2 / \| A \|_2 = \| A \|_2.
+        \end{align*}
     \end{solution}
 
     \question Verifique se as afirma\c{c}\~{o}es abaixo s\~{a}o verdadeiras ou falsas. Demonstre as verdadeiras e d\^{e} um contra-exemplo para as falsas.
     \begin{parts}
         \part $\| A \|_p = \| A^t \|_p$, $p = 1, 2, \infty$.
         \begin{solution}
-            
+            Falsa, pois
+            \begin{enumerate}
+                \item $p = 1$: pela defini\c{c}\~{a}o $\| A \|_1 = \max_j \sum_i | a_{ij} |$.
+                \item $p = 2$: pela defini\c{c}\~{a}o $\| A \|_2 = \sqrt{\lambda_{\max}}$, $\lambda_{\max}$ \'{e} o maior autovalor da matriz $A^* A$ ($A^* A \neq A A^*$).
+                \item $p = \infty$: pela defini\c{c}\~{a}o $\| A \|_\infty = \max_i \sum_j | a_{ij} |$.
+            \end{enumerate}
         \end{solution}
 
         \part $\| A \|_1 = \| A^t \|_\infty$.
         \begin{solution}
-            
+            Verdadeiro. Pela defini\c{c}\~{a}o temos
+            \begin{align*}
+                \| A \|_1 &= \max_j \sum_i | a_{ij} |, \\
+                \| A \|_\infty &= \max_i \sum_j | a_{ij} |,
+            \end{align*}
+            e consequentemente
+            \begin{align*}
+                \| A^t \|_\infty &= \max_i \sum_j | a_{ji} | = \| A \|_1,
+                \| A^t \|_1 &= \max_j \sum_i | a_{ji} | = \| A \|_\infty.
+            \end{align*}
         \end{solution}
 
         \part $\| A \|_F = \| A^t \|_F$.
         \begin{solution}
-            
+            Verdadeiro. Pela defini\c{c}\~{a}o temos
+            \begin{align*}
+                \| A \|_F^2 &= \sum_i \sum_j | a_{ij} |^2.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \| A^t \|_F^2 &= \sum_i \sum_j | a_{ji} |^2 = \| A \|_F^2
+            \end{align*}
+            e consequentemente $\| A \|_F = \| A^t \|_F$.
         \end{solution}
     \end{parts}
 
     \question Demonstre que $\| A \|_p \geq | \lambda |$ para $A : n \times n$ e $\lambda$ autovalor de $A$.
     \begin{solution}
-        
+        Seja $\lambda$ um autovalor de $A$ associado ao autovetor $x$. Ent\~{a}o
+        \begin{align*}
+            A x &= \lambda x \\
+            \| A x \| &\leq \| A \| \| x \| && \text{ver exerc\'{i}cio 8(a)} \\
+            || \lambda x \| &= | \lambda | \| x \| \\
+            \| A \| \| x \| &\geq | \lambda | \| x \| \\
+            \| A \| &\geq | \lambda \| && \| x \| > 0.
+        \end{align*}
     \end{solution}
 
     \question Equival\^{e}ncia de Normas Matriciais: considere $A : m \times n$. Demonstre que:
     \begin{parts}
         \part $\left( 1 / \sqrt{n} \right) \| A \|_\infty \leq \| A \|_2 \leq \sqrt{m} \| A \|_\infty$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma matricial induzida e as rela\c{c}\~{o}es entre normas vetoriais do exerc\'{i}cio 7, temos
+            \begin{align*}
+                \| A \|_2 &= \max_{x \neq 0} \| A x \|_2 / \| x \|_2 \\
+                &\leq \max_{x \neq 0} \left( \sqrt{m} \| A x \|_\infty \right) / \| x \|_2 && \| v \|_2 \leq \sqrt{n} \| v \|_\infty \\
+                &\leq \max_{x \neq 0} \left( \sqrt{m} \| A x \|_\infty \right) / \| x \|_\infty && 1 / \| x \|_2 \leq 1 / \| v \|_\infty \\
+                &= \sqrt{m} \| A \|_\infty, \\
+                \| A \|_2 &= \max_{x \neq 0} \| A x \|_2 / \| x \|_2 \\
+                &\geq \max_{x \neq 0} \| A x \|_\infty / \| x \|_2 && \| v \|_2 \geq \| v \|_\infty \\
+                &\geq \max_{x \neq 0} \| A x \|_\infty / \left( \sqrt{n} \| x \|_\infty \right) && 1 / \| x \|_2 \geq 1 / \left( \sqrt{n} \| x \|_\infty \right) \\
+                &= \left( 1 / \sqrt{n} \right) \| A \|_\infty.
+            \end{align*}
+            Logo, $\left( 1 / \sqrt{n} \right) \| A \|_\infty \leq \| A \|_2 \leq \sqrt{m} \| A \|_\infty$.
         \end{solution}
 
         \part $\left( 1 / m \right) \| A \|_1 \leq \| A \|_\infty \leq n \| A \|_1$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma matricial induzida e as rela\c{c}\~{o}es entre normas vetoriais do exerc\'{i}cio 7, temos
+            \begin{align*}
+                \| A \|_\infty &= \max_{x \neq 0} \| A x \|_\infty / \| x \|_\infty \\
+                &\leq \max_{x \neq 0} \| A x \|_1 / \| x \|_\infty && \| v \|_\infty \leq \| v \|_1 \\
+                &\leq \max_{x \neq 0} \left( n \| A x \|_1 \right) / \| x \|_1 && 1 / \| x \|_\infty \leq n / \| v \|_1 \\
+                &= n \| A \|_1, \\
+                \| A \|_\infty &= \max_{x \neq 0} \| A x \|_\infty / \| x \|_\infty \\
+                &\geq \max_{x \neq 0} \left( \| A x \|_1 / m \right) / \| x \|_\infty && \| v \|_\infty \geq \| v \|_1 / n \\
+                &\geq \max_{x \neq 0} \left( \| A x \|_1 / m \right) / \| x \|_1 && 1 / \| x \|_\infty \geq 1 / \| x \|_1 \\
+                &= \left( 1 / m \right) \| A \|_1.
+            \end{align*}
+            Logo, $\left( 1 / m \right) \| A \|_1 \leq \| A \|_\infty \leq n \| A \|_1$.
         \end{solution}
 
         \part $\left( 1 / \sqrt{m} \right) \| A \|_1 \leq \| A \|_2 \leq \sqrt{n} \| A \|_1$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma matricial induzida e as rela\c{c}\~{o}es entre normas vetoriais do exerc\'{i}cio 7, temos
+            \begin{align*}
+                \| A \|_2 &= \max_{x \neq 0} \| A x \|_2 / \| x \|_2 \\
+                &\leq \max_{x \neq 0} \| A x \|_1 / \| x \|_2 && \| v \|_2 \leq \| v \|_1 \\
+                &\leq \max_{x \neq 0} \left( \sqrt{n} \| A x \|_1 \right) / \| x \|_1 && 1 / \| x \|_2 \leq \sqrt{n} / \| v \|_1 \\
+                &= \sqrt{n} \| A \|_1, \\
+                \| A \|_2 &= \max_{x \neq 0} \| A x \|_2 / \| x \|_2 \\
+                &\geq \max_{x \neq 0} \left( \| A x \|_1 / \sqrt{m} \right) / \| x \|_2 && \| v \|_2 \geq \| v \|_1 / \sqrt{n} \\
+                &\geq \max_{x \neq 0} \left( \| A x \|_1 / \sqrt{m} \right) / \| x \|_1 && 1 / \| x \|_2 \geq 1 / \| x \|_1 \\
+                &= \left( 1 / \sqrt{m} \right) \| A \|_1.
+            \end{align*}
+            Logo, $\left( 1 / \sqrt{m} \right) \| A \|_1 \leq \| A \|_2 \leq \sqrt{n} \| A \|_1$.
         \end{solution}
 
-        \part $\| A \|_2 \leq \| A \|_F \leq \sqrt{n} \| A \|_2$.
+        \part[Ver equa\c{c}\~{a}o (7.1.7), p\'{a}gina 494, do Meyer\nocite{Meyer:2000:matrix}] $\| A \|_2 \leq \| A \|_F \leq \sqrt{n} \| A \|_2$.
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma-2, norma de Frobenius e
+            \begin{align*}
+                \text{tr}(A) = \sum_i \lambda_i,
+            \end{align*}
+            temos que
+            \begin{align*}
+                \| A \|_F^2 &= \text{tr}(A^t A) \\
+                &= \sum_i \lambda_i \\
+                &\geq \lambda_{\max} \\
+                &= \| A \|_2^2, \\
+                \| A \|_F^2 &= \text{tr}(A^t A) \\
+                &= \sum_i \lambda_i \\
+                &\leq n \lambda_{\max} \\
+                &= n \| A \|_2^2.
+            \end{align*}
+            Logo, $\| A \|_2 \leq \| A \|_F \leq \sqrt{n} \| A \|_2$.
         \end{solution}
     \end{parts}
 
     \question Mostre que $B = \left( A + A^t \right) / 2$ \'{e} a matriz sim\'{e}trica mais pr\'{o}xima de $A \in \mathbb{R}^{n \times n}$ na norma de Fronenius.
     \begin{solution}
-        
+        Seja $B \in \mathbb{R}^{n \times n}$ tal que $B = B^t$ e $B$ \'{e} a matriz sim\'{e}trica mais pr\'{o}xima de $A \in \mathbb{R}^{n \times n}$ na norma de Frobenius, i.e.,
+        \begin{align*}
+            \min \| A - B \|_F.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            \min \| A - B \|_F &\equiv \min \| A - B \|_F^2 \\
+            &= \min \sum_i \sum_j | a_{ij} - b_{ij} |^2 \\
+            &= \min \sum_i \sum_j \left( a_{ij} - b_{ij} \right)^2.
+        \end{align*}
+        Derivando em rela\c{c}\~{a}o a $b_{ij}$, temos que
+        \begin{align*}
+            \frac{\partial \left( \sum_i \sum_j \left( a_{ij} - b_{ij} \right)^2 \right)}{\partial b_{ij}} &= 2 \left( a_{ij} - b_{ij} \right) \left( -1 \right).
+        \end{align*}
+        Para o m\'{i}nimo, igualamos a derivada a zero e como, por hip\'{o}tese, $B = B^t$ temos
+        \begin{align*}
+            \begin{cases}
+                a_{ij} - b_{ij} = 0 \\
+                a_{ji} - b_{ij} = 0
+            \end{cases} \rightarrow b_{ij} = \frac{a_{ij} + a_{ji}}{2}.
+        \end{align*}
     \end{solution}
 
     \question Se $u, v \in \mathbb{R}^n$ e $E = u v^t$ ent\~{a}o:
     \begin{parts}
         \part $\| E \|_F = \| E \|_2 = \| u \|_2 \| v \|_2$;
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma de Forbenius, temos
+            \begin{align*}
+                \| E \|_F &= \sqrt{\text{tr}(E^t E)} \\
+                &= \sqrt{\text{tr}(v u^t u v^t)} && E = u v^t \\
+                &= \sqrt{\| u \|_2^2 \text{tr}(v v^t)} \\
+                &= \sqrt{\| u \|_2^2 \| v \|_2^2} && \text{tr}(v v^t) = \| v \|_2^2 \\
+                &= \| u \|_2 \| v \|_2.
+            \end{align*}
+
+            E pela defini\c{c}\~{a}o de norma-2, temos
+            \begin{align*}
+                \| E \|_2 &= \sqrt{\lambda_{\max}} \\
+                E^t E x &= \lambda x \\
+                v u^t u v^t x &= \lambda x \\
+                \| u \|_2^2 v^t v v^t x &= \lambda v^t x \\
+                \| u \|_2^2 \| v \|_2^2 &= \lambda && v^t x \in \mathbb{R} > 0 \\
+                \| E \|_2 &= \sqrt{\| u \|_2^2 \| v \|_2^2} \\
+                &= \| u \|_2 \| v \|_2.
+            \end{align*}
         \end{solution}
 
         \part $\| E \|_\infty \leq \| u \|_\infty \| v \|_1$.
         \begin{solution}
-            
+            Pela defini\c{c}\~{a}o de norma-$\infty$ temos que
+            \begin{align*}
+                \| E \|_\infty &= \| u v^t \|_\infty \\
+                &= \max_i \sum_j | u_i v_j | \\
+                &\leq \max_i \sum_j | u_i | | v_j | && \text{pela desigualdade de Cauchy-Schwarz} \\
+                &= \max_i | u_i | \sum_j | v_j | \\
+                &= \| u \|_\infty \| v \|_1 && \text{pela defini\c{c}\~{a}o de norma-1 e norma-$\infty$}.
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question Perturba\c{c}\~{o}es em Matrizes e Inversas: considere $F : n \times n$ e uma norma matricial que satisfaz a propriedade: $\| A B \| \leq \| A \| \| B \|$. Se $\| F \| < 1$ ent\~{a}o $\left( I - F \right)$ \'{e} n\~{a}o singular e $\left( I - F \right)^{-1} = \sum_{k = 0}^\infty F^k$. Demonstrar este resultado.
+    \question[Ver Lemma 2.3.3, p\'{a}gina 58, do Golub\nocite{Golub:1996:matrix}] Perturba\c{c}\~{o}es em Matrizes e Inversas: considere $F : n \times n$ e uma norma matricial que satisfaz a propriedade: $\| A B \| \leq \| A \| \| B \|$. Se $\| F \| < 1$ ent\~{a}o $\left( I - F \right)$ \'{e} n\~{a}o singular e $\left( I - F \right)^{-1} = \sum_{k = 0}^\infty F^k$. Demonstrar este resultado.
 
     Roteiro sugerido para a demonstra\c{c}\~{a}o:
     \begin{enumerate}
@@ -242,27 +657,99 @@
         \item verificar que se $\| F \| < 1$ ent\~{a}o $\lim_{k \rightarrow \infty} F^k = 0$ e concluir o teorema.
     \end{enumerate}
     \begin{solution}
-        
+        Suponha que $I - F$ \'{e} singular. Ent\~{a}o
+        \begin{align*}
+            \left( I - F \right) x = 0
+        \end{align*}
+        para algum $x \neq 0$. Mas $\| x \|_p = \| F x \|_p$ implica que $\| F \|_p \geq 1$ que \'{e} uma contradi\c{c}\~{a}o. Logo, $I - F$ \'{e} n\~{a}o singular.
+
+        Para obter a express\~{a}o para a inversa, considere
+        \begin{align*}
+            \begin{split}
+                \left( \sum_{k = 0}^N F^k \right) \left( I - F \right) &= F^0 + F^1 + F^2 + \ldots + F^N \\
+                &\quad {}- \left( F^1 + F^2 + F^3 + \ldots + F^{N + 1} \right)
+            \end{split} \\
+            &= I - F^{N + 1}.
+        \end{align*}
+        Como $\| F \|_p < 1$ segue que $\lim_{k \to \infty} F^k = 0$ pois $\| F^k \|_p \leq \| F \|_p^k$. Logo,
+        \begin{align*}
+            \left( \lim_{N \to \infty} \sum_{k = 0}^\infty F^k \right) \left( I - F \right) &= I.
+        \end{align*}
+        E, portanto, $\left( I - F \right)^{-1} = \lim_{N \to \infty} \sum_{k = 0}^N F^k$.
     \end{solution}
 
     \question Sob as hip\'{o}teses do teorema anterior, demonstrar que $\| \left( I - F \right)^{-1} - I \| \leq \left( \| F \| \right) / \left( 1 - \| F \| \right)$.
     \begin{solution}
-        
+        Temos que
+        \begin{align*}
+            \| \left( I - F \right)^{-1} - I \| &= \| \sum_{k = 0}^\infty F^k - I \| && \left( I - F \right)^{-1} = \sum_{k = 0}^\infty F^k \\
+            &= \left\| \sum_{k = 1}^\infty F^{k} \right\| \\
+            &\leq \sum_{k = 1}^\infty \| F \|^k  && \text{pela desigualdade de Cauchy-Schwarz} \\
+            &= \| F \| / \left( 1 - \| F \| \right) && \text{pois se $ 0 < a_i < 1$ ent\~{a}o $\sum_{i = 1}^\infty a_i = a_1 / \left( 1 - a_i \right)$} \\
+        \end{align*}
     \end{solution}
 
-    \question Generalizar estes resultados para $A : n \times n$ n\~{a}o singular e considerar a pertuba\c{c}\~{a}o em $A : A + E$. Qual a consid\c{c}\~{a}o para que $\left( A + E \right)$ seja inves\'{i}vel? Quais as rela\c{c}\~{o}es para $\| \left( A + E \right)^{-1} \|$ e $\| \left( A + E \right)^{-1} - A^{-1} \|$?
+    \question[Ver Teorema 2.3.4, p\'{a}gina 58, do Golub\nocite{Golub:1996:matrix}] Generalizar estes resultados para $A : n \times n$ n\~{a}o singular e considerar a pertuba\c{c}\~{a}o em $A : A + E$. Qual a consid\c{c}\~{a}o para que $\left( A + E \right)$ seja invers\'{i}vel? Quais as rela\c{c}\~{o}es para $\| \left( A + E \right)^{-1} \|$ e $\| \left( A + E \right)^{-1} - A^{-1} \|$?
     \begin{solution}
-        
+        Para $A$ n\~{a}o singular temos que $A + E = A\left( I + F \right)$ onde $F = - A^{-1}E$. Como $\| F \| = r < 1$ segue do exerc\'{i}cio anterior que $I - F$ \'{e} n\~{a}o singular e $\| \left( I - F \right)^{-1} \| < 1 / \left( 1 - r \right)$. Ent\~{a}o $\left( A + E \right)^{-1} = \left( I - F \right)^{-1} A^{-1}$ e
+        \begin{align*}
+            \| \left( A + E \right) \| \leq \| A^{-1} \| / \left( 1 - r \right).
+        \end{align*}
+
+        Pela f\'{o}rmula de Sherman-Morrison-Woodbury,
+        \begin{align*}
+            B^{-1} &= A^{-1} - B^{-1} \left( B - A \right) A^{-1},
+        \end{align*}
+        temos que $\left( A + E \right)^{-1} - A^{-1} = - A^{-1} E \left( A + E \right)^{-1}$ e tomando as normas encontramos
+        \begin{align*}
+            \| \left( A + E \right)^{-1} - A^{-1} \| &\leq \| A^{-1} \| \| E \| \| \left( A + E \right)^{-1} \| \\
+            &\leq \left( \| A^{-1} \|^2 \| E \| \right) / \left( 1 - r \right).
+        \end{align*}
     \end{solution}
 
     \question Demonstre que: se $A : n \times n$ \'{e} n\~{a}o singular e $\| E \|_p / \| A \|_p < 1 / \text{cond}_p (A)$, ent\~{a}o $(A + E)$ \'{e} n\~{a}o singular. Qual a interpreta\c{c}\~{a}o deste resultado?
     \begin{solution}
-        
+        Temos que $\left( A + E \right)$ pode ser escrito como $A \left( I - F \right)$, $F = - A^{-1} E$. Ent\~{a}o
+        \begin{align*}
+            \| F \|_p &= \| - A^{-1} E \|_p \\
+            &= \| A^{-1} E \|_p \\
+            &\leq \| A^{-1} \|_p \| E \|_p && \text{pela desigualdade de Cauchy-Schwarz} \\
+            &\leq \| A^{-1} \|_p \| A \|_p / \text{cond}_p (A) && \text{por hip\'{o}tese: $\| E \|_p / \| A \|_p < 1 / \text{cond}_p (A)$} \\
+            &= \text{cond}_p (A) / \text{cond}_p (A) = 1 && \text{pela defini\c{c}\~{a}o de n\'{u}mero de condi\c{c}\~{a}o}.
+        \end{align*}
+        Pelo exerc\'{i}cio anterior temos que como $\| F \| \leq 1$ ent\~{a}o $\left( A + E \right)$ \'{e} n\~{a}o singular.
+
+        A interpreta\c{c}\~{a}o deste resultado \'{e} que para $\left( A + E \right)$ ser invers\'{i}vel $\| E \|_p < 1 / \| A^{-1} \|_p$.
     \end{solution}
 
     \question Seja $A : n \times n$ n\~{a}o singular e sejam $a_1, a_2, \ldots, a_n$ as colunas de $A$. Demonstre que para todo $i = 1, \ldots, n$ e todo $j = 1, \ldots, n$ vale a rela\c{c}\~{a}o: $\text{cond}_p (A) \geq \| a_i \|_p / \| a_j \|_p$. A partir deste resultado, podemos concluir que se a matriz $A$ \'{e} mal-escalda ent\~{a}o ser\'{a} mal-condicionada?
     \begin{solution}
-        
+        Pela defini\c{c}\~{a}o do n\'{u}mero de condi\c{c}\~{a}o, temos que
+        \begin{align*}
+            \text{cond}_p \left( A \right) &= \| A \|_p \| A^{-1} \|_p,
+        \end{align*}
+        pela defini\c{c}\~{a}o de norma matricial temos que
+        \begin{align*}
+            \| A \|_p &= \max_{\| x \| = 1} \| A x \|_p,
+        \end{align*}
+        pelo exerc\'{i}cio 8(a) temos que
+        \begin{align*}
+            \| A x \|_p \leq \| A \|_p \| x \|_p, \\
+            \| A e_i \|_p \leq \| A \|_p,
+        \end{align*}
+        e pelo exerc\'{i}cio 8(b) temos que
+        \begin{align*}
+            \| A B \|_p &\leq \| A \|_p \| B \|_p, \\
+            1 &= \| I \|_p = \| A A^{-1} \| \leq \| A \| \| A^{-1} \| \rightarrow \| A^{-1} \| \geq 1 / \| A \|.
+        \end{align*}
+        Ent\~{a}o
+        \begin{align*}
+            \text{cond}_p \left( A \right) &\geq \| a_i \|_p \| A^{-1} \|_p \\
+            &\geq \| a_i \|_p / \| A \|_p \\
+            &\geq \| a_i \|_p / \| a_j \|_p.
+        \end{align*}
+
+        A partir deste resultado podemos concluir que se a matriz $A$ \'{e} mal-escalada ent\~{a}o ela ser\'{a} mal-condicionada.
     \end{solution}
 \end{questions}
 \bibliographystyle{plain}

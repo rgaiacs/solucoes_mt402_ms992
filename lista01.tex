@@ -1,6 +1,17 @@
-%        File: lista01_sol_ra092767.tex
-%     Created: qui mar 01 04:00  2012 HodB
-% Last Change: qui mar 01 04:00  2012 HodB
+% Filename: lista01.tex
+% This code is part of 'Lista de Matrizes'.
+% 
+% Description: Lista 01.
+% 
+% Created: 01.03.12 04:00:00 PM
+% Last Change: 25.04.12 09:13:41 AM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms 
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -43,7 +54,7 @@
         \item[Hermitiana] quando $A = A^*$.
         \item[anti-Hermitiana] quando $A = - A^*$.
     \end{description}
-  
+
     D\^{e} um exemplo de cada matriz considerando o espa\c{c}o das matrizes $\mathbb{C}^{4 \times 4}$.
     \begin{parts}
         \part sim\'{e}trica
@@ -57,7 +68,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part anti-sim\'{e}trica
         \begin{solution}
             \[
@@ -69,7 +80,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part Hermitiana
         \begin{solution}
             \[
@@ -81,7 +92,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part anti-Hermitiana
         \begin{solution}
             \[
@@ -93,7 +104,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part Hermitiana mas n\~{a}o sim\'{e}trica
         \begin{solution}
             \[
@@ -105,7 +116,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part sim\'{e}trica mas n\~{a}o Hermitiana
         \begin{solution}
             \[
@@ -117,7 +128,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part sim\'{e}trica e anti-sim\'{e}trica
         \begin{solution}
             \[
@@ -129,7 +140,7 @@
             \end{bmatrix}
             \]
         \end{solution}
-        
+
         \part sim\'{e}trica e anti-Hermitiana
         \begin{solution}
             \[
@@ -142,7 +153,7 @@
             \]
         \end{solution}
     \end{parts}
-    
+
     \question Julgue verdadeiro ou falso a afirma\c{c}\~{a}o abaixo. Justifique.
     \begin{quote}
         Se os coeficientes da matriz $A$ s\~{a}o todos reais e $A$ \'{e} sim\'{e}trica, ent\~{a}o A \'{e} tamb\'{e}m Hermitiana.
@@ -150,34 +161,34 @@
     \begin{solution}
         A afirma\c{c}\~{a}o \'{e} verdadeira. Se $A \in \mathbb{R}^{n \times n}$ ent\~{a}o $A = \overline{A}$ e se $A$ \'{e} sim\'{e}trica ent\~{a}o $A = A^t$ concluimos que $A = \overline{A^t}$, i.e., $A$ \'{e} Hermitiana.
     \end{solution}
-    
-    \question[exerc\'{i}cio 3.2.5 do Mayer] Demostre que:
+
+    \question[Exerc\'{i}cio 3.2.5, p\'{a}gina 88, do Mayer\nocite{Meyer:2000:matrix}] Demostre que:
     \begin{parts}
         \part se $A$ \'{e} anti-sim\'{e}trica, ent\~{a}o, $a_{ii} = 0$;
         \begin{solution}
             Se $A$ \'{e} anti-sim\'{e}trica ent\~{a}o $A = - A^t$, isso \'{e}, $a_{ij} = - a_{ji}$. Para $i = j$ deve ocorrer $a_{ii} = - a_{ii}$ que \'{e} poss\'{i}vel apenas se $a_{ii} = 0$.
         \end{solution}
-        
+
         \part se $A$ \'{e} Hermitiana, ent\~{a}o, $a_{ii}$ \'{e} um n\'{u}mero real;
         \begin{solution}
             Se $A$ \'{e} Hermitiana ent\~{a}o $A = A^*$, isso \'{e}, $a_{ij} = \overline{a_{ij}}$. Para $i = j$ deve ocorrer $a_{ii} = \overline{a_{ii}}$ que \'{e} poss\'{i}vel apenas se $a_{ii} \in \mathbb{R}$.
         \end{solution}
-        
+
         \part se $A$ \'{e} anti-Hermitiana, ent\~{a}o, $a_{ii}$ \'{e} um n\'{u}mero imagin\'{a}rio puro ($a_{ii} = \gamma_i i$), $\gamma_i \in \mathbb{R}$.
         \begin{solution}
             Se $A$ \'{e} anti-Hermitiana ent\~{a}o $A = - A^*$, isso \'{e}, $a_{ij} = - \overline{a_{ij}}$. Para $i = j$ deve ocorrer $a_{ii} = - \overline{a_{ii}}$ que \'{e} poss\'{i}vel apenas se $a_{ii} = \gamma_i i$, $\gamma_i \in \mathbb{R}$.
         \end{solution}
     \end{parts}
-    
-    \question[exerc\'{i}cio 3.2.6, Meyer] \hfill
+
+    \question[Exerc\'{i}cio 3.2.6, p\'{a}gina 88, do Meyer\nocite{Meyer:2000:matrix}] \hfill
     \begin{parts}
         \part Demonstre que para qualquer matriz $A$, $n \times n$, $(A + A^t)$ \'{e} sim\'{e}trica e $(A - A^t)$ \'{e} anti-sim\'{e}trica.
         \begin{solution}
             Seja $B = A + A^t$, ent\~{a}o $b_{ij} = a_{ij} + a_{ji}$. Logo, $B$ \'{e} sim\'{e}trica pois $b_{ij} = b_{ji}$.
-            
+
             Seja $C = A - A^t$, ent\~{a}o $c_{ij} = a_{ij} - a_{ji}$. Logo, $C$ \'{e} anti-sim\'{e}trica pois $c_{ij} = - c_{ji}$.
         \end{solution}
-        
+
         \part Demonstre que \'{e} poss\'{i}vel escrever uma matriz $A$ de uma \'{u}nica maneira como a soma de duas matrizes, uma sim\'{e}trica e outra anti-sim\'{e}trica: $A = P + Q$, onde $P$ \'{e} uma matriz sim\'{e}trica e $Q$ \'{e} anti-sim\'{e}trica.
         \begin{solution}
             Vamos construir as matrizes $P$ e $Q$, $P$ sim\'{e}trica e $Q$ anti-sim\'{e}trica, tal que $A = P + Q$.
@@ -201,7 +212,7 @@
                 -q_{1n} & -q_{2n} & \ldots & 0
             \end{bmatrix}
             \]
-            
+
             Para determinar $P$ e $Q$ devemos resolver o sistema linear dado por
             \[
             \left\{
@@ -222,11 +233,11 @@
             \end{aligned}
             \right. .
             \]
-            
+
             Pela solu\c{c}\~{a}o do sistema linear verifica-se que \'{e} poss\'{i}vel escrever uma matriz $A$ de uma \'{u}nica maneira como a soma de duas matrizes, uma sim\'{e}trica e outra anti-sim\'{e}trica.
         \end{solution}
     \end{parts}
-    
+
     \question Considere as matrizes $A : m \times p$ e $B : p \times n$.
     \begin{parts}
         \part Demonstre que cada coluna da matriz $C = A B$ \'{e} uma combina\c{c}\~{a}o linear das colunas de $A$. Quais s\~{a}o os coeficientes desta combina\c{c}\~{a}o linear?
@@ -235,21 +246,21 @@
             \[
             C_{ij} = \sum_{r = 1}^p A_{ir} B_{rj}.
             \]
-  
+
             Logo, a $j$-\'{e}sima coluna da matriz $C$ corresponde a
             \[
             C_{\mdot j} = \sum_{r = 1}^p B_{rj} A_{\mdot r},
             \]
             isso \'{e}, cada coluna da matriz $C$ \'{e} uma combina\c{c}\~{a}o linear das colunas de $A$.
         \end{solution}
-  
+
         \part Demonstre que cada linha da matriz $C = A B$ \'{e} uma combina\c{c}\~{a}o linear das linhas de $B$. Quais s\~{a}o os coeficientes desta combina\c{c}\~{a}o linear?
         \begin{solution}
             Pela defini\c{c}\~{a}o de produto matricial temos que
             \[
             C_{ij} = \sum_{r = 1}^p A_{ir} B_{rj}.
             \]
-  
+
             Logo, a $i$-\'{e}sima linhada matriz $C$ corresponde a
             \[
             C_{i \mdot} = \sum_{r = 1}^p A_{ir} B_{r \mdot}.
@@ -257,7 +268,7 @@
             isso \'{e}, cada linha da matriz $C$ \'{e} uma combina\c{c}\~{a}o linear das linhas de $B$.
         \end{solution}
     \end{parts}
-  
+
     \question Demonstre que o produto entre duas matrizes triangulares superior \'{e} uma matriz triangular superior. Idem para matrizes triangular inferiores.
     \begin{solution}
         Sejam $A$, $A: n \times n$, e $B$, $B: n \times n$, duas matrizes triangulares superiores. Seja $C = A B$, ent\~{a}o
@@ -275,7 +286,7 @@
             \item se $i < r$ ent\~{a}o $B_{rj} = 0$.
         \end{itemize}
         Logo $C$ \'{e} triangular superior.
-  
+
         Agora sejam $A$, $A: n \times n$, e $B$, $B: n \times n$, duas matrizes triangulares inferiores. Seja $D = A B$, ent\~{a}o
         \[
         C_{ij} = \sum_r A_{ir} B_{rj}.
@@ -292,8 +303,8 @@
         \end{itemize}
         Logo $C$ \'{e} triangular inferior.
     \end{solution}
-  
-    \question[exerc\'{i}cio 1.1, Trefethen\nocite{Trefethen:1997:numerical}] Seja $B : 4 \times 4$. Sobre esta matriz s\~{a}o aplicadas as seguintes opera\c{c}\~{o}es:
+
+    \question[Exerc\'{i}cio 1.1 do Trefethen\nocite{Trefethen:1997:numerical}] Seja $B : 4 \times 4$. Sobre esta matriz s\~{a}o aplicadas as seguintes opera\c{c}\~{o}es:
     \begin{enumerate}
         \item coluna 1 multiplicada por $2$;
         \item linha 3 multiplicada por $0.5$;
@@ -372,32 +383,32 @@
                     \]
             \end{enumerate}
         \end{solution}
-        
+
         \part \'{E} poss\'{i}vel representar esta sequ\^{e}ncia de opera\c{c}\~{o}es como um produto entre tr\^{e}s matrizes: $A B C$ (onde $B$ \'{e} a matriz original)?
         \begin{solution}
             \'{E} poss\'{i}vel representar esta sequ\^{e}ncia de opera\c{c}\~{o}es como um produto entre tr\^{e}s matrizes: $A B C$, onde $B$ \'{e} a matriz original, $A = M^{(6)} M^{(5)} M^{(3)} M^{(2)}$ e $B = M^{(1)} M^{(4)} M^{(7)}$.
         \end{solution}
     \end{parts}
-  
+
     \question Se $e_j$ denota a coluna $j$ da matriz identidade de ordem $n$ e se $A$ \'{e} uma matriz $n \times n$, qual o resultado dos produtos:
     \begin{parts}
         \part $A e_j$;
         \begin{solution}
             O resultado \'{e} a $j$-\'{e}sima coluna da matriz $A$.
         \end{solution}
-  
+
         \part $e_j^t A$;
         \begin{solution}
             O resultado \'{e} a $j$-\'{e}sima linha da matriz $A$.
         \end{solution}
-  
+
         \part $e_j^T A e_j$.
         \begin{solution}
             O resultado \'{e} o elemento $a_{jj}$.
         \end{solution}
     \end{parts}
-  
-    \question[exerc\'{i}cio 3.6.4, Meyer\nocite{Meyer:2000:matrix}] Para cada matriz $A : m \times n$, demonstre que o produto $A^* A$ e $A A^*$ s\~{a}o matrizes Hermetianas. E, $A A^t$ e $A^t A$ s\~{a}o sim\'{e}tricas.
+
+    \question[Exerc\'{i}cio 3.6.4, p\'{a}gina 113, do Meyer\nocite{Meyer:2000:matrix}] Para cada matriz $A : m \times n$, demonstre que o produto $A^* A$ e $A A^*$ s\~{a}o matrizes Hermetianas. E, $A A^t$ e $A^t A$ s\~{a}o sim\'{e}tricas.
     \begin{solution}
         Pela defini\c{c}\~{a}o do produto matricial verifica-se que
         \[
@@ -423,12 +434,12 @@
         \]
         e portanto $A A^t$ \'{e} sim\'{e}trica. Para $A^t A$ o processo \'{e} an\'{a}logo e concluimos tamb\'{e}m que $A^t A$ \'{e} sim\'{e}trico.
     \end{solution}
-  
+
     \question Julque verdadeiro ou falso a afirma\c{c}\~{a}o abaixo.
     \begin{quote}
         O produto entre duas matrizes sim\'{e}tricas resulta em uma matriz sim\'{e}trica.
     \end{quote}
-  
+
     \begin{solution}
         Seja $A : n \times n$ e $B : n \times n$ duas matrizes sim\'{e}tricas. Ent\~{a}o $C = A B$ \'{e} tal que
         \[
@@ -438,10 +449,10 @@
         \[
         c_{ji} = \sum_{r = 1}^n a_{jr} b_{ri}.
         \]
-  
+
         Para $i \neq j$, verifica-se que $c_{ij} \neq c_{ji}$ e portanto $C$ n\~{a}o \'{e} sim\'{e}trica.
     \end{solution}
-  
+
     \question O tra\c{c}o de uma matriz quadrada, denotado por $\mbox{tr}(A)$, \'{e} definido como a soma das entradas da diagonal, isso \'{e}, $\mbox{tr}(A) = \sum_i a_{ii}$.
     \begin{parts}
         \part $\mbox{tr}(A) = \mbox{tr}(A^t)$?
@@ -456,7 +467,7 @@
             \]
             Logo, $\mbox{tr}(A) = \mbox{tr}(A^t)$.
         \end{solution}
-  
+
         \part $\mbox{tr}(A) = \mbox{tr}(A^*)$?
         \begin{solution}
             Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada, temos
@@ -469,7 +480,7 @@
             \]
             Logo, $\mbox{tr}(A) \neq \mbox{tr}(A^t)$.
         \end{solution}
-  
+
         \part Para matrizes $A : m \times n$ e $B : n \times m$, demonstre que $\mbox{tr}(AB) = \mbox{tr}(BA)$.
         \begin{solution}
             Pela defini\c{c}\~{a}o de produto matricial, temos
@@ -480,7 +491,7 @@
             \[
             (B A)_{ii} = \sum_{r = 1}^m b_{ir} a_{ri}.
             \]
-  
+
             Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada, temos
             \[
             \mbox{tr}(A B) = \sum_{s = 1}^m \sum_{r = 1}^n a_{sr} b_{rs}
@@ -492,9 +503,9 @@
             Logo, $\mbox{tr}(A B) = \mbox(B A)$.
         \end{solution}
     \end{parts}
-  
-    \question[exerc\'{i}cio 3.6.11, Meyer\nocite{Meyer:2000:matrix}] Usando os resultados do item anterior, demonstre cada uma das afirma\c{c}\~{o}es abaixo. (As matrizes $A$, $B$ e $C$ n\~{a}o s\~{a}o necessariamente quadradas, por\'{e}m as dimens\~{o}es s\~{a}o tais que os produtos apresentados podem ser realizadas e resultam em matrizes quadradas.)
-  
+
+    \question[Exerc\'{i}cio 3.6.11, p\'{a}gina 114, do Meyer\nocite{Meyer:2000:matrix}] Usando os resultados do item anterior, demonstre cada uma das afirma\c{c}\~{o}es abaixo. (As matrizes $A$, $B$ e $C$ n\~{a}o s\~{a}o necessariamente quadradas, por\'{e}m as dimens\~{o}es s\~{a}o tais que os produtos apresentados podem ser realizadas e resultam em matrizes quadradas.)
+
     \begin{parts}
         \part $\mbox{tr}(A B C) = \mbox{tr}(B C A) = \mbox{tr}(C A B)$.
         \begin{solution}
@@ -514,7 +525,7 @@
 
             Portanto, $\mbox{tr}(A B C) = \mbox{tr}(B C A) = \mbox{tr}(C A B)$.
         \end{solution}
-  
+
         \part $\mbox{tr}(A B C)$ pode ser diferente de $\mbox{tr}(B A C)$.
         \begin{solution}
             Para mostrar que $\mbox{tr}\left( A B C \right)$ pode ser diferente de $\mbox{tr}\left( B A C \right)$ vamos apresentar um exemplo em que isso \'{e} observado.
@@ -547,64 +558,64 @@
             \end{align*}
             Logo, $\mbox{tr}\left( A B C \right) \neq \mbox{tr}\left( B A C \right)$.
         \end{solution}
-  
-      \part $\mbox{tr}(A^t B) = \mbox{tr}(A B^t)$.
-      \begin{solution}
-          Primeiro vamos calcular $\mbox{tr}\left( A^t B \right)$:
-          \begin{align*}
-              \mbox{tr}\left( A^t B \right) &= \mbox{tr}(C) && C_{ij} = \sum_{r = 1}^n A_{ri} B_{rj} \\
-              &= \sum_{s = 1}^n C_{ss} \\
-              &= \sum_{s = 1}^n \sum_{r = 1}^n A_{rs} B_{rs}.
-          \end{align*}
 
-          Agora vamos calcular $\mbox{tr}\left( A B^t \right)$:
-          \begin{align*}
-              \mbox{tr}\left( A B^t \right) &= \mbox{tr}(D) && D_{ij} = \sum_{r = 1}^n A_{ir} B_{jr} \\
-              &= \sum_{s = 1}^n D_{ss} \\
-              &= \sum_{s = 1}^n \sum_{r = 1}^n A_{sr} B_{sr}.
-          \end{align*}
+        \part $\mbox{tr}(A^t B) = \mbox{tr}(A B^t)$.
+        \begin{solution}
+            Primeiro vamos calcular $\mbox{tr}\left( A^t B \right)$:
+            \begin{align*}
+                \mbox{tr}\left( A^t B \right) &= \mbox{tr}(C) && C_{ij} = \sum_{r = 1}^n A_{ri} B_{rj} \\
+                &= \sum_{s = 1}^n C_{ss} \\
+                &= \sum_{s = 1}^n \sum_{r = 1}^n A_{rs} B_{rs}.
+            \end{align*}
 
-          Pelas express\~{o}es acima concluimos que $\mbox{tr}\left( A^t B \right) = \mbox{tr}\left( A B^t \right)$.
-      \end{solution}
-  \end{parts}
+            Agora vamos calcular $\mbox{tr}\left( A B^t \right)$:
+            \begin{align*}
+                \mbox{tr}\left( A B^t \right) &= \mbox{tr}(D) && D_{ij} = \sum_{r = 1}^n A_{ir} B_{jr} \\
+                &= \sum_{s = 1}^n D_{ss} \\
+                &= \sum_{s = 1}^n \sum_{r = 1}^n A_{sr} B_{sr}.
+            \end{align*}
 
-  \question[exerc\'{i}cio 3.6.12b, Meyer] Demonstre que $\mbox{tr}(A^t A) = 0$ se e somente se $A$ \'{e} matriz nula.
-  \begin{solution}
-      Pela defini\c{c}\~{a}o de produto matricial, temos
-      \[
-      (A^t A)_{ij} = \sum_{r = 1}^n a_{jr} a_{rj}.
-      \]
-      E pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada, temos
-      \[
-      \mbox{tr}(A^t A) = \sum_{s = 1}^m \sum_{r = 1}^n a_{rs} a_{rs}.
-      \]
+            Pelas express\~{o}es acima concluimos que $\mbox{tr}\left( A^t B \right) = \mbox{tr}\left( A B^t \right)$.
+        \end{solution}
+    \end{parts}
 
-      Logo, observa-se que $\mbox{tr}(A^t A) = 0$ se e somente se $A$ \'{e} matriz nula.
-  \end{solution}
+    \question[Exerc\'{i}cio 3.6.12, p\'{a}gina 114, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que $\mbox{tr}(A^t A) = 0$ se e somente se $A$ \'{e} matriz nula.
+    \begin{solution}
+        Pela defini\c{c}\~{a}o de produto matricial, temos
+        \[
+        (A^t A)_{ij} = \sum_{r = 1}^n a_{jr} a_{rj}.
+        \]
+        E pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada, temos
+        \[
+        \mbox{tr}(A^t A) = \sum_{s = 1}^m \sum_{r = 1}^n a_{rs} a_{rs}.
+        \]
 
-  \question Para cada matriz $A : n \times n$ use a fun\c{c}\~{a}o tra\c{c}o para justificar que a equa\c{c}\~{a}o matricial $A X - X A = I$ n\~{a}o admite solu\c{c}\~{a}o.
-  \begin{solution}
-      Dada a equa\c{c}\~{a}o matricial $A X - X A = I$, verifica-se que $\mbox{tr}(A X - X A) = \mbox{tr}(I)$.
-      
-      Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada temos que
-      \[
-      \mbox{tr}\left( I \right) = n
-      \]
-      e da defini\c{c}\~{a}o tamb\'{e}m decorre a seguinte propriedade
-      \[
-      \mbox{tr}(\alpha A + \beta B) = \alpha \mbox{tr}(A) + \beta \mbox{tr}(B).
-      \]
-      Desta propriedade temos que
-      \[
-      \mbox{tr}(A X - X A) = \mbox{tr}(A X) - \mbox{tr}(X A).
-      \]
-      Como demonstrado anteriormente, verifica-se $\mbox{tr}(A B) = \mbox{tr}(B A)$ e portanto
-      \[
-      \mbox{tr}(A X - X A) = \mbox{tr}\left( A X \right) - \mbox{tr}\left( X A \right) = \mbox{tr}\left( A X \right) - \mbox{tr}\left( A X \right) = 0.
-      \]
+        Logo, observa-se que $\mbox{tr}(A^t A) = 0$ se e somente se $A$ \'{e} matriz nula.
+    \end{solution}
 
-      Logo, verifica-se que $\mbox{tr}(A X - X A) \neq \mbox{tr}(I)$ e conseguentemente a equa\c{c}\~{a}o matricial n\~{a}o admite solu\c{c}\~{a}o.
-  \end{solution}
+    \question Para cada matriz $A : n \times n$ use a fun\c{c}\~{a}o tra\c{c}o para justificar que a equa\c{c}\~{a}o matricial $A X - X A = I$ n\~{a}o admite solu\c{c}\~{a}o.
+    \begin{solution}
+        Dada a equa\c{c}\~{a}o matricial $A X - X A = I$, verifica-se que $\mbox{tr}(A X - X A) = \mbox{tr}(I)$.
+
+        Pela defini\c{c}\~{a}o de tra\c{c}o de uma matriz quadrada temos que
+        \[
+        \mbox{tr}\left( I \right) = n
+        \]
+        e da defini\c{c}\~{a}o tamb\'{e}m decorre a seguinte propriedade
+        \[
+        \mbox{tr}(\alpha A + \beta B) = \alpha \mbox{tr}(A) + \beta \mbox{tr}(B).
+        \]
+        Desta propriedade temos que
+        \[
+        \mbox{tr}(A X - X A) = \mbox{tr}(A X) - \mbox{tr}(X A).
+        \]
+        Como demonstrado anteriormente, verifica-se $\mbox{tr}(A B) = \mbox{tr}(B A)$ e portanto
+        \[
+        \mbox{tr}(A X - X A) = \mbox{tr}\left( A X \right) - \mbox{tr}\left( X A \right) = \mbox{tr}\left( A X \right) - \mbox{tr}\left( A X \right) = 0.
+        \]
+
+        Logo, verifica-se que $\mbox{tr}(A X - X A) \neq \mbox{tr}(I)$ e conseguentemente a equa\c{c}\~{a}o matricial n\~{a}o admite solu\c{c}\~{a}o.
+    \end{solution}
 \end{questions}
 
 \bibliographystyle{plain}

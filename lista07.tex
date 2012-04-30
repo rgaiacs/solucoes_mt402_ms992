@@ -1,0 +1,484 @@
+% Filename: lista07.tex
+% This code is part of 'Listas de Matrizes'
+% 
+% Description: Lista 7.
+% 
+% Created: 27.04.12 10:44:51 AM
+% Last Change: 29.04.12 08:08:58 PM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms of
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 7}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question[Ver exerc\'{i}cio 3.10.9, p\'{a}gina 157, Meyer\nocite{Meyer:2000:matrix}] Demonstre que se a matriz $A : n \times n$ tem fatora\c{c}\~{a}o LU ent\~{a}o \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$. Se, $A$ for tamb\'{e}m sim\'{e}trica ent\~{a}o esta fatora\c{c}\~{a}o \'{e} da forma $A = L D L^t$.
+    \begin{solution}
+        Se a matriz $A$ tem fatora\c{c}\~{a}o LU ent\~{a}o $A = LU$ e \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$ pois $d_{ii} = u_{ii}$, $d_{ij} = 0$ para $i \neq j$ e $\tilde{u}_{ij} = u_{ij} / u_{ii}$ para $j > i$.
+    \end{solution}
+
+    \question Considere $C : n \times n$ uma matriz com posto completo ($\text{posto}(C) = n$). Demonstre que as matrizes $C^t C$ e $C C^t$ s\~{a}o sim\'{e}tricas definidas positivas.
+    \begin{solution}
+        As matrizes $C^t C$ e $C^t C$ s\~{a}o sim\'{e}tricas definidas positivas se e somente se $x^t C^t C x \geq 0$ e $x^t C C^t x \geq 0$ para todo $x$ sendo que a igualdade ocorre apenas para $x = 0$. Ent\~{a}o $C x \geq 0$ e $C^t x \geq 0$ sendo que a igualdade ocorre apenas para $x = 0$. Como $C$ tem posto completo, verificamos que as desigualdades anteriores s\~{a}o verificadas.
+    \end{solution}
+
+    \question Demonstre que a soma de duas matrizes definidas positiva \'{e} uma matriz definida positiva.
+    \begin{solution}
+        Seja $A$ e $B$ duas matrizes definidas positivas, i.e., $x^t A x \geq 0$ e $x^t B x \geq 0$ sendo que a igualdade \'{e} verificada apenas para $x = 0$. Ent\~{a}o,
+        \begin{align*}
+            x^t \left( A + B \right) x &= x^t \left( A x + B x \right) \\
+            &= x^t A x + x^t B x.
+        \end{align*}
+        Logo, a soma de duas matrizes definidas positivas \'{e} definida positiva.
+    \end{solution}
+
+    \question Demonstre que se $A : n \times n$ \'{e} definida positiva, ent\~{a}o $\max_{ij} \| a_{ij} | = \max_i a_{ij} > 0$. (Sugest\~{a}o: escolha $x = e_r - \text{sign}(a_{rs}) e_s$ onde $| a_{rs} | = \max_{ij} | a_{ij} |$ e analise os casos $r = s$ e $r \neq s$.)
+    \begin{solution}
+        Seja $x = e_r - \text{sign}(a_{rs}) e_s$, ent\~{a}o
+        \begin{align*}
+            x^t A x &= \left( e_r - \text{sign}(a_{rs}) e_s \right)^t A \left( e_r - \text{sign}(a_{rs}) e_s \right) \\
+            &= \left( e_r - \text{sign}(a_{rs}) e_s \right)^t \left( A e_r - \text{sign}(a_{rs}) A e_s \right) \\
+            &= e_r^t A e_r - \text{sign}(a_{rs}) e_r^t A e_s - \text{sign}(a_{rs} e_s^t A e_r + \text{sign}(a_{rs}) \text{sign}(a_{rs}) e_s^t A e_s \\
+            &= a_{rr} - \text{sign}(a_{rs}) \left( a_{rs} + a_{sr} \right) + a_{ss}.
+        \end{align*}
+        Como $A$ \'{e} definida positiva $a_{rr} - \text{sign}(a_{rs}) \left( a_{rs} + a_{sr} \right) + a_{ss} \geq 0$. E como $A$ \'{e} sim\'{e}trica, $a_{rs} = a_{sr}$, temos que
+        \begin{align*}
+            \text{sign}(a_{rs}) a_{r1} \leq \left( a_{rr} + a_{ss} \right) / 2 \leq \max_i a_{ii}
+        \end{align*}
+        e portanto $\max_{i,j} | a_{ij} | = \max_i a_{ii}$.
+    \end{solution}
+
+    \question Demonstre que se $A : n \times n$ \'{e} definida positiva, ent\~{a}o suas submatrizes principais dominantes de ordem $k$, $A_k$, $k = 1, 2, \ldots, n$ s\~{a}o matrizes definidas positivas.
+    \begin{solution}
+        Seja
+        \begin{align*}
+            A &= \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix}
+        \end{align*}
+        uma matriz definida positiva, i.e., $x^t A x \geq 0$ para qualquer $x$. Tomemos $x = (x_1^t, 0)^t$, ent\~{a}o
+        \begin{align*}
+            x^t A x &= \begin{bmatrix}
+                x_1^t & 0
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix} \begin{bmatrix}
+                x_1 \\
+                0
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                x_1^t & 0
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} x_1 \\
+                A_{21} x_1
+            \end{bmatrix} \\
+            &= x_1^t A_{11} x_1.
+        \end{align*}
+        Como $x^t A x \geq 0$ para qualquer $x$ temos que $x_1^t A_{11} x_1 \geq 0$ para qualquer $x_1$ e portanto as submatrizes principais dominantes de ordem $k$ s\~{a}o matrizes definidas positivas.
+    \end{solution}
+
+    \question Julgue verdadeiro ou Falso: Se $A$ \'{e} definida positiva ent\~{a}o $\det(A) > 0$.
+    \begin{solution}
+        A matrix $A$, como toda matriz quadrada, possue uma base de autovetores que fomam a matriz $P$. Calculando $P A P^{-1}$ obtemos a matriz na sua forma normal de Jordan, $J$, que \'{e} triangular superior. Sabemos que
+        \begin{align*}
+            \det(J) &= \det(P A P^{-1}) \\
+            &= \det(P) \det(A) \det(P^{-1}) \\
+            &= \det(A) && \det(P^{-1}) = 1 / \det(P).
+        \end{align*}
+        e que $\det(J)$ \'{e} o produto dos elementos da diagonal principal. Os elementos da diagonal principal da matriz $J$ s\~{a}o os autovalores da matrix, ent\~{a}o o determinante de $A$ \'{e} o produto dos seus autovalores.
+
+        Suponha que $c$ \'{e} um autovalor positivo, ent\~{a}o existe um autovetor $v$ tal que
+        \begin{align*}
+            A v &= c v \\
+            v^t A v &= c v^t v.
+        \end{align*}
+        Note que $v^t v$ \'{e} a norma-2 de $v$ que \'{e} n\~{a}o negativa e zero se e somente se $v = 0$. Mas como $v$ \'{e} um autovetor sabemos que $v \neq 0$ e portanto $v^t v > 0$.
+
+        Como $v^t A v > 0$ pois a matriz \'{e} definida positiva e $v^t v > 0$ concluimos que $c > 0$.
+
+        Portanto, todo autovalor real \'{e} positivo e os autovalores complexos aparecem juntamente com seu conjugado. Logo, $\det(A) > 0$.
+    \end{solution}
+
+    \question[Exemplo 3.10.7, p\'{a}gina 154, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que $A : n \times n$, sim\'{e}trica, \'{e} definida positiva, se e somente se $A$ tem fatora\c{c}\~{a}o de Cholesky.
+    \begin{solution}
+        Se $A$ \'{e} definida positiva ent\~{a}o existe uma fatora\c{c}\~{a}o LDU tal que $A = L D L^t$, onde $D = \text{diag}(p_i, p_2, \ldots, p_n)$ \'{e} uma matriz diagonal contendo os pivôs $p_i > 0$. Fazendo $R = D^{1/2} L^t$ onde $D^{1/2} = \text{diag}(\sqrt{p_1}, \sqrt{p_2}, \ldots, \sqrt{p_n})$ encontramos a fatora\c{c}\~{a}o desejada pois $A = L D^{1/2} D^{1/2} L^t = R^t R$, e $R$ \'{e} uma matriz triangular superior com diagonal positiva.
+        
+        E se $A = R R^t$, onde $R$ \'{e} uma matriz triangular inferior com diagonal positiva, ent\~{a}o fatorando apenas a diagonal de $R$ obtemos $R = L D$ onde $L$ \'{e} triangular inferior com diagonal unit\'{a}ria e $D$ \'{e} uma matriz diagonal cujas entras s\~{a}o $r_{ii}$. Consequentemente, $A = L D^2 L^t$ \'{e} a fatora\c{c}\~{a}o LDU de $A$, e portanto os pivôs s\~{a}o positivos pois eles s\~{a}o os elementos da diagonal de $D^2$.
+    \end{solution}
+
+    \question Julgue verdadeiro ou Falso: Se $A : n \times n$ \'{e} definida positiva ent\~{a}o o sistema linear $A x = b$ admite solu\c{c}\~{a}o e esta solu\c{c}\~{a}o \'{e} \'{u}nica.
+    \begin{solution}
+        Suponha que existem duas solu\c{c}\~{o}es distintas para o sistema $A x = b$ dadas por $x_1$ e $x_2$ ($x_1 \neq x_2$), com $A$ definida positiva. Ent\~{a}o
+        \begin{align*}
+            A x_1 &= b, \\
+            A x_2 &= b.
+        \end{align*}
+        Logo,
+        \begin{align*}
+            A x_1 - A x_2 &= b - b = 0 \\
+            A (x_1 - x_2) &= 0.
+        \end{align*}
+        Como $A$ \'{e} definida positiva, $(x_1 - x_2)^t A (x_1 - x_2) \geq 0$ e $(x_1 - x_2)^t A (x_1 - x_2) = 0$ se e somente se $(x_1 - x_2) = 0$. Mas sabemos que $(x_1 - x_2)^t A (x_1 - x_2) = (x_1 - x_2)^t 0 = 0$, portanto $(x_1 - x_2) = 0$ que corresponde a $x_1 = x_2$ (contradi\c{c}\~{a}o).
+    \end{solution}
+
+    \question Demonstre que se $A$ \'{e} sim\'{e}trica definida positiva, ent\~{a}o seus autovalores s\~{a}o reais e estritamente positivos.
+    \begin{solution}
+        Suponha que $c$ \'{e} um autovalor de $A$, ent\~{a}o existe um autovetor $v$ tal que
+        \begin{align*}
+            A v &= c v \\
+            v^t A v &= c v^t v.
+        \end{align*}
+        Note que $v^t v$ \'{e} a norma-2 de $v$ que \'{e} n\~{a}o negativa e zero se e somente se $v = 0$. Mas como $v$ \'{e} um autovetor sabemos que $v \neq 0$ e portanto $v^t v > 0$.
+
+        Como $v^t A v > 0$ pois a matriz \'{e} definida positiva e $v^t v > 0$ concluimos que $c > 0$.
+    \end{solution}
+
+    \question Considere a matriz
+    \begin{align*}
+        A = \begin{bmatrix}
+            9 & -6 & 12 & 9 \\
+            -6 & 13 & -11 & -21 \\
+            12 & -11 & 21 & 21 \\
+            9 & -21 & 21 & 63
+        \end{bmatrix}.
+    \end{align*}
+    Obtenha o fator de Cholesky de $A$ aplicando o algoritmo padr\~{a}o e a vers\~{a}o que utiliza o produto externo. Obtidos os fatores, resolva o sistema $A x = b$, com $b = \left( 48, -44, 76, 51 \right)^t$.
+    \begin{solution}
+        O Algoritmo 4.2.1, p\'{a}gina 144, do Golub\nocite{Golub:1996:matrix} corresponde a fatora\c{c}\~{a}o de Cholesky padr\~{a}o e \'{e} transcrito abaixo:
+        \begin{algorithmic}
+            \For{$j = 1, \ldots, n$}
+                \If{$j > 1$}
+                    \State $A(j:n, j) = A(j:n, j) - A(j:n, 1:j - 1) A(j, 1:j - 1)^t$
+                \EndIf
+                \State $A(j:n, j) = A(j:n, j) / \sqrt{A(j,j)}$
+            \EndFor
+        \end{algorithmic}
+
+        Ent\~{a}o,
+        \begin{enumerate}
+            \item $j = 1$,
+                \begin{align*}
+                    A^{(1)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 13 & -11 & -21 \\
+                        4 & -11 & 21 & 21 \\
+                        3 & -21 & 21 & 63
+                    \end{bmatrix};
+                \end{align*}
+            \item $j = 2$,
+                \begin{align*}
+                    A^{(2)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 13 - (-2)(-2) & -11 & -21 \\
+                        4 & -11 - 4(-2) & 21 & 21 \\
+                        3 & -21 - 3(-2) & 21 & 63
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 9 & -11 & -21 \\
+                        4 & -3 & 21 & 21 \\
+                        3 & -15 & 21 & 63
+                    \end{bmatrix} \\
+                    A^{(2)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 21 & 21 \\
+                        3 & -5 & 21 & 63
+                    \end{bmatrix};
+                \end{align*}
+           \item  $j = 3$,
+               \begin{align*}
+                   A^{(3)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 21 - (4(4) + (-1)(-1))  & 21 \\
+                        3 & -5 & 21 - (3(4) + (-5)(-1)) & 63
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 4  & 21 \\
+                        3 & -5 & 4 & 63
+                    \end{bmatrix} \\
+                    A^{(3)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2  & 21 \\
+                        3 & -5 & 2 & 63
+                    \end{bmatrix};
+               \end{align*}
+           \item $j = 4$,
+               \begin{align*}
+                   A^{(4)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2  & 21 \\
+                        3 & -5 & 2 & 63 - (3^2 + (-5)^2 + 2^2)
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2  & 21 \\
+                        3 & -5 & 2 & 25
+                    \end{bmatrix} \\
+                    A^{(4)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2  & 21 \\
+                        3 & -5 & 2 & 5
+                    \end{bmatrix}
+               \end{align*}
+        \end{enumerate}
+        Logo,
+        \begin{align*}
+            R &= \begin{bmatrix}
+                3 & 0 & 0 & 0 \\
+                -2 & 3 & 0 & 0 \\
+                4 & -1 & 2  & 0\\
+                3 & -5 & 2 & 5
+            \end{bmatrix}.
+        \end{align*}
+        Resolvendo o sistema $R y = b$ temos que $y = (16.00, 25.33, 18.67, 18.47)^t$ e resolvendo o sistema $R^t x = y$ temos que $x = (5.11, 16.48, 5.64, 3.69)^t$.
+        
+        O Algoritmo 4.2.2, p\'{a}gina 145, do Golub\nocite{Golub:1996:matrix} corresponde a fatora\c{c}\~{a}o de Cholesky utilizando o produto externo e \'{e} transcrito abaixo:
+        \begin{algorithmic}
+            \For{$k = 1, \ldots, n$}
+                \State $A(k,k) = \sqrt{A(k,k)}$
+                \State $A(k + 1:n, k) = A(k + 1:n, k) / A(k,k)$
+                \For{$j = k + 1:n$}
+                    \State $A(j:n, j) = A(j:n, j) - A(j:n, k) A(j, k)$
+                \EndFor
+            \EndFor
+        \end{algorithmic}
+
+        Ent\~{a}o,
+        \begin{enumerate}
+            \item $k = 1$,
+                \begin{align*}
+                    A^{(1)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 13 - (-2)(-2) & -11 & -21 \\
+                        4 & -11 - (-2)4 & 21 - 4(4) & 21 \\
+                        3 & -21 -(-2)3 & 21 - 4(3) & 63 - 3(3)
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 9 & -11 & -21 \\
+                        4 & -3 & 5 & 21 \\
+                        3 & -15 & 9 & 54
+                    \end{bmatrix}
+                \end{align*}
+            \item $k = 2$,
+                \begin{align*}
+                    A^{(2)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 5 - (-1)(-1) & 21 \\
+                        3 & -5 & 9 - (-5)(-1) & 54 - (-5)(-5)
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 4 & 21 \\
+                        3 & -5 & 4 & 29
+                    \end{bmatrix}
+                \end{align*}
+           \item  $k = 3$,
+               \begin{align*}
+                   A^{(3)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2 & 21 \\
+                        3 & -5 & 2 & 29 - 2(2)
+                    \end{bmatrix} = \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2 & 21 \\
+                        3 & -5 & 2 & 25
+                    \end{bmatrix}
+               \end{align*}
+           \item $k = 4$,
+               \begin{align*}
+                   A^{(4)} &\leftarrow \begin{bmatrix}
+                        3 & -6 & 12 & 9 \\
+                        -2 & 3 & -11 & -21 \\
+                        4 & -1 & 2 & 21 \\
+                        3 & -5 & 2 & 5
+                    \end{bmatrix}
+               \end{align*}
+        \end{enumerate}
+        Logo,
+        \begin{align*}
+            R &= \begin{bmatrix}
+                3 & 0 & 0 & 0 \\
+                -2 & 3 & 0 & 0 \\
+                4 & -1 & 2  & 0\\
+                3 & -5 & 2 & 5
+            \end{bmatrix}.
+        \end{align*}
+        Resolvendo o sistema $R y = b$ temos que $y = (16.00, 25.33, 18.67, 18.47)^t$ e resolvendo o sistema $R^t x = y$ temos que $x = (5.11, 16.48, 5.64, 3.69)^t$.
+     \end{solution}
+
+    \question Verifique que os elementos do fator de Cholesky s\~{a}o limitados superiormente, isto \'{e}: $| g_{ij} | \leq \alpha$, sendo que $\alpha$ depende apenas das entradas de $A$. Este fato ocorre na fatora\c{c}\~{a}o LU? Justifique e exemplifique.
+    \begin{solution}
+        Seja
+        \begin{align*}
+            A &= \begin{bmatrix}
+                A_{11} & A_{\mdot 1}^t \\
+                A_{\mdot 1} & A_{22}
+            \end{bmatrix}
+        \end{align*}
+        uma matriz sim\'{e}trica definida positiva. Ent\~{a}o a fatora\c{c}\~{a}o de Cholesky corresponde a
+        \begin{align*}
+            A = G G^ = \begin{bmatrix}
+                G_{11} & 0^t \\
+                G_{\mdot 1} & G_{22}
+            \end{bmatrix} \begin{bmatrix}
+                G_{11} & G_{\mdot 1}^t \\
+                0 & G_{22}^t
+            \end{bmatrix},
+        \end{align*}
+        onde $G_{11} = \sqrt{A_{11}}$, $G_{\mdot 1} = A_{\mdot 1} / G_{11}$ e $G_{22} G_{22}^t = A_{22} - G_{\mdot 1} G_{\mdot 1}^t$.
+
+        Como $G_{\mdot 1} G_{\mdot 1}^t > 0$ temos que os elementos da fatora\c{c}\~{a}o de Cholesky s\~{a}o limitados superiormente e o limitante depende apenas das entradas de $A$.
+    \end{solution}
+
+    \question[Ver se\c{c}\~{a}o 4.2.5, p\'{a}gina 144, do Golub\nocite{Golub:1996:matrix}] Usando a vers\~{a}o que utiliza o produto externo verifique que o n\'{u}mero de opera\c{c}\~{o}es realizads para obter o fator de Cholesky \'{e} da ordem de $n^3 / 3$.
+    \begin{solution}
+        O fator de Cholesky utilizando o produto externo \'{e} obtido pela seguinte parti\c{c}\~{a}o:
+        \begin{align*}
+            A = \begin{bmatrix}
+                \alpha & v^t \\
+                v & B
+            \end{bmatrix} = \begin{bmatrix}
+                \beta & 0 \\
+                v / \beta I
+            \end{bmatrix} \begin{bmatrix}
+                1 & 0 \\
+                0 & B - v v^t / \alpha
+            \end{bmatrix} \begin{bmatrix}
+                \beta & v^t / \beta \\
+                0 & I
+            \end{bmatrix}.
+        \end{align*}
+
+        O Algoritmo 4.2.2, p\'{a}gina 145, do Golub\nocite{Golub:1996:matrix} corresponde a fatora\c{c}\~{a}o de Cholesky utilizando o produto externo e \'{e} transcrito abaixo:
+        \begin{algorithmic}
+            \For{$k = 1, \ldots, n$}
+                \State $A(k,k) = \sqrt{A(k,k)}$ \Comment{$1$ opera\c{c}\~{a}o}
+                \State $A(k + 1:n, k) = A(k + 1:n, k) / A(k,k)$ \Comment{$n - k - 1$ opera\c{c}\~{o}es}
+                \For{$j = k + 1:n$}
+                    \State $A(j:n, j) = A(j:n, j) - A(j:n, k) A(j, k)$ \Comment{$2(n - j)$ opera\c{c}\~{o}es}
+                \EndFor
+            \EndFor
+        \end{algorithmic}
+        Logo, temos que o n\'{u}mero total de opera\c{c}\~{o}es, $\text{op}$, \'{e}
+        \begin{align*}
+            \text{op} &= \sum_{k = 1}^n \left( 1 + \left( n - k - 1 \right) + \sum_{j = k + 1}^n 2 \left( n - j \right) \right) \\
+            &= \sum_{k = 1}^n \left( 1 + \left( n - k - 1 \right) + 2 \sum_{j = k + 1}^n \left( n - j \right) \right) \\
+            &= \sum_{k = 1}^n \left( 1 + \left( n - k - 1 \right) + 2 \left[ \left( n - \left( k + 1 \right) + \left( n - n \right) \right) \left( n - \left( k + 1 \right) \right) / 2 \right] \right) \\
+            &= \sum_{k = 1}^n \left( 1 + \left( n - k - 1 \right) + \left( n - \left( k + 1 \right) \right) \left( n - \left( k + 1 \right) \right) \right) \\
+            &= \sum_{k = 1}^n \left( n - k + n^2 - 2 \left( k + 1 \right) + \left( k + 1 \right)^2 \right) \\
+            &= \left( n + n^2 \right) + \sum_{k = 1}^n \left( - k  - 2 \left( k + 1 \right) + \left( k + 1 \right)^2 \right) \\
+            &\approx \left( n + n^2 \right) + \sum_{k = 1}^n \left( k + 1 \right)^2 \\
+            &= \left( n + n^2 \right) + \left[ \left( n + 1 \right) \left( n + 2 \right) \left( 2n + 3 \right) \right]  / 6 \\
+            &\approx n^3 / 3.
+        \end{align*}
+    \end{solution}
+
+    \question Demonstre que: Se a matriz $A : n \times n$ \'{e} sim\'{e}trica definida positiva, e,
+    \begin{align*}
+        A = \begin{bmatrix}
+            A_{11} & A_{12} \\
+            A_{21} & A_{22}
+        \end{bmatrix},
+    \end{align*}
+    ent\~{a}o, $A_{11} : k \times k$ e $A_{22}: (n - k) \times (n - k)$ s\~{a}o sim\'{e}tricas definidas positivas.
+    \begin{solution}
+        Seja
+        \begin{align*}
+            A &= \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix}
+        \end{align*}
+        uma matriz definida positiva, i.e., $x^t A x \geq 0$ para qualquer $x$.
+        
+        Tomemos $x = (x_1^t, 0)^t$, ent\~{a}o
+        \begin{align*}
+            x^t A x &= \begin{bmatrix}
+                x_1^t & 0
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix} \begin{bmatrix}
+                x_1 \\
+                0
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                x_1^t & 0
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} x_1 \\
+                A_{21} x_1
+            \end{bmatrix} \\
+            &= x_1^t A_{11} x_1.
+        \end{align*}
+        Como $x^t A x \geq 0$ para qualquer $x$ temos que $x_1^t A_{11} x_1 \geq 0$ para qualquer $x_1$ e portanto as submatrizes $A_{11}$ de ordem $k$ s\~{a}o matrizes sim\'{e}tricas definidas positivas.
+
+        Agora tememos $x = (0, x_2^t)^t$, ent\~{a}o
+        \begin{align*}
+            x^t A x &= \begin{bmatrix}
+                0 & x_2^t
+            \end{bmatrix} \begin{bmatrix}
+                A_{11} & A_{12} \\
+                A_{21} & A_{22}
+            \end{bmatrix} \begin{bmatrix}
+                0 \\
+                x_2
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                0 & x_2^t
+            \end{bmatrix} \begin{bmatrix}
+                A_{12} x_2 \\
+                A_{22} x_2
+            \end{bmatrix} \\
+            &= x_2^t A_{22} x_2.
+        \end{align*}
+        Como $x^t A x \geq 0$ para qualquer $x$ temos que $x_2^t A_{22} x_2 \geq 0$ para qualque $x_2$ e portanto as submatrizes $A_{22}$ de ordem $(n - k)$ s\~{a}o matrizes sim\'{e}tricas definidas positivas
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

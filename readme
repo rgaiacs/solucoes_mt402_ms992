@@ -1,1 +1,26 @@
 Aqui você encontrará as soluções das listas de exercícios utilizadas na disciplina MT402, Matrizes, no primeiro semestre de 2012.
+
+Algumas informa\c{c}\~{o}es para futuras edi\c{c}\~{o}es:
+    - Quando verficar-se que algum exerc\'{i}cio tiver sido retirado de algum livro este exerc\'{i}cio \'{e} iniciada da sequinte forma:
+
+        \question[Exerc\'{i}cio <+n\'{u}mero do exerc\'{i}cio+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+
+    E quando for um exemplo:
+
+        \question[Exemplo <+n\'{u}mero do exemplo+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+
+    E quando for uma equa\c{c}\~{a}o:
+
+        \question[Equa\c{c}\~{a}o <+n\'{u}mero da equa\c{c}\~{a}o+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+
+    - Quando verificar-se que algum exerc\'{i}cio estiver relacionado a algum exerc\'{i}cio de um livro este exerc\'{i}cio \'{e} iniciado da seguinte forma:
+
+        \question[Ver o exerc\'{i}cio <+n\'{u}mero do exerc\'{i}cio+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+
+    E quando estiver relaciona a algum exemplo:
+
+        \question[Ver o exemplo <+n\'{u}mero do exemplo+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+
+    E quando estiver relaciona a alguma equa\c{c}\~{a}o:
+
+        \question[Ver a equa\c{c}\~{a}o <+n\'{u}mero da equa\c{c}\~{a}o+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]

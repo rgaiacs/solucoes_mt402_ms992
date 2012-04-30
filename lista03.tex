@@ -1,6 +1,17 @@
-%        File: lista3.tex
-%     Created: Sun Mar 11 08:00 AM 2012 B
-% Last Change: Sun Mar 11 08:00 AM 2012 B
+% Filename: lista03.tex
+% This code is part of 'Lista de Matrizes'.
+% 
+% Description: Lista 03.
+% 
+% Created: 11.03.12 08:00:00 AM
+% Last Change: 25.04.12 09:12:25 AM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms 
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
@@ -39,7 +50,7 @@
 \thispagestyle{headandfoot}
 \begin{questions}
     \section*{Matrizes com Estruturas de Blocos}
-    \question Considere as matrizes n\~{a}o singulares: $A: r \times s$ e $B: s \times r$.
+    \question[Ver exemplo 3.7.3, p\'{a}gina 119, do Meyer\nocite{Meyer:2000:matrix}] Considere as matrizes n\~{a}o singulares: $A: r \times s$ e $B: s \times r$.
     \begin{parts}
         \part Demonstre (sem usar multiplica\c{c}\~{a}o direta), que se
         \[
@@ -190,15 +201,9 @@
             \end{align*}
         \end{solution}
 
-        \part Considerando a matriz $M$ do item anterior, demonstre que $\det (M) = \det (A) \det (S)$, onde $S = B - D A^{-1} C$ \'{e} o complemento de Schur de $A$.
+        \part[Ver equa\c{c}\~{a}o (6.1.16), p\'{a}gina 467, do Meyer\nocite{Meyer:2000:matrix}] Considerando a matriz $M$ do item anterior, demonstre que $\det (M) = \det (A) \det (S)$, onde $S = B - D A^{-1} C$ \'{e} o complemento de Schur de $A$.
         \begin{solution}
-            Sabemos que
-            \[
-                \det (M) = \det (W) \det (Y)
-            \]
-            de modo que precisamos calcular $\det (W)$ e $\det (Y)$.
-
-            TODO n\~{a}o \'{e} poss\'{i}vel utilizar $\det (M) = \det (A B - C D)$ devido a dimens\~{a}o das matrizes.
+            TODO
         \end{solution}
 
         \part Repita os dois itens anteriores trabalhando com a forma fatorada de $M$, $M = W Y$, na qual um dos fatores depende do complemento de Schur de $B$, $T = A - C B^{-1} D$, obtendo assim o resultado:
@@ -206,7 +211,30 @@
         \det (M) = \det (B) \det (T) = \det (A) \det (S)
         \]
         \begin{solution}
-        
+            Para a verifica\c{c}\~{a}o utilizaremos a multiplica\c{c}\~{a}o direta:
+            \begin{align*}
+                M = W Y &= \begin{bmatrix}
+                    I_r & C B^{-1} \\
+                    0 & I_s
+                \end{bmatrix} \begin{bmatrix}
+                    T & 0 \\
+                    D & B
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    T + C B^{-1} C & C \\
+                    D & B
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A - C B^{-1} D + C B^{-1} C & C \\
+                    D & B
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    A & C \\
+                    D & B
+                \end{bmatrix}.
+            \end{align*}
+            
+            TODO: demonstrar que $\det (M) = \det (B) \det (T)$.
         \end{solution}
     \end{parts}
 
@@ -293,7 +321,7 @@
         Se $A: m \times n$ para $n > m$ ent\~{a}o $\EN (A) \neq \left\{ 0 \right\}$.
     \end{quote}
     \begin{solution}
-        A afirma\c{c}\~{a}o \'{e} falsa pois se $A: m \times n$ para $n > m$ temos que pelo menos $\left( n - m \right)$ colunas de $A$ que s\~{a}o linearmente dependentes, i.e.,
+        A afirma\c{c}\~{a}o \'{e} verdadeira pois se $A: m \times n$ para $n > m$ temos que pelo menos $\left( n - m \right)$ colunas de $A$ que s\~{a}o linearmente dependentes, i.e.,
         \[
         \exists \alpha_j \neq 0 \rightarrow \sum_j \alpha_j A_{\mdot j} = 0.
         \]
@@ -302,7 +330,15 @@
 
     \question Analisando os resultados demonstrados nos itens anteriores, fa\c{c}a um resumo colocando as condi\c{c}\~{o}es que a matriz $A: m \times n$ deve satisfazer para garatir a exist\^{e}ncia e unicidade da solu\c{c}\~{a}o de $A x = b$, para qualquer $b \in \mathbb{R}^m$.
     \begin{solution}
-        
+        Para maiores detalhes ver resumo na p\'{a}gina 70 do Meyer\nocite{Meyer:2000:matrix}.
+        \begin{quote}
+            O sistema linear possue solu\c{c}\~{a}o única se e somente se alguma das condi\c{c}\~{o}es abaixo for verdadeira:
+            \begin{enumerate}
+                \item $\text{posto}(A) = n$ que \'{e} igual ao número de vari\'{a}veis desconhecidas;
+                \item n\~{a}o existem vari\'{a}veis livres;
+                \item o sistema homogeneo associado possue apenas a solu\c{c}\~{a}o trivial.
+            \end{enumerate}
+        \end{quote}
     \end{solution}
 
     \question Considere o sistema linear $A x = b$ onde
@@ -365,21 +401,73 @@
 
     \section*{Resultados para posto de matriz}
 
-    \question Demonstre que $\posto (A + B) \leq \posto (A) + \posto (B)$.
+    \question[Exemplo 4.4.8, p\'{a}gina 206, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que $\posto (A + B) \leq \posto (A) + \posto (B)$.
     \begin{solution}
-        
+        Note que
+        \begin{align*}
+            \EI(A + B) \subseteq \EI(A) + \EI(B)
+        \end{align*}
+        pois se $b \in \EI(A + B)$ ent\~{a}o existe $x$ tal que
+        \begin{align*}
+            b = (A + B) x = Ax + Bx \in \EI(A) + \EI(B).
+        \end{align*}
+
+        Mas se $M$ e $N$ s\~{a}o espa\c{c}os vetoriais tal que $M \subseteq N$ ent\~{a}o $\dim M \leq \dim N$. Utilizando isso com a f\'{o}rmula para a dimens\~{a}o da soma temos
+        \begin{align*}
+            \posto (A + B) &= \dim \EI(A + B) \\
+            &\leq \dim \left( \EI(A) + \EI(B) \right) \\
+            &= \dim \EI(A) + \dim \EI(B_ - \dim \left( \EI(A) \cap \EI(B) \right) \\
+            &\leq \dim \EI(A) + \dim \EI(B) \\
+            &= \posto (A) + \posto (B).
+        \end{align*}
     \end{solution}
 
     \question Se $A: m \times p$ e $B: p \times n$, demonstre que:
     \begin{parts}
-        \part $\posto (A B) = \posto (B) - \dim (\EN (A) \cap \EI (B))$.
+        \part[Equa\c{c}\~{a}o (4.5.1), p\'{a}gina 210, do Meyer\nocite{Meyer:2000:matrix}] $\posto (A B) = \posto (B) - \dim (\EN (A) \cap \EI (B))$.
         \begin{solution}
-            
+            Come\c{c}ando com uma base $S = \left\{ x_1, x_2, \ldots, x_x \right\}$ para $\EN(A) \cap \EI(B)$, notamos que $\EN(A) \cap \EI(B) \subseteq \EI(B)$. Se $\dim \EI(B) = s + t$, ent\~{a}o existe um conjunto $S_\text{ext} = \left\{ z_1, z_2, \ldots, z_t \right\}$ tal que $B = \left\{ x_1, \ldots, x_s, z_1, \ldots, z_t \right\}$ \'{e} base para $\EN(B)$. Nosso objetivo \'{e} provar que $\dim \EI(AB) = t$ e isso \'{e} feito mostrando $T = \left\{ A z_1, A z_2, \ldots, A z_t \right\}$ \'{e} base para $\EI(AB)$. $T$ gera $\EI(AB)$ porque se $b \in \EI(AB)$ ent\~{a}o $b = A B y$ para algum $y$, mas $B y \in \EI(B)$ implica em $B y = \sum_{i = 1}^s \nu_i z_i$, e portanto
+            \begin{align*}
+                b = A \left( \sum_{i = 1}^s \varepsilon_i x_i + \sum_{i = 1}^t \nu_i z_i \right) = \sum_{i = 1}^s \varepsilon_i A x_i + \sum_{i = 1}^t \nu_i A z_i = \sum_{i = 1}^t \nu_i A z_i.
+            \end{align*}
+
+            $T$ \'{e} linearmente independente porque se $0 = \sum_{i = 1}^t \alpha_i A z_i = A \sum_{u = 1}^t \alpha_i x_i$ ent\~{a}o $\sum_{i = 1}^t \alpha_i z_i \in \EN(A) \cap \EI(B)$. Portanto existe escalares $\beta_j$ tal que
+            \begin{align*}
+                \sum_{i = 1}^t \alpha_i z_i = \sum_{j = 1}^s \beta_j x_j
+            \end{align*}
+            e a única solu\c{c}\~{a}o para $\alpha_i$ e $\beta_j$ \'{e} a solu\c{c}\~{a}o trivial porque $B$ \'{e} um conjunto independente. Logo $T$ \'{e} base para $\EI(AB)$ e $t = \dim \EI(AB) = \posto (AB)$ e
+            \begin{align*}
+                \posto (B) = \dim \EI(B) = s + t = \dim \EN(A) \cap \EI(B) + \posto (AB).
+            \end{align*}
         \end{solution}
 
-        \part $\posto (A) + \posto (B) - p \leq \posto (A B) \leq \min \left\{ \posto (A), \posto (B) \right\}$.
+        \part[Equa\c{c}\~{o}es (4.5.2) e (4.5.3), p\'{a}gina 211, do Meyer\nocite{Meyer:2000:matrix}] $\posto (A) + \posto (B) - n \leq \posto (A B) \leq \min \left\{ \posto (A), \posto (B) \right\}$.
         \begin{solution}
-            
+            Primeiro vamos mostrar que $\posto (AB) \leq \min \left\{ \posto(A), \posto(B) \right\}$.
+
+            Escrevendo
+            \begin{align*}
+                \posto(AB) = \posto(B) - \dim \EN(A) \cap \EI(B) \leq \posto(B)
+            \end{align*}
+            e
+            \begin{align*}
+                \posto(AB) = \posto(AB)^t = \posto(B^t A^b) \leq \posto(A^t) = \posto(A).
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \posto(A) \leq min \left\{ \posto(A), \posto(B) \right\}.
+            \end{align*}
+
+            Agora vamos mostrar que $\posto(A) + \posto(B) - n \leq \posto(AB)$.
+
+            Notamos que $\EN(A) \cap \EI(B) \subseteq \EN(A)$ e que se $M$ e $N$ s\~{a}o espa\c{c}os vetoriais tal que $M \subseteq N$ ent\~{a}o $\dim M \leq \dim N$. Portanto,
+            \begin{align*}
+                \dim \EN(A) \cap \EI(B) \leq \dim \EN(A) = n - \posto (A)
+            \end{align*}
+            e utilizando o limitante inferior para $\posto(AB)$ encontrado anteriormente temos
+            \begin{align*}
+                \posto(AB) = \posto(B) = \dim \EN(A) \cap \EI(B) \geq \posto(B) + \posto(A) - n.
+            \end{align*}
         \end{solution}
     \end{parts}
 
@@ -398,43 +486,70 @@
             \EN (B) &= \left\{ y \mid B y = 0 \right\}.
         \end{align*}
         Notamos ent\~{a}o que $\EN (B) \subseteq \EN (A B)$ pois para todo $y \in \EN (B)$ verifica-se $A B y = 0$ mas pode existir $x$ tal que $B x \neq 0$ mas $ A B x = 0$.
-        
     \end{solution}
 
     \question Demonstre que:
     \begin{parts}
-        \part $\posto (A^t A) = \posto (A) = \posto (A A^t)$.
+        \part[Equa\c{c}\~{a}o (4.5.4), p\'{a}gina 212, do Meyer\nocite{Meyer:2000:matrix}] $\posto (A^t A) = \posto (A) = \posto (A A^t)$.
         \begin{solution}
-            
+            Note que $\EN(A^t) \cap \EI(A) = \left\{ 0 \right\}$ pois
+            \begin{align*}
+                x \in \EN(A^t) \cap \EI(R) &\implies A^t x = 0, x = A y \\
+                &\implies x^t x = y^t A^t x = 0 \\
+                &\implies \sum x_i^2 = 0 \\
+                &\implies x = 0.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \posto(A^t A) = \posto(A) - \dim \EN(A^t) \cap \EI(A) = \posto(A).
+            \end{align*}
+            Permutando a ordem de $A$ e $A^t$ temos
+            \begin{align*}
+                \posto(A A^t) = \posto(A^t) - \dim \EN(A) \cap \EI(A^t) = \posto(A^t).
+            \end{align*}
         \end{solution}
 
-        \part $\EI (A^t A) = \EI (A^t)$ e $\EI (A A^t) = \EI (A)$.
+        \part[Equa\c{c}\~{a}o (4.5.5), p\'{a}gina 212, do Meyer\nocite{Meyer:2000:matrix}] $\EI (A^t A) = \EI (A^t)$ e $\EI (A A^t) = \EI (A)$.
         \begin{solution}
-            
+            Note que $\EI(AB) \subseteq \EI(A)$ e portanto $\EI(A^t A) \subset \EI(A^t)$. Logo
+            \begin{align*}
+                \dim \EI(A^t A) = \posto(A^t A) = \posto(A) = \posto(A^t) = \dim \EN(A^t)
+            \end{align*}
+            e permutando a ordem de $A$ e $A^t$ temos
+            \begin{align*}
+                \dim \EI(A A^t) = \posto(A A^t) = \posto(A^t) = \posto(A) = \dim \EN(A).
+            \end{align*}
         \end{solution}
 
-        \part $\EN (A^t A) = \EN (A)$ e $\EN (A A^t) = \EN (A^t)$.
+        \part[Equa\c{c}\~{a}o (4.5.6), p\'{a}gina 212, do Meyer\nocite{Meyer:2000:matrix}] $\EN (A^t A) = \EN (A)$ e $\EN (A A^t) = \EN (A^t)$.
         \begin{solution}
-            
+            Note que $\EN(B) \subset \EN(AB)$ e portanto $\EN(A) \subset \EN(A^t A)$. Logo,
+            \begin{align*}
+                \dim \EN(A) = n - \posto(A) = n - \posto(A^t A) = \dim \EN(A^t A)
+            \end{align*}
+            e permutando a ordem de $A$ e $A^t$ temos
+            \begin{align*}
+                \dim \EN(A^t) = n - \posto(A^t) = n - \posto(A A^t) = \dim \EN(A A^t).
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question Considere o sistema linear $A x = b$, com $A : m \times n$ e o sistema $A^t A x = A^t b$ (sistema de equa\c{c}\~{o}es normais). Verifique se as informa\c{c}\~{o}es abaixo s\~{a}o verdadeiras ou falsas.
+    \question[Ver resumo, p\'{a}gina 214, do Meyer\nocite{Meyer:2000:matrix}] Considere o sistema linear $A x = b$, com $A : m \times n$ e o sistema $A^t A x = A^t b$ (sistema de equa\c{c}\~{o}es normais). Verifique se as informa\c{c}\~{o}es abaixo s\~{a}o verdadeiras ou falsas.
     \begin{parts}
         \part O sistema $A^t A x = A^t b$ sempre admite solu\c{c}\~{a}o, ainda que $A x = b$ n\~{a}o tenha solu\c{c}\~{a}o.
         \begin{solution}
-            
+            Verdadeiro.
         \end{solution}
 
-        \part Se os sitema linear $A x = b$ admite solu\c{c}\~{a}o ent\~{a}o os dois sistemas possuem o mesmo cnjunto solu\c{c}\~{a}o.
+        \part Se os sitema linear $A x = b$ admite solu\c{c}\~{a}o ent\~{a}o os dois sistemas possuem o mesmo conjunto solu\c{c}\~{a}o.
         \begin{solution}
-            
+            Verdadeiro.
         \end{solution}
     \end{parts}
 \end{questions}
 
-% \bibliographystyle{plain}
-% \bibliography{bibliography}
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}
 
 

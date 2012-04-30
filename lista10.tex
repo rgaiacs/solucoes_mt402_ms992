@@ -1,0 +1,118 @@
+% Filename: lista10.tex
+% This code is part of 'Listas de Matrizes'
+% 
+% Description: Lista 10.
+% 
+% Created: 24.04.12 05:54:57 PM
+% Last Change: 25.04.12 09:18:59 AM
+% 
+% Author: <+AUTHOR+>, <+EMAIL+>
+% Organization: <+ORGANIZATION+>
+% 
+% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% 
+% This file is license under the terms of 
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+% Customiza\c{c}\~{a}o da classe exam
+\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 10}{1º semestre de 2012}
+\firstpageheadrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{foot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\itshape}
+\unframedsolutions
+\pointname{}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+%Novos ambientes
+\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+\thispagestyle{headandfoot}
+\begin{questions}
+    \question Considere $A : m \times n$, $m \geq n$ e $\bar{x} \in \mathbb{R}^n$. Demonstre que: $\| b - A \bar{x} \|_2 = \min_{y \in \mathbb{R}^n} \| b - A y \|_2$ se e somente se $(b - A \bar{x}) \in \text{Im}(A)^\perp$.
+    \begin{solution}
+        Na p\'{a}gina 438 do Meyer\nocite{Meyer:2000:matrix}, temos que o problema de m\'{i}nimos quadrados consiste em encontrar $x$ tal que $A x = P_{\text{Im}(A)} b$. Mas este sistema \'{e} tal que
+        \begin{align*}
+            A x = P_{\text{Im}(A)} b &\leftrightarrow P_{\text{Im}(R)} A x = P_{\text{Im}(A)} b \\
+            &\leftrightarrow P_{\text{Im}(A)} \left( A x - b \right) = 0 \\
+            &\leftrightarrow \left( A x - b \right) \in \text{N}(P_{\text{Im}(A)}) = \text{Im}(A)^\perp = \text{N}(A^t).
+        \end{align*}
+    \end{solution}
+    \question Seja $\bar{x} \in \mathbb{R}^n$. Ent\~{a}o, $\bar{x}$ resolve o problema de quadrados m\'{i}nimos para $A x = b$, se e somente se $A^t A \bar{x} = A^t b$.
+    \begin{solution}
+        Se $\bar{x}$ \'{e} a solu\c{c}\~{a}o do problema de quadrados m\'{i}nimos de $A x = b$ ent\~{a}o
+        \begin{align*}
+            A \bar{x} = b &\leftrightarrow Q^t A \bar{x} = Q^t b \\
+            &\leftrightarrow R \bar{x} = Q^t b \\
+            &\leftrightarrow R^t R \bar{x} = R^t Q^t b \\
+            &\leftrightarrow R^t Q^t Q R \bar{x} = R^t Q^t b \\
+            &\leftrightarrow A^t A \bar{x} = A^t.
+        \end{align*}
+    \end{solution}
+
+    \question Considere $A : m \times n$, $m \geq n$ e sua fatora\c{c}\~{a}o ortogonal dada por $A = Q R$ com $Q : m \times m$ ortogonal e $R : m \times n$, com coeficientes $r_{ij} = 0$, $i > j$. Reescreva a solu\c{c}\~{a}o de quadrados m\'{i}nimos $\bar{x} = \left( A^t A \right)^{-1} A^t b$ e a proje\c{c}\~{a}o ortogonal de $b \in \text{Im}(A)$ usando a fatora\c{c}\~{a}o ortogonal de $A$. Relacione as express\~{o}es obtidas com a solu\c{c}\~{a}o de quadrados m\'{i}nimos obtida diretamente da fatora\c{c}\~{a}o ortogonal: $\| b - A x \|_2 = \| Q^t \left( b - A x \right) \|_2$ \ldots
+    \begin{solution}
+        Podemos reescrever a solu\c{c}\~{a}o da seguinte forma:
+        \begin{align*}
+            \bar{x} &= \left( A^t A \right)^{-1} A^t b \\
+            &= \left( R^t Q^t Q R \right)^{-1} R^t Q^t b \\
+            &= \left( R^t R \right)^{-1} R^t Q^t b \\
+            &= R^{-1} R^{-t} R^t Q^t b \\
+            &= R^{-1} Q^t b.
+        \end{align*}
+
+        E a proje\c{c}\~{a}o ortogonal de $b \in \text{Im}(A)$ corresponde a
+        \begin{align*}
+            P_{\text{Im}(A)} b &= (I - Q) b.
+        \end{align*}
+    \end{solution}
+
+    \question Considere
+    \begin{align*}
+        A = \begin{bmatrix}
+            1 & 2 \\
+            0 & 1 \\
+            1 & 0
+        \end{bmatrix}.
+    \end{align*}
+    \begin{parts}
+        \part Construa o projetor ortogonal $P$ sobre o subespa\c{c}o $\text{Im}(A)$. Obtenha a proje\c{c}\~{a}o do vetor $v = \left( 1, -1, 2 \right)^t$ em $\text{Im}(A)$. Idem para o vetor $w = \left( 1, 1, -1 \right)^t$.
+        \begin{solution}
+            Na p\'{a}gina 430 do Meyer\nocite{Meyer:2000:matrix}, temos:
+            \begin{quote}
+                Seja $\mathcal{M}$ um subespa\c{c}o $r$-dimensional de $\mathbb{R}$, e seja as colunas de $M_{n \times r}$ e $N_{n \times {n - r}}$ as bases de $\mathcal{M}$ e $\mathcal{M}^\perp$, respectivamente. Ent\~{a}o os projetores ortogonais de $\mathcal{M}$ e $\mathcal{M}^\perp$ s\~{a}o
+                \begin{align*}
+                    P_{\mathcal{M}} &= M \left( M^t M \right)^{-1} M^t \text{ e } P_{\mathcal{M}^\perp} = N \left( N^t N \right)^{-1} N^t.
+                \end{align*}
+                Se $M$ e $N$ s\~{a}o bases ortonormais para $\mathcal{M}$ e $\mathcal{M}^\perp$, ent\~{a}o
+                \begin{align*}
+                    P_{\mathcal{M}} &= M M^t \text{ e } P_{\mathcal{M}^\perp} N N^t.
+                \end{align*}
+            \end{quote}
+
+            Ent\~{a}o,
+            \begin{align*}
+                P = A \left(  \right)<++>
+            \end{align*}<++>
+        \end{solution}<++>
+    \end{parts}<++>
+\end{questions}<++>
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
