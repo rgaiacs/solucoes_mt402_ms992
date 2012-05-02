@@ -4,7 +4,7 @@
 % Description: Lista 09.
 % 
 % Created: 23.04.12 07:00:39 PM
-% Last Change: 25.04.12 09:18:38 AM
+% Last Change: 01.05.12 08:35:01 PM
 % 
 % Author: <+AUTHOR+>, <+EMAIL+>
 % Organization: <+ORGANIZATION+>
@@ -175,30 +175,57 @@
             \For{$i = 1, \ldots, j - 1$}
                 \State $r_{ij} \leftarrow q_i^t a_j$
             \EndFor
-            \State $v_j = a_j = \sum_{i = 1}^{j - 1} r_{ij} q_i$
-            \State $r_{jj} = \| v_j \|_2$
-            \State $q_j = v_j / r_{jj}$
+            \State $v_j \leftarrow a_j - \sum_{i = 1}^{j - 1} r_{ij} q_i$
+            \State $r_{jj} \leftarrow \| v_j \|_2$
+            \State $q_j \leftarrow v_j / r_{jj}$
         \EndFor
     \end{algorithmic}
     \begin{solution}
-        
+        N\'{a} p\'{a}gina 231 do Golub\nocite{Golub:1996:matrix} encontramos o algoritmo de Gram-Schmidt que \'{e} transcrito a seguir.
+    \begin{algorithmic}
+        \State $R(1, 1) \leftarrow \| A(:, 1) \|_2$
+        \State $Q(:, 1) \leftarrow A(:, 1) / R(1, 1)$
+        \For{$k = 2, \ldots, n$}
+            \State $R(1:k - 1, k) \leftarrow Q(1:m, 1:k - 1)^t A(1:m, k)$
+            \State $z \leftarrow A(1:m, k) - Q(1:m, 1:k - 1) R(1:k - 1, k)$
+            \State $R(k, k) \leftarrow \| z \|_2$
+            \State $Q(1:m, k) \leftarrow z / R(k, k)$
+        \EndFor
+    \end{algorithmic}
     \end{solution}
 
     \question Considere a matriz $A: m \times n$. Sabendo que ao final do processo das transforma\c{c}\~{o}es de Householder, podemos escrever a express\~{a}o: $Q_m \ldots Q_2 Q_1 A = R$.
     \begin{parts}
         \part Em cada etapa $k$: qual o vetor que define a transforma\c{c}\~{a}o $Q_k$? Qual a express\~{a}o dessa matriz? Esta matriz \'{e} armazenada explicitamente? Como s\~{a}o armazenadas as informa\c{c}\~{o}es da matriz $Q_k$ que permite realizar posteriormente um produto da forma $Q_k v$, $v \in \mathbb{R}^m$?
         \begin{solution}
-            
+            Na etapa $k$ o vetor que define a transforma\c{c}\~{a}o $Q_k$ \'{e} $A(k:m, k)$ tal que
+            \begin{align*}
+                Q_k &= \begin{bmatrix}
+                    1 & 0 & \ldots & 0 & 0\\
+                    0 & 1 & \ldots & 0 & 0 \\
+                    \vdots & \vdots & \ddots & \vdots & \vdots \\
+                    0 & 0 & \ldots & 1 & 0 \\
+                    0 & 0 & \ldots & 0 & I - 2 \left( u u^t \right) / \left( u^t u \right)
+                \end{bmatrix},
+            \end{align*}
+            onde $u = A(k:m, k) \pm \| A(k:m,k) \| e_1$.
+
+            A matriz $Q_k$ n\~{a}o \'{e} armazenada explicitamente. Apenas deve-se armazenar o vetor $u$.
         \end{solution}
 
         \part Como obter o produto $Q_k v$, $v \in \mathbb{R}^m$ sem calcular explicitamente a matriz $Q$?
         \begin{solution}
-            
+            O produto pode ser divido em duas partes da seguinte forma:
+            \begin{align*}
+                (Q_k v)(1:k - 1) &= v(1:k - 1), \\
+                (Q_k v)(k:m) &= (I - 2 (u u^t) / (u^t u)) v(k:m) \\
+                &= v(k:m) - (2 u^t v(k:m) / (u^t u)) u.
+            \end{align*}
         \end{solution}
 
         \part Qual a rela\c{c}\~{a}o entre as colunas da matriz $A$ e as colunas da matriz $R$? Justifique.
         \begin{solution}
-            
+            As colunas da matriz $R$ correspondem as colunas da matriz $A$ ap\'{o}s o processo de ortogonaliza\c{c}\~{a}o.
         \end{solution}
     \end{parts}
 
@@ -239,7 +266,7 @@
        \end{align*}
        Logo, verificamos que $v$ \'{e} autovetor de $Q$ associado ao autovalor $1$. Como existem $n - 1$ vetores ortogonais ao vetor $u$ temos que existem $n - 1$ autovalores iguais a $1$.
 
-       Agora vamos calcular o determinante de $Q$. Como o determinante \'{e} o produto dos autovalores da matriz $Q$ temos que $\text{det}{Q} = -1$.
+       Agora vamos calcular o determinante de $Q$. Como o determinante \'{e} o produto dos autovalores da matriz $Q$ temos que $\text{det}(Q) = -1$.
     \end{solution}
 
     \question Considere o sistema linear $A x = b$,
@@ -257,12 +284,64 @@
     \begin{parts}
         \part Usando transforma\c{c}\~{o}es de Householder obtenha a proje\c{c}\~{a}o ortogonal de $b$ em $\text{Im}(A)$.
         \begin{solution}
-            
+            A proje\c{c}\~{a}o ortognal de $b$ em $\text{Im}(A)$ corresponde a $A x$, onde $x$ \'{e} a solu\c{c}\~{a}o do problema de Quadrados M\'{i}nimos $A x = b$. Vamos resolver o problema de Quadrados M\'{i}nimos utilizando transforma\c{c}\~{o}es de Householder.
+            \begin{align*}
+                Q A &= \begin{bmatrix}
+                    1 & 0 & 0 \\
+                    0 & -0.60 & -0.80 \\
+                    0 & -0.80 & 0.60
+                \end{bmatrix} \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 3 \\
+                    0 & 4
+                \end{bmatrix} = \begin{bmatrix}
+                    1 & 1 \\
+                    0 & -5 \\
+                    0 & 0
+                \end{bmatrix}, \\
+                Q b &= \begin{bmatrix}
+                    1 & 0 & 0 \\
+                    0 & -0.60 & -0.80 \\
+                    0 & -0.80 & 0.60
+                \end{bmatrix} \begin{bmatrix}
+                    2 \\
+                    1 \\
+                    3
+                \end{bmatrix} = \begin{bmatrix}
+                    2 \\
+                    -3 \\
+                    1
+                \end{bmatrix}.
+            \end{align*}
+            Resolvendo o sistema linear dado por
+            \begin{align*}
+                \begin{bmatrix}
+                    1 & 1 \\
+                    0 & -5
+                \end{bmatrix} x &= \begin{bmatrix}
+                    2 \\
+                    -3
+                \end{bmatrix}
+            \end{align*}
+            temos como solu\c{c}\~{a}o $x_1 = 7 / 5$ e $x_2 = 3 / 5$. Logo, a proje\c{c}\~{a}o ortogonal de $b \in \text{Im}(A)$ corresponde ao vetor $(2, 9 / 5, 12 / 5)^t$.
         \end{solution}
 
         \part Obtenha a proje\c{c}\~{a}o ortogonal de $b$ em $\text{N}(A^t)$.
         \begin{solution}
-            
+            Temos que $\text{N}(A^t)$ correspondem aos vetores $x$ tal que
+            \begin{align*}
+                \begin{bmatrix}
+                    1 & 0 & 0 \\
+                    1 & 3 & 4
+                \end{bmatrix} x &= \begin{bmatrix}
+                    0 \\
+                    0
+                \end{bmatrix}.
+            \end{align*}
+            Verifica-se que os vetores $x$ que satisfazem o sistema acima s\~{a}o da forma $\alpha (0, -4, 3)^t$. Logo, podemos utilizar o vetor $u / \| u \|$, $u = (0, -4, 3)^t$, para construir o projetor ortogonal $u u^t / (u^t u)$ e calcular a proje\c{c}\~{a}o de $b$ em $u$. Portanto,
+            \begin{align*}
+                (u u^t / (u^t u)) ) b &= ((u^t b) / (u^t u)) u =  (5 / 25) u = u / 5.
+            \end{align*}
         \end{solution}
     \end{parts}
 
@@ -442,6 +521,12 @@
                         0.00 & -3.13 & -1.34 \\
                         0.00 & 1.00 & 6.00 \\
                         0.00 & 7.00 & 9.00
+                    \end{bmatrix}, \\
+                    Q_1^t b &= \begin{bmatrix}
+                        -0.44 \\
+                        -1.34 \\
+                        2.00 \\
+                        -2.00 \\
                     \end{bmatrix}.
                 \end{align*}
 
@@ -467,16 +552,292 @@
                         0.00 & 3.29 & 3.10 \\
                         0.00 & 0.00 & -5.31 \\
                         0.00 & 7.00 & 9.00
+                    \end{bmatrix}, \\
+                    Q_2^t Q_1^t b &= \begin{bmatrix}
+                        -0.44 \\
+                        1.87 \\
+                        -1.50 \\
+                        -2.00
                     \end{bmatrix}.
                 \end{align*}
 
             \item zerar o elemento $a_{42}$:
 
-        \end{enumerate}<++>
-    \end{solution}<++>
-\end{questions}<++>
+                Precisamos que
+                \begin{align*}
+                    c &= a_{22} / \left( a_{22}^2 + a_{42}^2 \right)^{1 / 2} \\
+                    &= 3.29 / \left( 3.29^2 + 7^2 \right)^{1 / 2}, \\
+                    s &= - a_{42} / \left( a_{22}^2 + a_{42}^2 \right)^{1 / 2} \\
+                    &= -7 / \left( 3.29^2 + 7^2 \right)^{1 / 2}.
+                \end{align*}
+                Ent\~{a}o
+                \begin{align*}
+                    Q_3 &= \begin{bmatrix}
+                        1.00 & 0.00 & 0.00 & 0.00 \\
+                        0.00 & 0.43 & 0.00 & -0.91 \\
+                        0.00 & 0.00 & 1.00 & 0.00 \\
+                        0.00 & 0.91 & 0.00 & 0.43
+                    \end{bmatrix}, \\
+                    Q_3^t Q_2^t Q_1^t A &= \begin{bmatrix}
+                        2.24 & 4.92 & 8.50 \\
+                        0.00 & 7.78 & 9.52 \\
+                        0.00 & 0.00 & -5.31 \\
+                        0.00 & 0.00 & 1.05
+                    \end{bmatrix}, \\
+                    Q_3^t Q_2^t Q_1^t b &= \begin{bmatrix}
+                        -0.44 \\
+                        -1.01 \\
+                        -1.50 \\
+                        -2.56
+                    \end{bmatrix}.
+                \end{align*}
+
+            \item zerar o elemento $a_{43}$;
+
+                Precisamos que
+                \begin{align*}
+                    c &= a_{33} / \left( a_{33}^2 + a_{43}^2 \right)^{1 / 2} \\
+                    &= -5.31 / \left( -5.31^2 + 1.05^2 \right)^{1 / 2}, \\
+                    s &= - a_{43} / \left( a_{33}^2 + a_{43}^2 \right)^{1 / 2} \\
+                    &= -1.05 / \left( -5.31^2 + 1.05^2 \right)^{1 / 2}.
+                \end{align*}
+                Ent\~{a}o
+                \begin{align*}
+                    Q_4 &= \begin{bmatrix}
+                        1.00 & 0.00 & 0.00 & 0.00 \\
+                        0.00 & 1.00 & 0.00 & 0.00 \\
+                        0.00 & 0.00 & -0.98 & -0.19 \\
+                        0.00 & 0.00 & 0.19 & -0.98
+                    \end{bmatrix}, \\
+                    Q_4^t Q_3^t Q_2^t Q_1^t A &= \begin{bmatrix}
+                        2.24 & 4.92 & 8.50 \\
+                        0.00 & 7.78 & 9.52 \\
+                        0.00 & 0.00 & 5.40 \\
+                        0.00 & 0.00 & 0.00
+                    \end{bmatrix}, \\
+                    Q_4^t Q_3^t Q_2^t Q_1^t b &= \begin{bmatrix}
+                        -0.44 \\
+                        -1.01 \\
+                        0.98 \\
+                        2.80
+                    \end{bmatrix}.
+                \end{align*}
+        \end{enumerate}
+        Agora resolvemos o sistema linear representado por
+        \begin{align*}
+            \begin{bmatrix}
+                2.24 & 4.92 & 8.50 \\
+                0.00 & 7.78 & 9.52 \\
+                0.00 & 0.00 & 5.40
+            \end{bmatrix} \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+            \end{bmatrix} &= \begin{bmatrix}
+                -0.44 \\
+                -1.01 \\
+                0.98
+            \end{bmatrix},
+        \end{align*}
+        cuja solu\c{c}\~{a}o \'{e} $x_1 = -0.11$, $x_2 = -0.35$ e $x_3 = 0.18$.
+    \end{solution}
+
+    \question
+    \begin{parts}
+        \part Seja a matriz $J$ uma matriz dada por
+        \begin{align*}
+            J &= \begin{bmatrix}
+                \cos(\theta) & \sin(\theta) \\
+                -\sin(\theta) & \cos(\theta)
+            \end{bmatrix}.
+        \end{align*}
+        Mostre que $J$ \'{e} ortogonal. D\^{e} uma interpreta\c{c}\~{a}o geom\'{e}trica para a a\c{c}\~{a}o de $J$ sobre vetores de $\mathbb{R}^2$.
+        \begin{solution}
+            Se $J$ \'{e} ortogonal ent\~{a}o $J^t J = J J^t = I$. Ent\~{a}o
+            \begin{align*}
+                J J^t &= \begin{bmatrix}
+                    \cos(\theta) & \sin(\theta) \\
+                    -\sin(\theta) & \cos(\theta)
+                \end{bmatrix} \begin{bmatrix}
+                    \cos(\theta) & -\sin(\theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    \cos^2(\theta) + \sin^2(\theta) & -\cos(\theta)\sin(\theta) + \sin(\theta)\cos(\theta) \\
+                    -\sin(\theta)\cos(\theta) + \cos(\theta)\sin(\theta) & \sin^2(\theta) + \cos^2(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                \end{bmatrix} = I.
+            \end{align*}
+
+            Para o $\mathbb{R}^2$ temos
+            \begin{center}
+                \begin{tikzpicture}[scale=2]
+                    \draw[->] (-1.2, 0) -- (1.2, 0) node[below right] {$x_1$};
+                    \draw[->] (0, -1.2) -- (0, 1.2) node[above right] {$x_2$};
+                    \draw[->] (0, 0) -- (1, 0) node[above] {$e_1$};
+
+                    \draw[->, blue] (0, 0) -- (0.86, -0.5) node[right] {$J(\pi / 6) e_1$};
+                    \draw[blue] (0.2, 0) arc (0:-30:0.2) node[right] {$\theta = 30^o$};
+
+                    \draw[->, red] (0, 0) -- (0.5, -0.86) node[below right] {$J(\pi / 6) e_1$};
+                    \draw[red] (0.6, 0) arc (0:-60:0.6) node[below right] {$\theta = 60^o$};
+                \end{tikzpicture}
+            \end{center}
+        \end{solution}
+
+        \part Idem para a matriz
+        \begin{align*}
+            F &= \begin{bmatrix}
+                -\cos(\theta) & \sin(\theta) \\
+                \sin(\theta) & \cos(\theta)
+            \end{bmatrix}.
+        \end{align*}
+        \begin{solution}
+            Se $J$ \'{e} ortogonal ent\~{a}o $J^t J = J J^t = I$. Ent\~{a}o
+            \begin{align*}
+                J J^t &= \begin{bmatrix}
+                    -\cos(\theta) & \sin(\theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix} \begin{bmatrix}
+                    -\cos(\theta) & \sin(\theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    \cos^2(\theta) + \sin^2(\theta) & -\cos(\theta)\sin(\theta) + \sin(\theta)\cos(\theta) \\
+                    -\sin(\theta)\cos(\theta) + \cos(\theta)\sin(\theta) & \sin^2(\theta) + \cos^2(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                \end{bmatrix} = I.
+            \end{align*}
+
+            Para o $\mathbb{R}^2$ temos
+            \begin{center}
+                \begin{tikzpicture}[scale=2]
+                    \draw[->] (-1.2, 0) -- (1.2, 0) node[below right] {$x_1$};
+                    \draw[->] (0, -1.2) -- (0, 1.2) node[above right] {$x_2$};
+                    \draw[->] (0, 0) -- (1, 0) node[above] {$e_1$};
+
+                    \draw[->, blue] (0, 0) -- (-0.86, 0.5) node[above left] {$J(\pi / 6) e_1$};
+                    \draw[blue] (-0.2, 0) arc (0:-30:-0.2) node[below left] {$\theta = 30^o$};
+
+                    \draw[->, red] (0, 0) -- (-0.5, 0.86) node[above left] {$J(\pi / 6) e_1$};
+                    \draw[red] (-0.4, 0) arc (0:-60:-0.4) node[left] {$\theta = 60^o$};
+                \end{tikzpicture}
+            \end{center}
+        \end{solution}
+
+        \part Idem para a matriz
+        \begin{align*}
+            G &= \begin{bmatrix}
+                \cos(\theta) & -\sin(\theta) \\
+                \sin(\theta) & \cos(\theta)
+            \end{bmatrix}.
+        \end{align*}
+        \begin{solution}
+            Se $J$ \'{e} ortogonal ent\~{a}o $J^t J = J J^t = I$. Ent\~{a}o
+            \begin{align*}
+                J J^t &= \begin{bmatrix}
+                    -\cos(\theta) & \sin(\theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix} \begin{bmatrix}
+                    -\cos(\theta) & \sin(\theta) \\
+                    \sin(\theta) & \cos(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    \cos^2(\theta) + \sin^2(\theta) & -\cos(\theta)\sin(\theta) + \sin(\theta)\cos(\theta) \\
+                    -\sin(\theta)\cos(\theta) + \cos(\theta)\sin(\theta) & \sin^2(\theta) + \cos^2(\theta)
+                \end{bmatrix} \\
+                &= \begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                \end{bmatrix} = I.
+            \end{align*}
+
+            Para o $\mathbb{R}^2$ temos
+            \begin{center}
+                \begin{tikzpicture}[scale=2]
+                    \draw[->] (-1.2, 0) -- (1.2, 0) node[below right] {$x_1$};
+                    \draw[->] (0, -1.2) -- (0, 1.2) node[above right] {$x_2$};
+                    \draw[->] (0, 0) -- (1, 0) node[above] {$e_1$};
+
+                    \draw[->, blue] (0, 0) -- (0.86, 0.5) node[above right] {$J(\pi / 6) e_1$};
+                    \draw[blue] (0.2, 0) arc (0:30:0.2) node[right] {$\theta = 30^o$};
+
+                    \draw[->, red] (0, 0) -- (0.5, 0.86) node[above right] {$J(\pi / 6) e_1$};
+                    \draw[red] (0.6, 0) arc (0:60:0.6) node[right] {$\theta = 60^o$};
+                \end{tikzpicture}
+            \end{center}
+        \end{solution}
+    \end{parts}
+
+    \question Considere $A : n \times n$, e $\text{posto}(A) = n$. Demonstre que o fator $R$ da fatora\c{c}\~{a}o QR de $A$ ($Q$ ortogonal e $R$ triangular superior com elementos positivos na diagonal) \'{e} o fator de Cholesky da matriz $A^t A$.
+    \begin{solution}
+        Seja $A = Q R$, ent\~{a}o
+        \begin{align*}
+            A^t A &= \left( R^t Q^t \right) \left( Q R \right) \\
+            &= R^t R && \text{pois $Q$ \'{e} ortogonal}.
+        \end{align*}
+        Logo, a matriz $R$ da fatora\c{c}\~{a}o QR corresponde ao fator de Cholesky da matriz $A^t A$.
+    \end{solution}
+
+    \question Seja $A$ uma matriz com a propriedade que as colunas \'{i}mpares s\~{a}o ortogonais \`{a}s colunas pares. Na fatora\c{c}\~{a}o ortogonal reduzida de $A$, $A = \hat{Q} \hat{R}$, qual a estrutura especial da matriz $\hat{R}$? Justifique.
+    \begin{solution}
+        Seja
+        \begin{align*}
+            A &= \begin{bmatrix}
+                A_{1 \mdot} & A_{2 \mdot} & A_{3 \mdot} & A_{4 \mdot} & \ldots & A_{m \mdot}
+            \end{bmatrix}
+        \end{align*}
+        tal que $A_{i \mdot}^t A_{j \mdot} = 0$ para todo $i = 2k$ e $j = 2k + 1$, $k \in \mathbb{N}$.
+
+        Ao aplicarmos o processo de ortogonaliza\c{c}\~{a}o de Gram-Schmidt na matriz $A$ obtemos uma matriz ortogonal $Q$ dada por
+        \begin{align*}
+            V_{1 \mdot} &\leftarrow A_{1 \mdot}, \\
+            Q_{1 \mdot} &\leftarrow V_{1 \mdot} / \| V_{1 \mdot} \|, \\
+            V_{2 \mdot} &\leftarrow A_{2 \mdot} - \left( Q_{1 \mdot}^t A_{2 \mdot} \right) Q_{1 \mdot} = A_{2 \mdot}, \\
+            Q_{2 \mdot} &\leftarrow V_{2 \mdot} / \| V_{2 \mdot}, \\
+            V_{3 \mdot} &\leftarrow A_{3 \mdot} - \left( Q_{1 \mdot}^t A_{3 \mdot} \right) Q_{1 \mdot} - \left( Q_{2 \mdot}^t A_{3 \mdot} \right) Q_{2 \mdot} \\
+            &\quad = A_{3 \mdot} - \left( Q_{1 \mdot}^t A_{3} \mdot \right) Q_{1 \mdot}, \\
+            Q_{3 \mdot} &\leftarrow V_{3 \mdot} / \| V_{3 \mdot} \|, \\
+            V_{4 \mdot} &\leftarrow A_{4 \mdot} - \left( Q_{1 \mdot}^t A_{4 \mdot} \right) Q_{1 \mdot} - \left( Q_{2 \mdot}^t A_{4 \mdot} \right) - \left( Q_{3 \mdot}^t A_{4 \mdot} \right) Q_{3 \mdot} \\
+            &\quad = A_{4 \mdot} - \left( V_{2 \mdot}^t A_{4 \mdot} \right) V_{2 \mdot}, \\
+            Q_{4 \mdot} &\leftarrow Q_{4 \mdot} / \| Q_{4 \mdot} \|, \\
+            \vdots \\
+            V_{i \mdot} &\leftarrow A_{i \mdot} - \sum_{k = 1}^{i / 2} \left( Q_{2k \mdot}^t A_{i \mdot} \right) Q_{2k \mdot}, \\
+            Q_{i \mdot} &\leftarrow V_{i \mdot} / \| V_{i \mdot} \|, \\
+            V_{j \mdot} &\leftarrow A_{j \mdot} - \sum_{k = 1}^{(j - 1) / 2} \left( Q_{2k + 1 \mdot}^t A_{j \mdot} \right) Q_{2k + 1 \mdot}, \\
+            Q_{j \mdot} &\leftarrow V_{j \mdot} / \| V_{j \mdot} \|
+        \end{align*}
+        e uma matriz $R$ dada por
+        \begin{align*}
+            R &= \begin{bmatrix}
+                \| V_{1 \mdot} \| & Q_{1 \mdot}^t A_{2 \mdot} & Q_{1 \mdot}^t A_{3 \mdot} & Q_{1 \mdot}^t A_{4 \mdot} & \ldots & Q_{1 \mdot}^t A_{i \mdot} & Q_{1 \mdot}^t A_{j \mdot} & \ldots \\  
+                0 & \| V_{2 \mdot} \| & Q_{2 \mdot}^t A_{3 \mdot} & Q_{2 \mdot}^t A_{4 \mdot} & \ldots & Q_{2 \mdot}^t A_{i \mdot} & Q_{2 \mdot}^t A_{j \mdot} & \ldots \\ 
+                0 &  0 & \| V_{3 \mdot} \| & Q_{3 \mdot}^t A_{4 \mdot} & \ldots & Q_{3 \mdot}^t A_{i \mdot} & Q_{3 \mdot}^t A_{j \mdot} & \ldots \\ 
+                0 &  0 & 0 & \| V_{4 \mdot} \| &  \ldots & Q_{4 \mdot} A_{i \mdot} & Q_{4 \mdot} A_{j \mdot} & \ldots \\ 
+                \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots \\
+                0 &  0 & 0 & 0 & \ldots \| V_{i \mdot} \| & Q_{i \mdot} A_{j \mdot} & \ldots \\
+                0 &  0 & 0 & 0 & \ldots  0 & \| V_{j \mdot} \|  & \ldots \\
+                \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots 
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+                \| V_{1 \mdot} \| & 0 & Q_{1 \mdot}^t A_{3 \mdot} & 0 & \ldots & 0 & Q_{1 \mdot}^t A_{j \mdot} & \ldots \\  
+                0 & \| V_{2 \mdot} \| & 0 & Q_{2 \mdot}^t A_{4 \mdot} & \ldots & Q_{2 \mdot}^t A_{i \mdot} & 0 & \ldots \\ 
+                0 &  0 & \| V_{3 \mdot} \| & 0 & \ldots & 0 & Q_{3 \mdot}^t A_{j \mdot} & \ldots \\ 
+                0 &  0 & 0 & \| V_{4 \mdot} \| &  \ldots & Q_{4 \mdot} A_{i \mdot} & 0 & \ldots \\ 
+                \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots \\
+                0 &  0 & 0 & 0 & \ldots \| V_{i \mdot} \| & 0 & \ldots \\
+                0 &  0 & 0 & 0 & \ldots  0 & \| V_{j \mdot} \|  & \ldots \\
+                \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots 
+            \end{bmatrix}.
+        \end{align*}
+    \end{solution}
+\end{questions}
 \bibliographystyle{plain}
 \bibliography{bibliography}
 \end{document}
-
-

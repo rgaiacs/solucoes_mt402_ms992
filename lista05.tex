@@ -4,7 +4,7 @@
 % Description: Lista 05.
 % 
 % Created: 25.03.12 11:12:39 AM
-% Last Change: 26.04.12 11:47:00 PM
+% Last Change: 01.05.12 08:57:02 PM
 % 
 % Author: <+AUTHOR+>, <+EMAIL+>
 % Organization: <+ORGANIZATION+>
@@ -305,7 +305,12 @@
 
     \question Demonstre que se $B$ \'{e} uma submatriz qualquer de $A$ ent\~{a}o $\| B \|_p \leq \| A \|_p$.
     \begin{solution}
-        
+        Para qualquer matriz $B$ que \'{e} uma submatriz de $A$ podemos encontrar $M$ e $N$ \'{u}nicos tal que $B = M A N$. Logo, $\| B \|_p = \| M A N \|_p$. No exerc\'{i}cio 8(b) da lista 4 mostramos que $\| A B \|_p \leq \| A \|_p \| B \|_p$ e portanto
+        \begin{align*}
+            \| B \|_p &= \| M A N \|_p \\
+            &\leq \| M \|_p \| A \|_p \| N \|_p.
+        \end{align*}
+        Como $\| M \|_p = \| N \|_p = 1$ conclu\'{i}mos que $\| B \|_p \leq \| A \|_p$.
     \end{solution}
 
     \question Demonstre que a matriz $A = (v u^t) / (u^t u)$ \'{e} a matriz de norma-2 m\'{i}nima que satistaz $A u = v$.
