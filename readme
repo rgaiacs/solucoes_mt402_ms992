@@ -1,26 +1,23 @@
-Aqui você encontrará as soluções das listas de exercícios utilizadas na disciplina MT402, Matrizes, no primeiro semestre de 2012.
+This code is part of 'Solutions for MT402, Matrizes'
 
-Algumas informa\c{c}\~{o}es para futuras edi\c{c}\~{o}es:
-    - Quando verficar-se que algum exerc\'{i}cio tiver sido retirado de algum livro este exerc\'{i}cio \'{e} iniciada da sequinte forma:
+Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 
-        \question[Exerc\'{i}cio <+n\'{u}mero do exerc\'{i}cio+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
-    E quando for um exemplo:
+This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-        \question[Exemplo <+n\'{u}mero do exemplo+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+--- English ---
 
-    E quando for uma equa\c{c}\~{a}o:
+---
 
-        \question[Equa\c{c}\~{a}o <+n\'{u}mero da equa\c{c}\~{a}o+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+--- Português ---
+Aqui você encontrará as soluções das listas de exercícios, testes e provas utilizadas nas disciplinas
+ - MT402: Matrizes,
 
-    - Quando verificar-se que algum exerc\'{i}cio estiver relacionado a algum exerc\'{i}cio de um livro este exerc\'{i}cio \'{e} iniciado da seguinte forma:
+Cada questão encontra-se identificada pela atividade e ano em que apareceu (eventualmente também algum livro-texto), e.g., \question[P2 de 2011, E de 2011] que corresponde a segunda prova de 2011 e ao exame de 2011.
 
-        \question[Ver o exerc\'{i}cio <+n\'{u}mero do exerc\'{i}cio+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
-
-    E quando estiver relaciona a algum exemplo:
-
-        \question[Ver o exemplo <+n\'{u}mero do exemplo+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
-
-    E quando estiver relaciona a alguma equa\c{c}\~{a}o:
-
-        \question[Ver a equa\c{c}\~{a}o <+n\'{u}mero da equa\c{c}\~{a}o+>, p\'{a}gina <+n\'{u}mero da p\'{a}gina+>, do <+Sobrenome de um dos autores+>\nocite{<+Refer\^{e}ncia+>}]
+A seguir encontra-se uma listas dos anos, seguido pelo professor responsável, utilizados para compor esse material:
+ - 2010 (Márcia Ruggiero)
+ - 2011 (Márcia Ruggiero)
+ - 2012 (Aurelio Oliveira)
+---

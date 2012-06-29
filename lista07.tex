@@ -1,53 +1,66 @@
 % Filename: lista07.tex
-% This code is part of 'Listas de Matrizes'
 % 
-% Description: Lista 7.
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 07.
 % 
 % Created: 27.04.12 10:44:51 AM
-% Last Change: 29.04.12 08:08:58 PM
+% Last Change: 04.06.12 05:12:07 PM
 % 
-% Author: <+AUTHOR+>, <+EMAIL+>
-% Organization: <+ORGANIZATION+>
+% Authors:
+% - Raniere Silva (2012): initial version
 % 
-% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% This file is license under the terms of
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 07 - Fatora\c{c}\~{a}o de Cholesky}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
-
-% Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 7}{1º semestre de 2012}
-\firstpageheadrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{foot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\itshape}
-\unframedsolutions
-\pointname{}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
 
-%Novos ambientes
-\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
-%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
 \newcommand{\mdot}{\bullet}
 
 \begin{document}
-\thispagestyle{headandfoot}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
 \begin{questions}
-    \question[Ver exerc\'{i}cio 3.10.9, p\'{a}gina 157, Meyer\nocite{Meyer:2000:matrix}] Demonstre que se a matriz $A : n \times n$ tem fatora\c{c}\~{a}o LU ent\~{a}o \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$. Se, $A$ for tamb\'{e}m sim\'{e}trica ent\~{a}o esta fatora\c{c}\~{a}o \'{e} da forma $A = L D L^t$.
+    \question[Ver exerc\'{i}cio 3.10.9, p\'{a}gina 157, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que se a matriz $A : n \times n$ tem fatora\c{c}\~{a}o LU ent\~{a}o \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$. Se, $A$ for tamb\'{e}m sim\'{e}trica ent\~{a}o esta fatora\c{c}\~{a}o \'{e} da forma $A = L D L^t$.
     \begin{solution}
         Se a matriz $A$ tem fatora\c{c}\~{a}o LU ent\~{a}o $A = LU$ e \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$ pois $d_{ii} = u_{ii}$, $d_{ij} = 0$ para $i \neq j$ e $\tilde{u}_{ij} = u_{ij} / u_{ii}$ para $j > i$.
     \end{solution}
@@ -145,6 +158,8 @@
 
     \question Julgue verdadeiro ou Falso: Se $A : n \times n$ \'{e} definida positiva ent\~{a}o o sistema linear $A x = b$ admite solu\c{c}\~{a}o e esta solu\c{c}\~{a}o \'{e} \'{u}nica.
     \begin{solution}
+        Podemos mostrar que o determinante de uma matriz definida positiva \'{e} sempre maior que zero e portanto uma matriz definida positiva nunca \'{e} singular.
+
         Suponha que existem duas solu\c{c}\~{o}es distintas para o sistema $A x = b$ dadas por $x_1$ e $x_2$ ($x_1 \neq x_2$), com $A$ definida positiva. Ent\~{a}o
         \begin{align*}
             A x_1 &= b, \\

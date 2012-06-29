@@ -1,53 +1,66 @@
 % Filename: lista03.tex
-% This code is part of 'Lista de Matrizes'.
 % 
-% Description: Lista 03.
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 03.
 % 
 % Created: 11.03.12 08:00:00 AM
-% Last Change: 25.04.12 09:12:25 AM
+% Last Change: 29.06.12 05:34:31 PM
 % 
-% Author: <+AUTHOR+>, <+EMAIL+>
-% Organization: <+ORGANIZATION+>
+% Authors:
+% - Raniere Silva (2012): initial version
 % 
-% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% This file is license under the terms 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 01 - Revis\~{a}o de \'{A}lgebra Matricial III}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{tikz}
-
-% Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 3}{1º semestre de 2012}
-\firstpageheadrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{foot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\itshape}
-\unframedsolutions
-\pointname{}
 
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
 
-%Novos ambientes
-\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
-%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
 \newcommand{\mdot}{\bullet}
 \newcommand{\EI}{\text{Im}}
 \newcommand{\EN}{\text{N}}
 \newcommand{\posto}{\text{posto}}
 
 \begin{document}
-\thispagestyle{headandfoot}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
 \begin{questions}
     \section*{Matrizes com Estruturas de Blocos}
     \question[Ver exemplo 3.7.3, p\'{a}gina 119, do Meyer\nocite{Meyer:2000:matrix}] Considere as matrizes n\~{a}o singulares: $A: r \times s$ e $B: s \times r$.
@@ -203,7 +216,11 @@
 
         \part[Ver equa\c{c}\~{a}o (6.1.16), p\'{a}gina 467, do Meyer\nocite{Meyer:2000:matrix}] Considerando a matriz $M$ do item anterior, demonstre que $\det (M) = \det (A) \det (S)$, onde $S = B - D A^{-1} C$ \'{e} o complemento de Schur de $A$.
         \begin{solution}
+<<<<<<< HEAD
             TODO
+=======
+            % TODO Fazer esse exerc\'{i}cio.
+>>>>>>> work
         \end{solution}
 
         \part Repita os dois itens anteriores trabalhando com a forma fatorada de $M$, $M = W Y$, na qual um dos fatores depende do complemento de Schur de $B$, $T = A - C B^{-1} D$, obtendo assim o resultado:
@@ -234,7 +251,7 @@
                 \end{bmatrix}.
             \end{align*}
             
-            TODO: demonstrar que $\det (M) = \det (B) \det (T)$.
+            % TODO: demonstrar que $\det (M) = \det (B) \det (T)$.
         \end{solution}
     \end{parts}
 
@@ -538,12 +555,12 @@
     \begin{parts}
         \part O sistema $A^t A x = A^t b$ sempre admite solu\c{c}\~{a}o, ainda que $A x = b$ n\~{a}o tenha solu\c{c}\~{a}o.
         \begin{solution}
-            Verdadeiro.
+            Se $A$ tiver posto completo ent\~{a}o a afirma\c{c}\~{a}o \'{e} verdadeira. Se $A$ n\~{a}o tiver posto completo ent\~{a}o a matriz $A^t A$ \'{e} singular e portanto o sistema $A^t A x = A^t b$ n\~{a}o admite solu\c{c}\~{a}o.
         \end{solution}
 
         \part Se os sitema linear $A x = b$ admite solu\c{c}\~{a}o ent\~{a}o os dois sistemas possuem o mesmo conjunto solu\c{c}\~{a}o.
         \begin{solution}
-            Verdadeiro.
+            Se o sistema linear $A x = b$ admite solu\c{c}\~{a}o \'{u}nica ent\~{a}o $A$ tem posto completo e portanto ambos os sistemas possuem o mesmo conjunto solu\c{c}\~{a}o. Se o sistema $A x = b$ possue infintas solu\c{c}\~{o}es ent\~{a}o $A$ n\~{a}o possue posto completo e portanto $A^t A$ \'{e} singular de forma que o sistema $A^t A x = A^t b$ n\~{a}o admite solu\c{c}\~{a}o.
         \end{solution}
     \end{parts}
 \end{questions}

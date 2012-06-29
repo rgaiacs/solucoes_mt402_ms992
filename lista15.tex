@@ -1,0 +1,250 @@
+% Filename: lista15.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 15.
+% 
+% Created: 08.05.12 09:46:55 PM
+% Last Change: 29.06.12 05:41:29 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+% 
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 15 - Autovalores e Autovetores II}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+Para $\lambda \in \sigma(A) = \left\{ \lambda_1, \lambda_2, \ldots, \lambda_s \right\}$, adotaremos as seguintes defini\c{c}\~{o}es:
+\begin{itemize}
+    \item A multiplicidade alg\'{e}brica de $\lambda$, denotado por $\mathrm{multAlg}_A(\lambda)$, \'{e} o n\'{u}mero de vezes que $\lambda$ \'{e} raiz do polin\^{o}mio caracter\'{i}stico de $A$.
+    \item A multiplicidade geom\'{e}trica de $\lambda$, denotado por $\mathrm{mulGeo}_A(\lambda)$, \'{e} $\mathrm{dim}(\mathcal{N}(A - \lambda I))$, i.e., o n\'{u}mero m\'{a}ximo de autovetores linearmente independetes associados com $\lambda$.
+\end{itemize}
+\begin{questions}
+    \question Sejam $A$ e $B$ matrizes semelhantes (existe $S$, matriz n\~{a}o singular tal que $B = S^{-1} A S)$. Prove que:
+    \begin{parts}
+        \part $A$ e $B$ t\^{e}m os mesmos autovalores com mesma multiplicidade alg\'{e}brica e geom\'{e}trica.
+        \begin{solution}
+            Primeiro vamos mostrar que os autovalores de $A$ e $B$ possuem mesma multiplicidade alg\'{e}brica.
+            \begin{align*}
+                \det(B - \lambda I) &= \det(S^{-1} A S - \lambda I) \\
+                &= \det(S^{-1} A S - \lambda S^{-1} S) \\
+                &= \det(S^{-1} (A - \lambda I) S) \\
+                &= \det(S^{-1}) \det(A - \lambda I) \det(S) \\
+                &= \det(A - \lambda I).
+            \end{align*}
+
+            Agora vamos mostrar que os autovalores de $A$ e $B$ possuem mesma multiplicidade geom\'{e}trica. Suponha que $(\lambda, x)$ \'{e} um autopar de $B$, ent\~{a}o
+            \begin{align*}
+                B x &= \lambda x \\
+                S^{-1} A S x &= \lambda x \\
+                A (S x) &= \lambda (S x).
+            \end{align*}
+            Como $S$ \'{e} n\~{a}o-singular ent\~{a}o todo autovetor de $B$ est\'{a} mapeado uma \'{u}nica vez em $A$ e portanto $A$ e $B$ possuem a mesma multiplicidade geom\'{e}trica.
+        \end{solution}
+        
+        \part Se $(\lambda_i, v_i)$ \'{e} autopar de $A$ como \'{e} o autopar $(\lambda_i, w_i)$ de $B$?
+        \begin{solution}
+            \begin{align*}
+                B w_i &= \lambda_i w_i \\
+                S^{-1} A S w_i &= \lambda_i w_i \\
+                A (S w_i) &= \lambda_i (S w_i).
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question Considere $A \in \mathbb{R}^{n \times n}$. Demonstre que:
+    \begin{parts}
+        \part os autovalores complexos de $A$ ocorrem em pares conjugados de mesma multiplicidade alg\'{e}brica.
+        \begin{solution}
+            Seja $(x + \lambda_1) (x + \lambda_2) \ldots (x + \lambda_n) = 0$ o polin\^{o}mio caracter\'{i}stico de $A$. Como $A \in \mathbb{R}^{n \times n}$ temos $\lambda_1 \lambda_2 \ldots \lambda_n \in \mathbb{R}$ e, portanto, se existe um $\lambda_i \in \mathbb{C}$ ent\~{a}o existe um $\lambda_j = \overline{\lambda_i}$, $j \neq i$, e com mesma multiplicidade.
+        \end{solution}
+        \part se $\lambda$ \'{e} complexo e se $v$ \'{e} seu autovetor associado ent\~{a}o $\bar{v}$ \'{e} autovetor associado \`{a} $\bar{\lambda}$ e, se representarmos $v$ por $v = a + b i$, com $a, b \in \mathbb{R}^n$ ent\~{a}o, $a$ e $b$ s\~{a}o linearmente independentes.
+        \begin{solution}
+            Se $(\lambda, v)$, $\lambda \in \mathbb{C}$, \'{e} um autopar ent\~{a}o $A v = \lambda v$. Logo,
+            \begin{align*}
+                \overline{A v} &= \overline{\lambda v} \\
+                \overline{A} \overline{v} &= \overline{\lambda} \overline{v} \\
+                A \overline{v} &= \overline{\lambda} \overline{v}.
+            \end{align*}
+
+            Se representarmos $v$ por $v = a + b i$, com $a, b \in \mathbb{R}^n$ ent\~{a}o $a$ e $b$ s\~{a}o linearmente independentes pois se estes forem linearmente dependentes ent\~{a}o $a$ e $b$ seriam autovetores.
+        \end{solution}
+    \end{parts}
+
+    \question[Equa\c{c}\~{a}o 7.2.2, p\'{a}gina 511, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que para cada matriz $A \in \mathbb{C}^{n \times n}$ e cada $\lambda \in \sigma(A)$: $\mathrm{multGeo}_A(\lambda) \leq \mathrm{multAlg}_A(\lambda)$.
+    \begin{solution}
+        Suponha que $\mathrm{multAlg}_A(\lambda) = k$. O teorema da triangulariza\c{c}\~{a}o de Schur garante que existe uma matriz $U$ unit\'{a}ria tal que
+        \begin{align*}
+            U^* A U &= \begin{bmatrix}
+                T_{11} & T_{12} \\
+                0 & T_{22}
+            \end{bmatrix},
+        \end{align*}
+        onde $T_{11} \in \mathbb{C}^{k \times k}$ \'{e} uma matrix triangular superior cuja entradas da diagonal s\~{a}o iguais a $\lambda$ e $T_{22} \in \mathbb{C}^{(n - k) \times (n - k)}$ \'{e} uma matriz triangular superior tal que $\lambda \not\in \sigma(T_{22})$. Consequentemente, $T_{22} - \lambda I$ \'{e} n\~{a}o singular e portanto
+        \begin{align*}
+            \mathrm{posto}(A - \lambda I) &= \mathrm{posto}\left( U^* (A - \lambda I) U \right) \\
+            &= \mathrm{posto}\begin{bmatrix}
+                T_{11} - \lambda I & T_{12} \\
+                0 & T_{22} - \lambda I
+            \end{bmatrix} \\
+            &\geq \mathrm{posto}(T_{22} - \lambda I) \\
+            &= n - k,
+        \end{align*}
+        onde a desigualdade seque do fato que o posto de uma matriz \'{e} no m\'{i}nimo t\~{a}o grande quanto o posto de qualquer submatriz. Logo
+        \begin{align*}
+            \mathrm{multAlg}_A(\lambda) &= k \\
+            &\geq n - \mathrm{posto}(A - \lambda I) \\
+            &= \dim(\mathcal{N}(A - \lambda I)) \\
+            &= \mathrm{multGeo}_A(\lambda).
+        \end{align*}
+    \end{solution}
+
+    \question[Equa\c{c}\~{a}o 7.2.5, p\'{a}gina 512, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que $A$ \'{e} diagonaliz\'{a}vel se e somente se $\mathrm{multGeo}_A(\lambda) = \mathrm{multAlg}_A(\lambda)$ para cada $\lambda \in \sigma(\lambda)$.
+    \begin{solution}
+        Suponha que $\mathrm{multGeo}_A(\lambda_i) = \mathrm{multAlg}_A(\lambda_i) = a_i$ para todo autovalor $\lambda_i$. Se existem $k$ autovalores distintos e se $B_i$ \'{e} uma base para $\mathcal{N}(A - \lambda_i I)$, ent\~{a}o $B = B_1 \cup B_2 \cup \ldots \cup B_k$ cont\'{e}m $\sum_{i = 1}^k a_i = n$ vetores. Como $B$ \'{e} um conjunto linearmente independente, ent\~{a}o $B$ representa o conjunto completo de autovetores linearmente independentes de $A$, e portanto $A$ deve ser diagonaliz\'{a}vel.
+
+        Se $A$ \'{e} diagonaliz\'{a}vel e se $\lambda$ \'{e} um autovalor de $A$ com $\mathrm{multAlg}_A(\lambda) = a$ ent\~{a}o existe uma matriz n\~{a}o singular $P$ tal que
+        \begin{align*}
+            P^{-1} A P &= D = \begin{bmatrix}
+                \lambda I_{a \times a} & 0 \\
+                0 & B
+            \end{bmatrix},
+        \end{align*}
+        onde $\lambda \not\in \sigma(B)$. Consequentemente,
+        \begin{align*}
+            \mathrm{posto}(A - \lambda I) &= \mathrm{posto} P \begin{bmatrix}
+                0 & \ 7 \\
+                0 & B - \lambda I
+            \end{bmatrix} P^{-1} \\
+            &= \mathrm{posto}(B - \lambda I) \\
+            &= n - a,
+        \end{align*}
+        e portanto
+        \begin{align*}
+            \mathrm{multGeo}_A(\lambda) &= \dim(\mathcal{N}(A - \lambda I)) \\
+            &= n - \mathrm{posto}(A - \lambda I) \\
+            &= a \\
+            &= \mathrm{multAlg}_A(\lambda).
+        \end{align*}
+    \end{solution}
+
+    \question[Equa\c{c}\~{a}o 7.2.6, p\'{a}gina 514, do Meyer\nocite{Meyer:2000:matrix}] Se $A$ possui $n$ autovalores distintos, $A$ \'{e} diagonaliz\'{a}vel? E se $A$ \'{e} diagonaliz\'{a}vel, ent\~{a}o possui $n$ autovalores distintos?
+    \begin{solution}
+        Se $A_{n \times n}$ possue $n$ autovalores distintos ent\~{a}o $\text{multGeo}_A(\lambda) = \text{multAlg}_A(\lambda) = 1$ para cada $\lambda$ e portanto a matriz $A$ \'{e} diagonaliz\'{a}vel.
+
+        \'{E} poss\'{i}vel que $\text{multGeo}_A(\lambda) = \text{multAlg}_A(\lambda)$, i.e., seja diagonaliz\'{a}vel, e $A$ possua pelo menos um autovalor com multiplicidade maior ou igual a $2$. A matriz abaixo \'{e} um exemplo:
+        \begin{align*}
+            \begin{bmatrix}
+                1 & -4 & -4 \\
+                8 & -11 & - 8 \\
+                -8 & 8 & -5
+            \end{bmatrix}.
+        \end{align*}
+    \end{solution}
+
+    \question Para $A : n \times n$ e $\sigma(A) = \{ \lambda_1, \ldots, \lambda_n \}$. Demonstre a equival\^{e}ncia entre as afirma\c{c}\~{o}es:
+    \begin{enumerate}
+        \item $A$ \'{e} semelhante a uma matriz diagonal: $A = P^{-1} D P$;
+        \item $A$ possui um conjunto completo de autovetores lineamente independentes;
+        \item $\mathrm{multGeo}(\lambda_i) = \mathrm{multAlg}(\lambda_i)$, para $i = 1, 2, \ldots, n$.
+    \end{enumerate}
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question[Exemplo 7.5.1, p\'{a}gina 549, do Meyer\nocite{Meyer:2000:matrix}] Considere $A \in \mathbb{C}^{n \times n}$ e o vetor $q \in \mathbb{C}^n$. Demonstre que $\overline{\rho} = \left( q^* A q \right) / \left( q^* q \right)$ minimiza $\| A q - \rho q \|_2$.
+
+    Observe que $A q = \rho q$ \'{e} um sistema sobredeterminado e considere que as equa\c{c}\~{o}es normais para um sistema complexo, $C z = b$, s\~{a}o daddas por $C^* C z = C^* b$.
+    \begin{solution}
+        Sabemos que $\min \| A q - \rho q \|_2$ equivale a resolver o sistema normal dado por
+        \begin{align*}
+            A^* A q &= A^* \rho q = \rho A^* q.
+        \end{align*}<++>
+    \end{solution}
+
+    \question Considere $A_{n \times n}$ hermitiana. Demonstre que $\lambda_1 = \max x^* A x$ e $\lambda_n = \min x^* A x$, para $x \in \mathbb{C}^n$, $\| x \|_2 = 1$, e $\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_n$. Interprete este resultado fazendo uma rela\c{c}\~{a}o com o quociente de Rayleigh.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question[Equa\c{c}\~{a}o 7.5.5, p\'{a}gina 550, do Meyer\nocite{Meyer:2000:matrix}] Enuncie e demontre o Teorema de Courant-Fischer.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere que a matriz $A$ real, sim\'{e}trica, n\~{a}o singular e $\mathcal{L} < \min_i \lambda_i$, onde $\lambda_i$ s\~{a}o os autovalores de $A$. A matriz $A + \lambda I$ tem fatora\c{c}\~{a}o de Chlolesky? Justifique.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+    
+    \question Considere uma matriz $A_{4 \times 4}$, com autovalores iguais a $-9$, $-8$, $3$ e $11$. Usando o m\'{e}todo das pot\^{e}ncias e suas varia\c{c}\~{o}es, para quais autovalores ser\'{a} poss\'{i}vel obter estimativas? Indique qual a forma do m\'{e}todo das pot\^{e}ncias ser\'{a} usada em cada caso.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere $A_{n \times n}$ e seus autovalores $| \lambda_1 | > | \lambda_2 | \leq | \lambda_3 | \ldots \leq | \lambda_n |$. Supondo que o m\'{e}todo das pot\^{e}ncias gera uma sequ\^{e}ncia de vetores $q^{(k)}$ convergente, qual o limite desta sequ\^{e}ncia? Justifique sua resposta.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Ainda no exerc\'{i}cio anterior, suponha agora que $| \lambda_1 | = | \lambda_2 | > | \lambda_3 | \leq \ldots \leq | \lambda_n |$. Aplicando o m\'{e}todo das pot\^{e}ncias \`{a} matriz $A$ o que podemos afirmar sobre o vetor limite da sequ\^{e}ncia $\left\{ q^{(k)} \right\}$? Justifique sua resposta.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Descreva o m\'{e}todo das pot\^{e}ncias inverso com shift.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere o m\'{e}todo da Itera\c{c}\~{a}o de Rayleigh com shift. Qual a rela\c{c}\~{a}o deste m\'{e}todo com o das pot\^{e}ncias inverso com shift? Justifique a escolha do shift neste caso.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

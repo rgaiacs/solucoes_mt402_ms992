@@ -1,0 +1,291 @@
+% Filename: lista12.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 12.
+% 
+% Created: 16.06.12 07:56:48 AM
+% Last Change: 29.06.12 05:37:50 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+%
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 12 - Pseudoinversa}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+\begin{questions}
+    \question Considere $A : m \times n$, sua decomposi\c{c}\~{a}o SVD, $A = U D V^t$ e pseudoinversa $A^\dagger = V D^\dagger U^t$. Demonstre que $A^\dagger$ satisfaz as quatro condi\c{c}\~{o}es que caracterizam uma matriz como pseudoinversa de $A$: $B A B = B$, $A B A = A$, $(B A)^t = BA$ e $(A B)^t = A B$.
+    \begin{solution}
+        Pela constru\c{c}\~{a}o da decomposi\c{c}\~{a}o SVD temos que
+        \begin{align*}
+            D &= \begin{bmatrix}
+                \hat{D} & 0 \\
+                0 & 0
+            \end{bmatrix}
+        \end{align*}
+        e pela constru\c{c}\~{a}o da pseudoinversa temos que
+        \begin{align*}
+            D^\dagger &= \begin{bmatrix}
+                \hat{D}^{-1} & 0 \\
+                0 & 0
+            \end{bmatrix}.
+        \end{align*}
+        Logo,
+        \begin{align*}
+            D D^\dagger = \begin{bmatrix}
+                \hat{D} & 0 \\
+                0 & 0
+            \end{bmatrix} \begin{bmatrix}
+                \hat{D}^{-1} & 0 \\
+                0 & 0
+            \end{bmatrix} = \begin{bmatrix}
+                I & 0 \\
+                0 & 0
+            \end{bmatrix} = \begin{bmatrix}
+                \hat{D} & 0 \\
+                0 & 0
+            \end{bmatrix} \begin{bmatrix}
+                \hat{D}^{-1} & 0 \\
+                0 & 0
+            \end{bmatrix} = D^\dagger D.
+        \end{align*}
+        Outras propriedades que decorrem da constru\c{c}\~{a}o da decomposi\c{c}\~{a}o SVD s\~{a}o:
+        \begin{align*}
+            U U^t &= I, & U^t U &= I, \\
+            V V^t &= I, & V^t V &= I.
+        \end{align*}
+
+        Para $B A B = B$, temos
+        \begin{align*}
+            B A B &= A^\dagger A A^\dagger \\
+            &= \left( V D^\dagger U^t \right) \left( U D V^t \right) \left( V D^\dagger U^t \right) \\
+            &= V D^\dagger I D I D^\dagger U^t \\
+            &= V \left( D^\dagger D \right) D^\dagger U^t \\
+            &= V D^\dagger U^t \\
+            &= B.
+        \end{align*}
+
+        Para $A B A = A$, temos
+        \begin{align*}
+            A B A &= A A^\dagger A \\
+            &= \left( U D V^t \right) \left( V D^\dagger U^t \right) \left( U D V^t \right) \\
+            &= U D I D^\dagger I D V^t \\
+            &= U \left( D D^\dagger \right) D V^t \\
+            &= U D V^t \\
+            &= A.
+        \end{align*}
+
+        Para $\left( B A \right)^t = B A$, temos
+        \begin{align*}
+            \left( B A \right)^t &= \left( A^\dagger A \right)^t \\
+            &= \left( V D^\dagger U^t U D V^t \right)^t \\
+            &= V D^t U^t U (D^\dagger)^t V^t \\
+            &= V D U^t U D^\dagger V^t \\
+            &= V D \left( I \right) D^\dagger V^t \\
+            &= V D D^\dagger V^t \\
+            &= V D^\dagger D V^t \\
+            &= V D^\dagger \left( I \right) D V^t \\
+            &= V D^\dagger \left( U^t U \right) D V^t \\
+            &= \left( V D^\dagger U^t \right) \left( U D V^t \right) \\
+            &= A^\dagger A \\
+            &= B A
+        \end{align*}
+
+        Para $\left( A B \right)^t = A B$, temos
+        \begin{align*}
+            \left( A B \right)^t &= \left( A A^\dagger \right)^t \\
+            &= \left( U D V^t V D^\dagger U^t \right)^t \\
+            &= U \left( D^\dagger \right)^t V^t V D^t U^t \\
+            &= U D^\dagger V^t V D U^t \\
+            &= U D^\dagger \left( I \right) D U^t \\
+            &= U D^\dagger D U^t \\
+            &= U D D^\dagger U^t \\
+            &= U D \left( I \right) D^\dagger U^t \\
+            &= U D \left( V^t V \right) D^\dagger U^t \\
+            &= \left( U D V^t \right) \left( V D^\dagger U^t \right) \\
+            &= A A^\dagger \\
+            &= A B.
+        \end{align*}
+    \end{solution}
+
+    \question Considere a matriz $A : m \times n$, $m \geq n$ e o sistema linear $A x = b$. Usando a SVD demonstre que:
+    \begin{parts}
+        \part a solu\c{c}\~{a}o de quadrados m\'{i}nimos de norma-2 m\'{i}nima \'{e} $\overline{x} = \sum_{i = 1}^r (\sigma_i)^{-1} u_i^t b v_i$,
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \| A x - b \|_2^2 &= \| U D V^t x - b \|_2^2 \\
+                &= \| U^t \left( U D V^t x - b \right) \|_2^2 \\
+                &= \| U^t U D V^t x - U^t b \|_2^2 \\
+                &= \| I D V^t x - U^t b \|_2^2 \\
+                &= \| D V^t x - U^t b \|_2^2 \\
+                &= \| D \hat{x} - \hat{b} \|_2^2 \\
+                &= \sum_{i = 1}^n | \sigma_i \hat{x}_i - \hat{b}_i |^2 \\
+                &= \left( \sum_{i = 1}^r | \sigma_i \hat{x}_i - \hat{b}_i |^2 \right) + \left( \sum_{i = r + 1}^n \hat{b}_i^2 \right).
+            \end{align*}
+            Portanto
+            \begin{align*}
+                \min \| A x - b \|_2^2 &= \min \left[ \left( \sum_{i = 1}^r | \sigma_i \hat{x}_i - \hat{b}_i |^2 \right) + \left( \sum_{i = r + 1}^n \hat{b}_i^2 \right) \right]
+            \end{align*}
+            que ocorre quando
+            \begin{align*}
+                \left( \sum_{i = 1}^r | \sigma_i \hat{x}_i - \hat{b}_i |^2 \right) &= 0.
+            \end{align*}
+            Ent\~{a}o
+            \begin{align*}
+                \sigma_i \hat{x}_i - \hat{b}_i = 0, \forall i = 1, \ldots, r,
+            \end{align*}
+            que implica em 
+            \begin{align*}
+                \hat{x}_i &= \hat{b}_i / \sigma_i, \forall i = 1, \ldots, r, \\
+                x &= V \hat{x} \\ 
+                &= \sum_{i = 1}^n \hat{x}_i V_i \\
+                &= \sum_{i = i}^r \left( \hat{b}_i / \sigma_i \right) V_i  \\
+                &= \sum_{i = 1}^r \left( \sigma_i \right)^{-1} U_i^t b V_i.
+            \end{align*}
+        \end{solution}
+
+        \part o valor m\'{i}nimo da norma-2 do res\'{i}duo \'{e} $\sqrt{\sum_{i = r + 1}^m (u_i^t b)^2}$.
+        \begin{solution}
+            Pelo item acima temos que o res\'{i}duo corresponde a $\sum_{i = r + 1}^n \hat{b}_i^2$ que corresponde a $\sum_{i = r + 1}^m (u_i^t b)^2$.
+        \end{solution}
+    \end{parts}
+
+    \question Seja $A : m \times n$, $m \geq n$ e o sistema linear $A x = b$. Seja $\overline{x}$ a solu\c{c}\~{a}o de norma-2 m\'{i}nima de $\min_x r = \| b - A x \|_2$. Demonstre que: $\overline{x} = A^\dagger b$.
+    \begin{solution}
+        Pelo exerc\'{i}cio anterior, a solu\c{c}\~{a}o de norma-2 \'{e}
+        \begin{align*}
+            \overline{x} &= \sum_{i = 1}^r \left( \sigma_i \right)^{-1} U_i^t b V_i
+        \end{align*}
+        que pode ser colocada na forma
+        \begin{align*}
+            \overline{x} &= \sum_{i = 1}^r \left( \sigma_i \right)^{-1} V_i U_i^t b \\
+            &= \hat{V} \hat{D}^{-1} \hat{U}^t b,
+        \end{align*}
+        onde
+        \begin{align*}
+            D = \begin{bmatrix}
+                \hat{D} & 0 \\
+                0 & 0
+            \end{bmatrix}.
+        \end{align*}
+        Portanto,
+        \begin{align*}
+            \overline{x} &= V D^\dagger U^t b \\
+            &= A^\dagger b.
+        \end{align*}
+    \end{solution}
+
+    \question \'{E} correto afirma que $A A^\dagger$ \'{e} uma matriz de proje\c{c}\~{a}o ortogonal? Em que subespa\c{c}o? Justifique usando pelo menos duas argumenta\c{c}\~{o}es diferentes.
+    \begin{solution}
+        Observer que $\left( A A^\dagger \right)^t = A A^\dagger$ e $\left( A A^\dagger \right)^2 = A A^\dagger A A^\dagger = A A^\dagger$. Logo, $A A^\dagger$ \'{e} uma matriz de proje\c{c}\~{a}o ortogonal.
+
+        Observe ainda que $x = A^\dagger b$ \'{e} solu\c{c}\~{a}o de quadrados m\'{i}nimos e como $A x \in \mathcal{I}(A)$, i.e., $A x = A A^\dagger b$, conclui-se que $A A^\dagger$ \'{e} a matriz de proje\c{c}\~{a}o em $\mathcal{I}(A)$.
+    \end{solution}
+
+    \question \'{E} correto afirma que $A^\dagger A$ \'{e} uma matriz de proje\c{c}\~{a}o ortogonal? Em que subespa\c{c}o? Justifique usando pelo menos duas argumenta\c{c}\~{o}es diferentes.
+    \begin{solution}
+        Observer que $\left( A^\dagger A \right)^t = A^\dagger A$ e $\left( A^\dagger A \right)^2 = A^\dagger A A^\dagger A = A^\dagger A$. Logo, $A^\dagger A$ \'{e} uma matriz de proje\c{c}\~{a}o ortogonal.
+
+        Observe ainda que $y \in \mathcal{I}(A^t) \Rightarrow y = A^t b$ e $A^t x = b \Rightarrow x = \left( A^\dagger \right)^t b$. Portanto, $A^t x = y = A^t \left( A^\dagger \right)^t b \Rightarrow y = \left( A^\dagger A \right)^t b = A^\dagger A b$. Portanto, $A^\dagger A$ \'{e} a proje\c{c}\~{a}o ortogonal de $b$ na imagem de $A^\dagger$.
+    \end{solution}
+
+    \question Demonstre que se $A : m \times n$, $m \geq n$ e $\textrm{posto}(A) = n$, ent\~{a}o $A^\dagger = (A^t A)^{-1} A^t$.
+    \begin{solution}
+        A solu\c{c}\~{a}o de quadrados m\'{i}nimos para $A x = b$ \'{e} $\overline{x} = \left( A^t A \right)^{-1} A^t b$ pois $A^t A : n \times n$ tem posto completo. Logo, como a solu\c{c}\~{a}o \'{e} \'{u}nica ($A^t A$ invers\'{i}vel) temos que $A^\dagger b = \left( A^t A \right)^{-1} A^t b \Rightarrow A^\dagger = \left( A^t A \right)^{-1} A^t$.
+    \end{solution}
+
+    \question Apresente diferentes demonstra\c{c}\~{o}es para a igualdade: $\| A A^\dagger \|_2 = 1$.
+    \begin{solution}
+        \textbf{Primeira demonstra\c{c}\~{a}o:}
+
+        $A A^\dagger$ \'{e} uma matriz de proje\c{c}\~{a}o e portanto $\| A A^\dagger \|_2 = 1$.
+
+        \textbf{Segunda demonstra\c{c}\~{a}o:}
+
+        Temos que
+        \begin{align*}
+            \| A A^\dagger \|_2 = \sqrt{\lambda_{\max}(A A^\dagger A A^\dagger)}.
+        \end{align*}
+        Mas
+        \begin{align*}
+            \left( A A^\dagger \right)^t \left( A A^\dagger \right) = A A^\dagger A A^\dagger = A A^\dagger = U D D^t U^t
+        \end{align*}
+        e os autovalores de $D D^t$ s\~{a}o iguais a $1$. Ent\~{a}o $\| A A^\dagger \|_2 = 1$.
+    \end{solution}
+
+    \question Demonstre que a pseudoinversa de $A$, $A^\dagger = U D^\dagger V^t$, \'{e} a matriz de norma de Frobenius m\'{i}nima que resolve o problema $\min \| A b - I_m \|_F$, $B : n \times m$.
+
+    A matriz $A^\dagger$ \'{e} a \'{u}nica solu\c{c}\~{a}o deste problema? Depende dos fatores $U$ e $V$?
+
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere a matriz $A : m \times p$ com colunas $w_i$, $i = 1, \ldots, p$ e $B : m \times (p + 1)$ com colunas $w_i$, $i = 1, \ldots, p$ iguais \`{a}s colunas de $A$ e coluna $w_{p + 1} \in \mathcal{I}(A)$.
+
+    Considere os sistemas lineares: $A x = b$ e $B y = b$, com $b \not\in \mathcal{I}(A)$.
+    \begin{parts}
+        \part Mostre que $\hat{y} = (A^\dagger b, 0)^t$ \'{e} uma solu\c{c}\~{a}o de Quadrados M\'{i}nimos para $B y = b$;
+        \begin{solution}
+            % TODO Fazer esse exerc\'{i}cio.
+        \end{solution}
+
+        \part $\| A^\dagger b \|_2 \geq \| B^\dagger b \|_2$? Justifique.
+        \begin{solution}
+            % TODO Fazer esse exerc\'{i}cio.
+        \end{solution}
+    \end{parts}
+
+    \question Supor que $A : m \times n$ est\'{a} particionada na forma $(A_1 , A_2)^t$ onde $A_1 : n \times n$ \'{e} n\~{a}o singular e $A_2 (m - n) \times n$. Prove que $\| A^\dagger \|_2 \leq \| A_1^{-1} \|_2$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+\end{questions}
+% \bibliographystyle{plain}
+% \bibliography{bibliography}
+\end{document}

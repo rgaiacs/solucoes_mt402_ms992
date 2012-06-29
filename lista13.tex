@@ -1,0 +1,150 @@
+% Filename: lista13.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 13.
+% 
+% Created: 16.06.12 08:15:39 AM
+% Last Change: 29.06.12 05:39:45 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+%
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 13 - SVD}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+\newtheorem{defi}{Defini\c{c}\~{a}o}
+\newtheorem{theorem}{Teorema}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+\begin{defi}[Posto\nocite{Meyer:2000:matrix}]
+    O posto de uma matriz $A : m \times n$ \'{e} precisamente a ordem da maior submatriz matriz quadrada n\~{a}o-singular de $A$. Em outras palavras, se $\mathrm{posto}(A) = r$ ent\~{a}o existe pelo menos uma submatriz $r \times r$ n\~{a}o singular em $A$ e n\~{a}o existe nenhuma outra submatriz n\~{a}o-singular de ordem maior que $r$.
+\end{defi}
+\begin{theorem}[4.2.1 do Watkins\nocite{Watkins:2004:fundamentals}]
+    Seja $A \in \mathbb{R}^{n \times n}$ com os seguintes valores singulares: $\sigma_1 \geq \sigma_2 \geq \ldots \geq 0$. Ent\~{a}o $\| A \|_2 = \sigma_1$.
+\end{theorem}
+\begin{theorem}[4.5.9 do Meyer\nocite{Meyer:2000:matrix}]
+    Se $A$ e $E$ s\~{a}o matrizes $m \times n$ tal que $E$ possue entradas suficientemente pequenas ent\~{a}o
+    \begin{align*}
+        \mathrm{posto}(A + E) \geq \mathrm{posto}(A).
+    \end{align*}
+\end{theorem}
+\begin{questions}
+    \question Considere $A : m \times n$, $\textrm{posto}(A) = r < \min\left\{ m, n \right\}$. Usando a SVD de $A$, mostre que para cada $\epsilon > 0$, existe uma matriz de posto completo $A_\epsilon : m \times n$ tal que $\| A - A_\epsilon \|_2 < \epsilon$.
+    \begin{parts}
+        \part Escolha convenientemente $\overline{\epsilon}$ para demonstrar a tese para cada $\epsilon > 0$ e manter a ordena\c{c}\~{a}o decrescente dos valores singulares de $A_\epsilon$.
+        \begin{solution}
+            Dado $\epsilon > 0$, escolha $A_\epsilon$ tal que se a decomposi\c{c}\~{a}o SVD de $A$ for $A = U D V^t$ com $D = \mathrm{diag}\left\{ \sigma_1, \ldots, \sigma_r, 0 \ldots, 0 \right\}$ ent\~{a}o $A_\epsilon = U D V^t$ com $D = \mathrm{diag}\left\{ \sigma_1, \ldots, \sigma_r, \bar{\epsilon}, \ldots, \bar{\epsilon} \right\}$, $\bar{\epsilon} < \epsilon$ e $\bar{\epsilon} < \sigma_r = \min\left\{ \sigma_1, \ldots, \sigma_r \right\}$.
+        \end{solution}
+
+        \part A matriz $A_\epsilon$ pode ser constru\'{i}da a partir da SVD de $A$, mantendo as matrizes $U$ e $V$ e adicionando $\overline{\epsilon} < \epsilon$ a cada valor singular de $A$ para compor a matriz $D_\epsilon$?
+        \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+        \end{solution}
+    \end{parts}
+
+    \question Julgue verdadeiro ou falso a afirma\c{c}\~{a}o:
+    \begin{quote}
+        O conjunto das matrizes de posto completo \'{e} denso e aberto.
+    \end{quote}
+    Demonstre se a afirma\c{c}\~{a}o for verdadeira e d\^{e} um contra-exemplo se for falsa.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Demonstre que toda matriz $A : m \times n$ \'{e} limite de uma sequencia de matrizes de posto completo.
+    \begin{solution}
+        Demonstrar que toda matriz $A : m \times n$ \'{e} limite de uma sequencia de matrizes de posto completo equivale a mostrar que o conjunto das matrizes de posto completo \'{e} denso. No exerc\'{i}cio anterior j\'{a} foi demonstrado que o conjunto das matrizes de posto completo \'{e} denso (e aberto).
+    \end{solution}
+
+    \question Demonstre que $A : m \times n$ com posto $s$ e $B : m \times n$ tal que $\| B - A \|_2 < \sigma_s$, ent\~{a}o $\mathrm{posto}(B) \geq s$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Obtenha a decomposi\c{c}\~{a}o SVD de uma matriz de posto $1$, i.e., se $w : m \times 1$ e $z : n \times 1$ s\~{a}o vetores n\~{a}o nulos, obtenha a decomposi\c{c}\~{a}o SVD de $A = w z^t$.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            A &= w z^t = \begin{bmatrix}
+                w_1 z_1 & w_1 z_2 & \ldots w_1 z_n \\
+                w_2 z_1 & w_2 z_2 & \ldots w_2 z_n \\
+                \vdots & \vdots & \ddots & \vdots \\
+                w_m z_1 & w_m z_2 & \ldots w_m z_n
+            \end{bmatrix}.
+        \end{align*}
+    \end{solution}
+
+    \question Considere $A : m \times n$, $m > n$, o vetor $z > m \times n$ e a matriz $B = [A \ z]$. Mostre que $\sigma_{n + 1}(B) \leq \sigma_n(A)$ e $\sigma_1(B) \geq \sigma_1(A)$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question[Ver exerc\'{i}cio 4.2.10 do Watkins\nocite{Watkins:2004:fundamentals}] Considere $A : n \times n$ sim\'{e}trica definida positiva. Demonstre que existe $M$ sim\'{e}trica, tal que $A = M^2$. Sugest\~{a}o: use a SVD do fator de Cholesky de $A$).
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Valores singulares extremos do produto entre duas matrizes. Se $A : m \times p$ e $B : p \times n$, $q = \min\left\{ m, n \right\}$ e $S = \min\left\{ p, n \right\}$, mostre que
+    \begin{parts}
+        \part $\sigma_1(A B) \leq \sigma_1(A) \sigma_1(B)$,
+        \begin{solution}
+            % TODO Fazer esse exerc\'{i}cio.
+        \end{solution}
+
+        \part $\sigma_q(A B) \leq \sigma_1(A) \sigma_s(B)$.
+        \begin{solution}
+            % TODO Fazer esse exerc\'{i}cio.
+        \end{solution}
+    \end{parts}
+
+    \question Demonstre que uma matriz $A : m \times n$ pode ser expressa como $A = U D V^t$ onde $U : m \times m$ e $V : n \times n$ s\~{a}o ortogonais e $D : m \times n$ \'{e} matriz ``diagonal'' com elementos na diagonal $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r \geq 0$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

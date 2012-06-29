@@ -1,52 +1,65 @@
 % Filename: lista09.tex
-% This code is part of 'Listas de Matrizes'
 % 
-% Description: Lista 09.
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 09.
 % 
 % Created: 23.04.12 07:00:39 PM
-% Last Change: 01.05.12 08:35:01 PM
+% Last Change: 04.06.12 05:12:20 PM
 % 
-% Author: <+AUTHOR+>, <+EMAIL+>
-% Organization: <+ORGANIZATION+>
+% Authors:
+% - Raniere Silva (2012): initial version
 % 
-% Copyright (c) <+YEAR+>, <+AUTHOR+>. All rights reserved.
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% This file is license under the terms of
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 09 - Fatora\c{c}\~{o}es Ortogonais}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 
-% Customiza\c{c}\~{a}o da classe exam
-\firstpageheader{MT402}{Solu\c{c}\~{a}o da Lista 9}{1º semestre de 2012}
-\firstpageheadrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{foot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\itshape}
-\unframedsolutions
-\pointname{}
-
 % Customiza\c{c}\~{a}o do pacote amsmath
 \allowdisplaybreaks[4]
 
-%Novos ambientes
-\newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
 
 % Novos comandos
-%\newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
 \newcommand{\mdot}{\bullet}
 
 \begin{document}
-\thispagestyle{headandfoot}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
 \begin{questions}
     \question Seja $w \in \mathbb{R}^n$ tal que $\| w \|_2 = 1$ e defina $Q : n \times n$ por $Q = I - 2 w w^t = I - 2 P$ onde $P = w w^t$. Demonstre que
     \begin{parts}

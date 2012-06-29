@@ -1,0 +1,228 @@
+% Filename: lista14.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 14.
+% 
+% Created: 08.05.12 09:34:01 PM
+% Last Change: 29.06.12 05:40:35 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+% 
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 14 - Autovalores e Autovetores I}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+Considere a matriz $A \in \mathbb{C}^{n \times n}$ e $\lambda_i$ seus autovalores.
+\begin{questions}
+    \question A matriz $A$ \'{e} singular se e somente se $\lambda = 0$ \'{e} um autovalor de $A$.
+    \begin{solution}
+        Primeiro vamos mostrar que se $A$ \'{e} singular ent\~{a}o $\lambda = 0$ \'{e} um autovalor.
+
+        Se $A$ \'{e} singular ent\~{a}o $\det(A)=0$ e, portanto, $\det(A - 0I) = 0$. Logo, $0$ \'{e} autovalor.
+
+        Agora vamos mostrar que se $\lambda = 0$ \'{e} um autovalor ent\~{a}o $A$ \'{e} singular.
+
+        Se $\lambda = 0$ \'{e} um autovalor ent\~{a}o $\det(A - 0I) = 0$ e, portanto $\det(A) = 0$. Logo, $A$ \'{e} singular.
+    \end{solution}
+
+    \question Se $A$ \'{e} n\~{a}o singular e se $(\lambda, v)$ \'{e} um autopar de $A$, ent\~{a}o, $(\lambda^{-1}, v)$ \'{e} um autopar de $A^{-1}$.
+    \begin{solution}
+        Se $A$ \'{e} n\~{a}o singular ent\~{a}o existe $A^{-1}$ tal que $A A^{-1} = A^{-1} A = I$. Se $(\lambda, v)$ \'{e} autopar de $A$ ent\~{a}o
+        \begin{align*}
+            A v &= \lambda v \\
+            A^{-1} A v &= A^{-1} \lambda v \\
+            I v &= \lambda A^{-1} v \\
+            \lambda^{-1} v &= A^{-1} v,
+        \end{align*}
+        i.e., $(\lambda^{-1}, v)$ \'{e} um autopar de $A^{-1}$.
+    \end{solution}
+
+    \question $A$ e $A^t$ possuem os mesmos autovalores? Justifique.
+    \begin{solution}
+        $A$ e $A^t$ possuem os mesmos autovalores. Suponhamos que $\lambda$ \'{e} um autovalor de $A$, ent\~{a}o $\det(A - \lambda I) = 0$ e portanto
+        \begin{align*}
+            \det(A - \lambda I)^t &= \det\left( (A - \lambda I)^t \right) \\
+            &= \det(A^t - (\lambda I)^t) \\
+            &= \det(A^t - \lambda I).
+        \end{align*}
+        Logo, $\lambda$ \'{e} um autovalor de $A^t$.
+    \end{solution}
+
+    \question $A$ e $A^H$ possuem os mesmos autovalores? Justifique.
+    \begin{solution}
+        $A$ e $A^H$ n\~{a}o possuem os mesmos autovalores. Suponhamos que $\lambda$ \'{e} um autovalor de $A$, ent\~{a}o $\det(A - \lambda I) = 0$ e portanto
+        \begin{align*}
+            \det(A - \lambda I)^H &= \det\left( (A - \lambda I)^H \right) \\
+            &= \det(A^H - \lambda^H I) \\
+            &= \det(A^H - \bar{\lambda} I).
+        \end{align*}
+        Logo, $\bar{\lambda}$ \'{e} um autovalor de $A^H$.
+    \end{solution}
+
+    \question A matriz $\alpha A$ possui autovalores $\alpha \lambda_i$.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar de $A$, ent\~{a}o $A v = \lambda v$ e
+        \begin{align*}
+            (\alpha A) v &= \alpha A v \\
+            &= \alpha \lambda v.
+        \end{align*}
+        Logo, $\alpha \lambda$ \'{e} um autovalor de $\alpha A$.
+    \end{solution}
+
+    \question Os autovalores de $A^r$ s\~{a}o $\lambda_i^r$, onde $r$ \'{e} um inteiro positivo.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar de $A$, ent\~{a}o $A v = \lambda v$ e
+        \begin{align*}
+            A^2 v &= A (A v) \\
+            &= A A v \\
+            &= A \lambda v \\
+            &= \lambda^2 v.
+        \end{align*}
+        Aplicando repetidamente o processo anterior concluimos que $\lambda^r$ \'{e} um autovalor de $A^r$, onde $r$ \'{e} um inteiro positivo.
+    \end{solution}
+
+    \question Se $A$ \'{e} hermitiana ent\~{a}o seus autovalores s\~{a}o reais.
+    \begin{solution}
+        Suponhamos que $\lambda$ \'{e} um autovalor de $A$, ent\~{a}o $\det(A - \lambda I) = 0$ e portanto
+        \begin{align*}
+            \det(A - \lambda I)^H &= \det\left( (A - \lambda I)^H \right) \\
+            &= \det(A^H - \lambda^H I) \\
+            &= \det(A - \overline{\lambda} I).
+        \end{align*}
+        Logo, $\lambda = \overline{\lambda}$, i.e., $\lambda \in \mathbb{R}$, \'{e} um autovalor de $A$.
+    \end{solution}
+
+    \question Se $A$ \'{e} real sim\'{e}trica ent\~{a}o seus autovalores s\~{a}o reais.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar da matriz $A$, ent\~{a}o $A v = \lambda v$ e $\overline{A v} = \overline{\lambda v}$. Como $A$ \'{e} real, temos que $A \overline{v} = \overline{\lambda v}$. Ent\~{a}o
+        \begin{align*}
+            \lambda (v \overline{v}) &= (\lambda v) \overline{v} = A v \overline{v} = A \overline{v} v = \overline{\lambda v} v = \overline{\lambda} (v \overline{v})
+        \end{align*}
+        e portanto $\lambda = \overline{\lambda}$ que implica em $\lambda \in \mathbb{R}$.
+    \end{solution}
+
+    \question Se $A$ \'{e} real sim\'{e}trica definida positiva ent\~{a}o seus autovalores s\~{a}o positivos.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar da matriz $A$, ent\~{a}o $A v = \lambda v$. Ent\~{a}o
+        \begin{align*}
+            v^t A v &= v^t \lambda v = \lambda \| v \|.
+        \end{align*}
+        Como $A$ \'{e} sim\'{e}trica definida positiva temos que $v^t A v > 0$, $v \neq 0$ e portanto $\lambda > 0$.
+    \end{solution}
+
+    \question Se $A$ \'{e} ortogonal ent\~{a}o $| \lambda_i | = 1$.
+    \begin{solution}
+        Se $A$ \'{e} ortogonal ent\~{a}o $A^H A = I$. Seja $(\lambda, v)$ um autopar de $A$ e portanto,
+        \begin{align*}
+            A v &= \lambda v \\
+            A^H A v &= A^H \lambda v \\
+            I v &= \lambda A^H v \\
+            v &= \lambda \bar{\lambda} v.
+        \end{align*}
+        Logo, $\lambda \bar{\lambda} = 1$ que corresponde a $|\lambda| = 1$.
+    \end{solution}
+
+    \question Para as normas induzidas a partir das normas vetoriais $p$: $\| A \|_p \geq | \lambda_i |, \forall i$.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar de $A$, ent\~{a}o
+        \begin{align*}
+            \| A \|_p &= \max \| A x \|_p / \| x \| p \\
+            &\geq \max \| A v \|_p / \| v \|_p \\
+            &= \max \| \lambda v \|_p / \| v /|_p \\
+            &\geq max | \lambda | \| v \|_p / \| v \|_p \\
+            &= \lambda.
+        \end{align*}
+    \end{solution}
+
+    \question Os autovalores de $A + \alpha I$ s\~{a}o $\lambda_i + \alpha$.
+    \begin{solution}
+        Seja $(\lambda, v)$ um autopar de $A$, ent\~{a}o $A v = \lambda v$ e
+        \begin{align*}
+            (A + \alpha I) v &= A v + \alpha I v \\
+            &= \lambda v + \alpha v \\
+            &= (\lambda + \alpha)v.
+        \end{align*}
+        Logo, $\lambda + \alpha$ \'{e} autovalor de $A + \alpha I$.
+    \end{solution}
+
+    \question Enuncie e demonstre o teorema dos discos de Gerchgorin. Exemplifique como empregar o resultado deste teorema para localiza\c{c}\~{a}o dos autovalores de uma matriz $A$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Usando o teorema dos discos de Gerschgorin, demonstre que uma matriz diagonalmente dominante \'{e} n\~{a}o singular.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considerando o teorema abaixo
+    \begin{quote}
+        Se a uni\~{a}o $\mathcal{U}$ de $k$ discos de Gerschgorin n\~{a}o tangencia qualquer um dos demais $n - k$ c\'{i}rculos, ent\~{a}o existem exatamente $k$ autovalores, contando suas multiplicidades, nos discos em $\mathcal{U}$. (Meyer\nocite{Meyer:2000:matrix}, cap. 7, p\'{a}g, 498).
+    \end{quote}
+    verifique que a matriz
+    \begin{align*}
+        A &= \begin{bmatrix}
+            1 & 0 & -2 & 0 \\
+            0 & 12 & 0 & -4 \\
+            1 & 0 & -1 & 0 \\
+            0 & 5 & 0 & 0
+        \end{bmatrix}
+    \end{align*}
+    possui pelo menos dois autovalores reais.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Demonstre que a matriz $A : n \times n$, $a_{ii} = n$, $i = 1, \ldots, n$ e $a_{ij} = 1$, $i \neq j$ \'{e} n\~{a}o singular.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

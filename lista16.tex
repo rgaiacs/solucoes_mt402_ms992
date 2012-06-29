@@ -1,0 +1,127 @@
+% Filename: lista16.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 16.
+% 
+% Created: 23.06.12 12:21:04 PM
+% Last Change: 29.06.12 05:35:26 PM
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+%
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+% Customiza\c{c}\~{a}o da classe exam
+\newcommand{\mycheader}{Lista 16 - M\'{e}todo QR}
+\header{MT402}{\mycheader}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+Antes de mais nada \'{e} importante um pequeno exclarecimento:
+\begin{quote}
+    A partir de agora \'{e} importante fazer a distin\c{c}\~{a}o entre a decomposi\c{c}\~{a}o QR e o algoritmo/m\'{e}todo QR. O algorimo QR \'{e} um procedimento iterativo para encontrar autovalores. Ele \'{e} baseado na decomposi\c{c}\~{a}o QR, que \'{e} um procedimento direto relacionado com o procedimento de Gram-Schmidt. (Tradu\c{c}\~{a}o livre de trecho de ``Fundamentals of Matrix Computations''\nocite{Watkins:2004:fundamentals}, p\'{a}gina 357)
+\end{quote}
+\begin{questions}
+    \question Sejam $H$ uma matriz Hessenberg superior\footnote{Todos os elementos abaixo da primeira subdiagonal s\~{a}o zeros.} e $R$ triangular superior. Mostre que $H R$ e $R H$ tamb\'{e}m s\~{a}o Hessenberg superior.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere a matriz n\~{a}o singular $A$ particionada da seguinte forma:
+    \begin{align*}
+        A = \begin{bmatrix}
+            A_{11} & A_{12} \\
+            0 & A_{22}
+        \end{bmatrix},
+    \end{align*}
+    onde $A_{11}$ e $A_{22}$ s\~{a}o matrizes quadradas. Seja $A = Q R$ e considere a matriz ortogonal $Q$ e a matriz triangular superior $R$ particionadas de forma equivalente. Mostre que $Q_{12} = Q_{21} = 0$ e que $Q_{11}$ s\~{a}o ortogonais. Mostre tamb\'{e}m que $A_{11} = Q_{11} R_{11}$ e que $A_{22} = Q_{22} R_{22}$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere uma matriz $A : 2 \times 2$. Mostre que os autovalores de $\sigma_0$ e $\sigma_1$ desta matriz satisfazem $\sigma_0 + \sigma_1 = \mathrm{trace}(A)$ e $\sigma_0 \sigma_1 = \det(A)$.
+    \begin{solution}
+        Consideremos que
+        \begin{align*}
+            A &= \begin{bmatrix}
+                a_{11} & a_{12} \\
+                a_{21} & a_{22}
+            \end{bmatrix}.
+        \end{align*}
+        Ent\~{a}o os autovalores de $A$ correspondem aos valores de $\sigma$ tal que
+        \begin{align*}
+            (A - \sigma I) x = 0 \Rightarrow \det(A - \sigma I) = 0.
+        \end{align*}
+        Como $A$ \'{e} uma matriz dois por dois sabemos calcular o determinante de $A$, que \'{e}
+        \begin{align*}
+            \det(A) &= a_{11} a_{22} - a_{12} a_{21},
+        \end{align*}
+        e tamb\'{e}m de $(A - \sigma I)$, que corresponde a
+        \begin{align*}
+            \det(A - \sigma I) &= (a_{11} - \sigma) (a_{22} - \sigma) - a_{12} a_{21} \\
+            &= \sigma^2 - (a_{11} + a_{22}) \sigma + a_{11} a_{22} - a_{12} a_{21}.
+        \end{align*}
+        Como $\det(A - \sigma I) = 0$ e pela express\~{a}o acima que \'{e} uma equa\c{c}\~{a}o temos que
+        \begin{align*}
+            \sigma_1 + \sigma_2 &= a_{11} + a_{22} = \mathrm{trace}(A), \\
+            \sigma_1 \sigma_2 &= a_{11} a_{22} - a_{12} a_{21} = \det(A).
+        \end{align*}
+    \end{solution}
+    
+    \question Seja $H$ uma matriz Hessenberg superior cujos autovalores s\~{a}o conhecidos. Compare o esfor\c{c}o computacional para calcular os autovetores de $H$ pelo m\'{e}todo das pot\^{e}ncias e pelo m\'{e}todo QR.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere o m\'{e}todo QR com \textit{shift} $\sigma^k$ aplicado \`{a} matriz $H^k$ na itera\c{c}\~{a}o $k$. Mostre que
+    \begin{align*}
+        \prod_{k = 1}^j Q^k \prod_{k = j}^1 R^k = \prod_{k = 1}^j \left( H - \sigma^k I \right),
+    \end{align*}
+    onde $H = H^0$ \'{e} a matriz original.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+\end{questions}
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}
