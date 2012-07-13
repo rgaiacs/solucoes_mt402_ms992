@@ -57,9 +57,9 @@
 \input{cover.tex}
 \newpage
 \setcounter{page}{1}
-Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c{c}\~{a}o SVD dada por $A = U D V^t$, onde $U : m \times m$ e $V : n \times n$ s\~{a}o matrizes ortogonais e $D : m \times n$ \'{e} tal que $d_{ij} = =0$ para $i \neq j$ e $d_{ii} = \sigma_i$, $i = 1, 2, \ldots, r$, $r \leq \min\{m, n\}$ e $ \sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r \geq 0$.
+Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c{c}\~{a}o SVD dada por $A = U D V^t$, onde $U : m \times m$ e $V : n \times n$ s\~{a}o matrizes ortogonais e $D : m \times n$ \'{e} tal que $d_{ij} = 0$ para $i \neq j$ e $d_{ii} = \sigma_i$, $i = 1, 2, \ldots, r$, $r \leq \min\{m, n\}$ e $ \sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r \geq 0$.
 \begin{questions}
-    \question Existe uma rela\c{c}\~{a}o entre os valores singulares de $A$, e os vetores coluna da matriz $V : v_j$, $j = 1, \ldots, n$, e da matriz $U : u_i$, $i = 1, \ldots, m$ com os autovalores e autovetores das matrizes $A^t A$ e $A A^t$. Qual \'{e} esta rela\c{c}\~{a}o?
+    \question[Ver p\'{a}gina 412 do Meyer\nocite{Meyer:2000:matrix}] Existe uma rela\c{c}\~{a}o entre os valores singulares de $A$, e os vetores coluna da matriz $V : v_j$, $j = 1, \ldots, n$, e da matriz $U : u_i$, $i = 1, \ldots, m$ com os autovalores e autovetores das matrizes $A^t A$ e $A A^t$. Qual \'{e} esta rela\c{c}\~{a}o?
     \begin{solution}
         Os valores singulares n\~{a}o zero de $A$ s\~{a}o a raiz quadrada positiva dos autovalores n\~{a}o zeros de $A^t A$ e $A A A^t$ (os autovalores de $A^t A$ e $A A^t$ s\~{a}o iguais e positivos).
 
@@ -239,6 +239,7 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
 
         Na figura abaixo encontra-se ilustrado a a\c{c}\~{a}o da matriz $[1 \, 2; \, -2 \, 3]$.
         \begin{center}
+            % TODO Refazer figura no TikZ.
             \includegraphics[width=.5\textwidth]{lista11_esfb.png}
         \end{center}
 
@@ -246,6 +247,7 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
 
         Na figura abaixo encontra-se ilustrado a a\c{c}\~{a}o da matriz $[1 \, 7; \, -7 \, 1]$.
         \begin{center}
+            % TODO Refazer figura no Tikz.
             \includegraphics[width=.5\textwidth]{lista11_esfa.png}
         \end{center}
     \end{solution}
@@ -345,7 +347,7 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
         Logo, como $\| A x \|_2 \geq \sigma_1$ e $\| A x \|_2 \leq \sigma_1$ concluimos que $\| A x \|_2 = \sigma_1$.
     \end{solution}
 
-    \question[Teorema 4.2.4, p\'{a}gina 267, do Watkins\nocite{Watkins:2004:fundamentals}] Se $A : n \times n$, e n\~{a}o singular, qual o n\'{u}mero de condi\c{c}\~{a}o de $A$, na norma $2$?
+    \question[Teorema 4.2.4, p\'{a}gina 267, do Watkins\nocite{Watkins:2004:fundamentals}] Se $A : n \times n$, n\~{a}o singular, qual o n\'{u}mero de condi\c{c}\~{a}o de $A$, na norma $2$?
     \begin{solution}
         Sabemos que o n\'{u}mero de condi\c{c}\~{a}o de $A$ na norma $2$, $\kappa_2(A)$, corresponde a
         \begin{align*}
@@ -378,7 +380,15 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
 
     \question Usando a decomposi\c{c}\~{a}o SVD demonstre a rela\c{c}\~{a}o e obtenha o menor valor para a constante $\alpha$: $\| A \|_2 \leq \| A \|_F \leq \alpha \| A \|_2$.
     \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+        Pelo Teorema 4.2.1 do Watkins\nocite{Watkins:2004:fundamentals} temos que $\| A \|_2 = \sigma_1$ e pelo exerc\'{i}cio anterior temos que $\| A \|_F^2 = \sum_{i = 1}^r \sigma_i^2$. Ent\~{a}o verifica-se que
+        \begin{align*}
+            \| A \|_2 &= \sigma_1 \leq \left( \sum_{i = 1}^r \sigma_i^2 \right)^{1/2} = \| A \|_F.
+        \end{align*}
+        No ``pior'' dos casos temos que $\sigma_1 = \sigma_2 = \ldots = \sigma_r$ e portanto
+        \begin{align*}
+            \| A \|_F &= \left( r \sigma_1^2 \right)^{1/2} = \sqrt{r} \sigma_1,
+        \end{align*}
+        logo $\| A \|_F \leq \sqrt{r} \| A \|_2$.
     \end{solution}
 
     \question Demonstre que $\| A \|_2 = \max | y^t A x | / \left( \| x \|_2 \| y \|_2 \right)$, para $x, y \in \mathbb{R}^n$, $\| x \|_2 = 1$ e $\| y \|_2 = 1$. Esta rela\c{c}\~{a}o \'{e} tamb\'{e}m v\'{a}lida se: $\| x \|_2 \leq 1$ e $\| y \|_2 \leq 1$, $x \neq 0$, $y \neq 0$?
@@ -397,7 +407,11 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
 
     \question Considere $A : n \times n$, n\~{a}o singular. Demonstre que $\min \| A x \|_2 = \sigma_n$, $\forall x \in \mathbb{R}^n$, $\| x \|_2 = 1$. Como generalizar este resultado para $A : m \times n$?
     \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+        Pela decomposi\c{c}\~{a}o SVD temos que $A = U \Sigma V^t$ e portanto $A^{-1} = V^{-T} \Sigma^{-1} U^{-1} = V \Sigma^{-1} U^t$. Deste modo, os valores singulares de $A^{-1}$, em ordem crescente, s\~{a}o $\sigma_n^{-1} \geq \sigma_{n - 1}^{-1} \geq \ldots \geq \sigma_1^{-1} > 0$.
+
+        Aplicando o Teorema 4.2.1 do Watkins\nocite{Watkins:2004:fundamentals}, conclui-se que $\| A^{-1} \|_2 = \sigma_n^{-1}$.
+
+        A generaliza\c{c}\~{a}o deste resultado para $A : m \times n$ envolve a defini\c{c}\~{a}o de pseudoinversa.
     \end{solution}
 
     \question Julgue verdadeiro ou falso: $\| A x \|_2 \leq \| A \|_F \| x \|_2$.
@@ -413,6 +427,11 @@ Nos exerc\'{i}cios abaixo, considere a matriz $A : m \times n$ e sua decomposi\c
             &= \| D x \|_2^2.
         \end{align*}
         Logo, $\| A x \|_2 = \| D x \|_2 \leq \| D \|_2 \| x \|_2 = \| A \|_F \| x \|_2$.
+    \end{solution}
+
+    \question Liste os argumentos que podemos usar para afirmar que $\mathrm{posto}(A) = r$.
+    \begin{solution}
+        % TODO Fazer esse exerc\'{i}cio.
     \end{solution}
 \end{questions}
 \bibliographystyle{plain}

@@ -1,4 +1,4 @@
-all: lista01 lista02 lista04 lista04 lista05 lista06 lista07 lista08 lista09 lista10 lista14 lista15 lista16
+all: lista01 lista02 lista03 lista04 lista05 lista06 lista07 lista08 lista09 lista10 lista14 lista15 lista16
 
 ebook:
 	-sed -i '20s/^/% /' paper_size.tex

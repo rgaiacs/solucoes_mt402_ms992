@@ -59,11 +59,41 @@
 \input{cover.tex}
 \newpage
 \setcounter{page}{1}
+\begin{theorem}[Norma matricial induzida\nocite{Meyer:2000:matrix}]
+    Uma norma vetorial definida em $\mathbb{C}^p$, $p = m, n$, induz uma norma matricial definida em $\mathbb{C}^{m \times n}$ por
+    \begin{align*}
+        \| A \| &= \max_{\| x \| = 1} \| A x \|, \forall A \in \mathbb{C}^{m \times n}, x \in \mathbb{C}^{n \times n}.
+    \end{align*}
+    Para uma norma matricial induzida vale
+    \begin{align*}
+        \| A x \| &\leq \| A \| \| x \|
+    \end{align*}
+    e se $A$ for n\~{a}o singular
+    \begin{align*}
+        \min_{\| x \| = 1} \| A x \| = 1 / \| A^{-1} \|.
+    \end{align*}
+\end{theorem}
+\begin{theorem}[Propriedades da norma-2\nocite{Meyer:2000:matrix}]
+    Na norma matricial induzida pela norma-2 vetorial vale que
+    \begin{align*}
+        \| U^* A V \|_2 = \| A \|_2
+    \end{align*}
+    quando $U$ e $V$ s\~{a}o matrizes unit\'{a}rias.
+\end{theorem}
 \begin{defi}[Posto\nocite{Meyer:2000:matrix}]
     O posto de uma matriz $A : m \times n$ \'{e} precisamente a ordem da maior submatriz matriz quadrada n\~{a}o-singular de $A$. Em outras palavras, se $\mathrm{posto}(A) = r$ ent\~{a}o existe pelo menos uma submatriz $r \times r$ n\~{a}o singular em $A$ e n\~{a}o existe nenhuma outra submatriz n\~{a}o-singular de ordem maior que $r$.
 \end{defi}
 \begin{theorem}[4.2.1 do Watkins\nocite{Watkins:2004:fundamentals}]
-    Seja $A \in \mathbb{R}^{n \times n}$ com os seguintes valores singulares: $\sigma_1 \geq \sigma_2 \geq \ldots \geq 0$. Ent\~{a}o $\| A \|_2 = \sigma_1$.
+    Seja $A \in \mathbb{R}^{n \times n}$ com os seguintes valores singulares: $\sigma_1 \geq \sigma_2 \geq \ldots \geq 0$. Ent\~{a}o 
+    \begin{align*}
+        \| A \|_A = \max_{x \neq 0} \frac{\| A x \|_2}{\| x \|_2} = \sigma_1.
+    \end{align*}
+\end{theorem}
+\begin{theorem}[Exerc\'{i}cio 4.2.5 do Watkins\nocite{Watkins:2004:fundamentals}]
+    Seja $A \in \mathbb{R}^{n \times n}$ com os seguintes valores singulares: $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n > 0$. Ent\~{a}o 
+    \begin{align*}
+        \min_{x \neq 0} \frac{\| A x \|_2}{\| x \|_2} = \sigma_n.
+    \end{align*}
 \end{theorem}
 \begin{theorem}[4.5.9 do Meyer\nocite{Meyer:2000:matrix}]
     Se $A$ e $E$ s\~{a}o matrizes $m \times n$ tal que $E$ possue entradas suficientemente pequenas ent\~{a}o
@@ -74,24 +104,41 @@
 \begin{questions}
     \question Considere $A : m \times n$, $\textrm{posto}(A) = r < \min\left\{ m, n \right\}$. Usando a SVD de $A$, mostre que para cada $\epsilon > 0$, existe uma matriz de posto completo $A_\epsilon : m \times n$ tal que $\| A - A_\epsilon \|_2 < \epsilon$.
     \begin{parts}
-        \part Escolha convenientemente $\overline{\epsilon}$ para demonstrar a tese para cada $\epsilon > 0$ e manter a ordena\c{c}\~{a}o decrescente dos valores singulares de $A_\epsilon$.
+        \part[Exerc\'{i}cio 4.2.14 do Watkins\nocite{Watkins:2004:fundamentals}] Escolha convenientemente $\overline{\epsilon}$ para demonstrar a tese para cada $\epsilon > 0$ e manter a ordena\c{c}\~{a}o decrescente dos valores singulares de $A_\epsilon$.
         \begin{solution}
-            Dado $\epsilon > 0$, escolha $A_\epsilon$ tal que se a decomposi\c{c}\~{a}o SVD de $A$ for $A = U D V^t$ com $D = \mathrm{diag}\left\{ \sigma_1, \ldots, \sigma_r, 0 \ldots, 0 \right\}$ ent\~{a}o $A_\epsilon = U D V^t$ com $D = \mathrm{diag}\left\{ \sigma_1, \ldots, \sigma_r, \bar{\epsilon}, \ldots, \bar{\epsilon} \right\}$, $\bar{\epsilon} < \epsilon$ e $\bar{\epsilon} < \sigma_r = \min\left\{ \sigma_1, \ldots, \sigma_r \right\}$.
+            Seja $A = U D V^t$, onde $U : m \times m$ e $V : n \times n$ s\~{a}o matrizes ortogonais e $D : m \times n$ \'{e} tal que $d_{ij} = 0$ para $i \neq j$, $d_{ii} = \sigma_i$, $i = 1, 2, \ldots, r$, $r < \min\left\{ m, n \right\}$, $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$ e $d_{ii} = 0$, $i = r + 1, \ldots, \min\left\{ m, n \right\}$. 
+            
+            Dado $\epsilon > 0$ construimos $A_\epsilon = U D_\epsilon V^t$ onde $D_\epsilon$ difere de $D$ nas posi\c{c}\~{o}es $d_{ii}$, $i = 1, 2, \ldots, \min\left\{ m, n \right\}$, onde \'{e} acrescido $\bar{\epsilon} < \epsilon$ ao valor de $d_{ii}$.
+
+            Ent\~{a}o, temos que
+            \begin{align*}
+                \| A - A_\epsilon \|_2 &= \| V^t D U - V^t D_\epsilon U \|_2 \\
+                &= \| V^t \left( D - D_\epsilon \right) U \|_2 \\
+                &= \| V^t \tilde{D} U \|_2,
+            \end{align*}
+            onde $\tilde{D}$ \'{e} tal que $d_{ij} = 0$ para $i \neq j$, $d_{ii} = \bar{\epsilon}$, $i = 1, 2, \ldots, \min\left\{ m, n \right\}$.
+
+            Como sabemos que $\| A \|_2 = \sigma_1$ concluimos que $\| A - A_\epsilon \|_2 = \bar{\epsilon} < \epsilon$.
         \end{solution}
 
         \part A matriz $A_\epsilon$ pode ser constru\'{i}da a partir da SVD de $A$, mantendo as matrizes $U$ e $V$ e adicionando $\overline{\epsilon} < \epsilon$ a cada valor singular de $A$ para compor a matriz $D_\epsilon$?
         \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+            Sim, foi esse o m\'{e}todo utilizado no item anterior.
         \end{solution}
     \end{parts}
 
-    \question Julgue verdadeiro ou falso a afirma\c{c}\~{a}o:
+    \question[Ver p\'{a}gina 271 do Watkins\nocite{Watkins:2004:fundamentals}] Julgue verdadeiro ou falso a afirma\c{c}\~{a}o:
     \begin{quote}
         O conjunto das matrizes de posto completo \'{e} denso e aberto.
     \end{quote}
     Demonstre se a afirma\c{c}\~{a}o for verdadeira e d\^{e} um contra-exemplo se for falsa.
     \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+        Em topologia, o conjuntos das matrizes de posto completo \'{e} um subconjunto do $\mathbb{R}^{n \times n}$ aberto e denso, i.e.,
+        \begin{enumerate}
+            \item Se $A$ tem posto completo, ent\~{a}o todas as matrizes suficientemente pr\'{o}ximas de $A$ tamb\'{e}m tem posto completo. \label{cond1:denso_aberto}
+            \item Toda matriz de posto incompleto possue pelo menos uma matriz de posto completo arbitrarirmente pr\'{o}xima dela. \label{cond2:denso_aberto}
+        \end{enumerate}
+        No exerc\'{i}cio anterior provamos a condi\c{c}\~{a}o \ref{cond2:denso_aberto}. E a demonstra\c{c}\~{a}o da condi\c{c}\~{a}o \ref{cond1:denso_aberto} \'{e} an\'{a}loga a da condi\c{c}\~{a}o \ref{cond2:denso_aberto} mudando apenas o fato da matriz ter posto completo.
     \end{solution}
 
     \question Demonstre que toda matriz $A : m \times n$ \'{e} limite de uma sequencia de matrizes de posto completo.
@@ -101,47 +148,127 @@
 
     \question Demonstre que $A : m \times n$ com posto $s$ e $B : m \times n$ tal que $\| B - A \|_2 < \sigma_s$, ent\~{a}o $\mathrm{posto}(B) \geq s$.
     \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+        Seja $A = U D V^t$, onde $U : m \times m$ e $V : n \times n$ s\~{a}o matrizes ortogonais e $D : m \times n$ \'{e} tal que $d_{ij} = 0$ para $i \neq j$, $d_{ii} = \sigma_i$, $i = 1, 2, \ldots, s$, $s \leq \min\left\{ m, n \right\}$, $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_s > 0$ e $d_{ii} = 0$, $i = s + 1, \ldots, \min\left\{ m, n \right\}$. 
+
+        Seja $B = U \tilde{D} V^t$, onde $\tilde{D}$ \'{e} tal que $\tilde{d}_{ij} = 0$ para $i \neq j$, $\tilde{d}_{ii} = \tilde{\sigma}_i$, $i = 1, 2, \ldots, r$, $r \leq \min\left\{ m, n \right\}$, $\tilde{\sigma}_1 \geq \tilde{\sigma}_2 \geq \ldots \geq \tilde{\sigma}_r > 0$ e $d_{ii} = 0$, $i = r + 1, \ldots, \min\left\{ m, n \right\}$. 
+
+        Ent\~{a}o, temos que
+        \begin{align*}
+            \| B - A \|_2 &= \| U \tilde{D} V^t - U D V^t \|_2 \\
+            &= \| U \left( \tilde{D} - D \right) V^t \|_2.
+        \end{align*}
+        Como desejamos que $\| B - A \|_2 < \sigma_s$ temos que $\tilde{\sigma_i} = \sigma_i$ para $i = 1, \ldots, s$, $\tilde{\sigma_i} > 0$ para $i = s + 1, \ldots, r$ e $\tilde{\sigma_i} = 0$ para $i = r + 1, \ldots, \min{m, n}$. Logo, conclui-se que o $\mathrm{posto}(B) \geq s$.
     \end{solution}
 
     \question Obtenha a decomposi\c{c}\~{a}o SVD de uma matriz de posto $1$, i.e., se $w : m \times 1$ e $z : n \times 1$ s\~{a}o vetores n\~{a}o nulos, obtenha a decomposi\c{c}\~{a}o SVD de $A = w z^t$.
     \begin{solution}
-        Temos que
+        Calculamos
         \begin{align*}
-            A &= w z^t = \begin{bmatrix}
-                w_1 z_1 & w_1 z_2 & \ldots w_1 z_n \\
-                w_2 z_1 & w_2 z_2 & \ldots w_2 z_n \\
-                \vdots & \vdots & \ddots & \vdots \\
-                w_m z_1 & w_m z_2 & \ldots w_m z_n
-            \end{bmatrix}.
+            A A^t & \left( w z^t \right) \left( w z^t \right)^t \\
+            &= w z^t z w^t \\
+            &= \| z \|_2^2 w w^t.
         \end{align*}
     \end{solution}
 
-    \question Considere $A : m \times n$, $m > n$, o vetor $z > m \times n$ e a matriz $B = [A \ z]$. Mostre que $\sigma_{n + 1}(B) \leq \sigma_n(A)$ e $\sigma_1(B) \geq \sigma_1(A)$.
+    \question Considere $A : m \times n$, $m > n$, o vetor $z : m \times n$ e a matriz $B = [A \ z]$. Mostre que $\sigma_{n + 1}(B) \leq \sigma_n(A)$ e $\sigma_1(B) \geq \sigma_1(A)$.
     \begin{solution}
+        Temos que
+        \begin{align*}
+            \sigma_1(B) &= \max_{x \neq 0} \frac{\| B x \|_2}{\| x \|_2} \\
+            &\geq \max_{x \neq 0, x_{n + 1} = 0} \frac{\| B x \|_2}{\| x \|_2} \\
+            &= \max{x \neq 0} \frac{\| A x \|_2}{\| x \|_2} \\
+            &= \sigma_1(A).
+        \end{align*}
+        % TODO Fazer esse exerc\'{i}cio.
+    \end{solution}
+
+    \question Considere agora $A : m \times n$, $m \geq n$, o vetor $z : n \times n$ e a matriz $B = [A; z^t]$. Mostre que $\sigma_n(B) \geq \sigma_n(A)$ e $\sigma_1(A) \leq \sigma_1(B) \leq \sqrt{\left( \sigma_1(A) \right)^2 + \| z \|_2^2}$.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            \sigma_1(B) &= \max_{\| x \|_2 = 1} \frac{\| B x \|_2}{\| x \|_2} \\
+            &= \max_{\| x \|_2 = 1} \frac{\| [A; z^t] x \|_2}{\| x \|_2}
+        \end{align*}
         % TODO Fazer esse exerc\'{i}cio.
     \end{solution}
 
     \question[Ver exerc\'{i}cio 4.2.10 do Watkins\nocite{Watkins:2004:fundamentals}] Considere $A : n \times n$ sim\'{e}trica definida positiva. Demonstre que existe $M$ sim\'{e}trica, tal que $A = M^2$. Sugest\~{a}o: use a SVD do fator de Cholesky de $A$).
     \begin{solution}
-        % TODO Fazer esse exerc\'{i}cio.
+        Como $A$ \'{e} sim\'{e}trica definida positiva existe $G$ tal que $A = G G^t$. Seja $G = U D V^t$, ent\~{a}o
+        \begin{align*}
+            A &= G^t G \\
+            &= \left( U D V^t \right)^t \left( U D V^t \right) \\
+            &= V D^t U^t U D V^t \\
+            &= V D^t I D V^t \\
+            &= V D^t D V^t \\
+            &= V D D V^t \\
+            &= V D^2 V^t \\
+            &= D^2 V V^t \\
+            &= D^2.
+        \end{align*}
     \end{solution}
 
     \question Valores singulares extremos do produto entre duas matrizes. Se $A : m \times p$ e $B : p \times n$, $q = \min\left\{ m, n \right\}$ e $S = \min\left\{ p, n \right\}$, mostre que
     \begin{parts}
         \part $\sigma_1(A B) \leq \sigma_1(A) \sigma_1(B)$,
         \begin{solution}
-            % TODO Fazer esse exerc\'{i}cio.
+            Temos que
+            \begin{align*}
+                \sigma_1(A B) &= \max_{\| x \| = 1} \frac{\| A B x \|_2}{\| x \|_2} \\
+                &\leq \max_{\| x \| = 1} \frac{\| A \|_2 \| B x \|_2}{\| x \|_2} \\
+                &= \| A \|_2 \max_{\| x \| = 1} \frac{\| B x \|_2}{\| x \|_2} \\
+                &= \| A \|_2 \| B \|_2 \\
+                &= \sigma_1(A) \sigma_1(B).
+            \end{align*}
         \end{solution}
 
         \part $\sigma_q(A B) \leq \sigma_1(A) \sigma_s(B)$.
         \begin{solution}
-            % TODO Fazer esse exerc\'{i}cio.
+            Temos tamb\'{e}m que
+            \begin{align*}
+                \sigma_q(A B) &= \min_{x \neq 0} \frac{\| A B x \|_2}{\| x \|_2} \\
+                &\leq \min_{x \neq 0} \frac{\| A \|_2 \| B x \|_2}{\| x \|_2} \\
+                &= \| A \|_2 \min_{x \neq 0} \frac{\| B x \|_2}{\| x \|_2} \\
+                &= \sigma_1(A) \sigma_s(B).
+            \end{align*}
         \end{solution}
     \end{parts}
 
-    \question Demonstre que uma matriz $A : m \times n$ pode ser expressa como $A = U D V^t$ onde $U : m \times m$ e $V : n \times n$ s\~{a}o ortogonais e $D : m \times n$ \'{e} matriz ``diagonal'' com elementos na diagonal $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r \geq 0$.
+    \question[Exerc\'{i}cio 4.1.17 do Watkins\nocite{Watkins:2004:fundamentals}] Demonstre que uma matriz $A : m \times n$ pode ser expressa como $A = U D V^t$ onde $U : m \times m$ e $V : n \times n$ s\~{a}o ortogonais e $D : m \times n$ \'{e} matriz ``diagonal'' com elementos na diagonal $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r \geq 0$.
     \begin{solution}
+        Vamos provar por indu\c{c}\~{a}o finita em $r$, o posto da matriz $A$.
+        \begin{enumerate}
+            \item Suponha que $A \in \mathbb{R}^{n \times n}$ tem posto $1$. Seja $u_1 \in \mathbb{R}^n$ um vetor em $\mathcal{I}(A)$ tal que $\| u_1 \|_2 = 1$. Ent\~{a}o, como $u_1 \in \mathcal{I}(A)$ verifica-se que existe $x$ tal que
+                \begin{align*}
+                    A_{\mdot 1} x_1 + A_{\mdot 2} x_2 + \ldots A_{\mdot n} x_n &= u_1
+                \end{align*}
+                e como o $\mathrm{posto}(A) = 1$ existe apenas uma coluna linearmente independente em $A$ de modo que reescrevemos a igualdade acima como
+                \begin{align*}
+                    A_{\mdot 1} \left( c_1 x_1 + c_2 x_2 + \ldots + c_n x_n \right) &= u_1,
+                \end{align*}
+                onde $c_1, c_2, \ldots, c_n \in \mathbb{R}$. Logo, verifica-se que cada coluna de $A$ \'{e} um multiplo de $u_1$.
+
+                Como $A$ \'{e} uma matriz de posto $1$ ela pode ser escrita na forma $A = \sigma_1 u_1 v_1^t$, onde $v_1 \in \mathbb{R}^m$, $\| v_1 \|_2 = 1$ e $\sigma_1 > 0$.
+
+            \item Agora demonstremos que a existe uma matriz ortogonal $U \in \mathbb{R}^{n \times n}$ cuja primeira coluna \'{e} $u_1$.
+
+                De maneira similar, existe uma matriz ortogonal $V \in \mathbb{R}^{m \times m}$ cuja primeira coluna \'{e} $v_1$.
+
+                E, por fim, que $A = U D V^t$, onde $D \in \mathbb{R}^{n \times m}$ possui um \'{u}nico elemento n\~{a}o zero, $\sigma_1$, na posi\c{c}\~{a}o $(1,1)$.
+
+            \item Agora, suponha que $A \in \mathbb{R}^{n \times m}$ possue posto $r > 1$. Seja $v_1$ o vetor unit\'{a}rio tal que $\| A v_1 \|_2 = \max_{\| u \|_2 = 1} \| A u \|_2$. Seja $\sigma_1 = \| A u_1 \|_2 = \| A \|_2$ e $\| u_1 = \sigma_1^{-1} A v_1$. Seja $\tilde{U} \in \mathbb{R}^{n \times n}$ e $\tilde{V} \in \mathbb{R}^{m \times m}$ matrizes ortogonais com primeira coluna $u_1$ e $v_1$, respecitivamente. Seja $\tilde{A} = \tilde{U}^t A \tilde{V}$ tal que $A = \tilde{U} \tilde{A} \tilde{V}^t$. Mostremos que $\tilde{A}$ possue a forma
+                \begin{align*}
+                    \tilde{A} = \begin{bmatrix}
+                        \sigma_1 & z^t \\
+                        0 & \hat{A}
+                    \end{bmatrix},
+                \end{align*}
+                onde $z \in \mathbb{R}^{m -1}$ e $\hat{A} \in \mathbb{R}^{(n - 1) \times (m - 1)}$.
+
+            \item Mostre
+
+            \item Most
+        \end{enumerate}
         % TODO Fazer esse exerc\'{i}cio.
     \end{solution}
 \end{questions}
