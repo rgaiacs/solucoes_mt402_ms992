@@ -16,51 +16,6 @@
 %
 % This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
-\documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 10 - Quadrados Mínimos}
-\header{MT402}{\mycheader}{\thepage/\numpages}
-\headrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\slshape}
-\unframedsolutions
-\pointname{}
-
-\input{paper_size.tex}
-
-% Pacotes
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{tikz}
-\usepackage{tikz-3dplot}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
-
-% Customiza\c{c}\~{a}o do pacote amsmath
-\allowdisplaybreaks[4]
-
-% Novos ambientes
-% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
-
-% Novos comandos
-% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
-\newcommand{\mdot}{\bullet}
-
-\begin{document}
-%cover
-\thispagestyle{empty}
-\input{cover.tex}
-\newpage
-\setcounter{page}{1}
 \begin{questions}
     \question Considere $A : m \times n$, $m \geq n$ e $\bar{x} \in \mathbb{R}^n$. Demonstre que: $\| b - A \bar{x} \|_2 = \min_{y \in \mathbb{R}^n} \| b - A y \|_2$ se e somente se $(b - A \bar{x}) \in \text{Im}(A)^\perp$.
     \begin{solution}
@@ -610,6 +565,3 @@
         \end{align*}
     \end{solution}
 \end{questions}
-\bibliographystyle{plain}
-\bibliography{bibliography}
-\end{document}

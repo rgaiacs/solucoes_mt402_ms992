@@ -16,61 +16,15 @@
 %
 % This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
-\documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 08 - Projetores}
-\header{MT402}{\mycheader}{\thepage/\numpages}
-\headrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\slshape}
-\unframedsolutions
-\pointname{}
-
-\input{paper_size.tex}
-
-% Pacotes
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{tikz}
-
-% Customiza\c{c}\~{a}o do pacote amsmath
-\allowdisplaybreaks[4]
-
-% Novos ambientes
-% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
-
-% Novos comandos
-% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
-\newcommand{\mdot}{\bullet}
-\newcommand{\mdot}{\bullet}
-\newcommand{\EI}[1]{\text{Im}(#1)}
-\newcommand{\EN}[1]{\text{N}(#1)}
-\newcommand{\posto}[1]{\text{posto}(#1)}
-
-\begin{document}
-%cover
-\thispagestyle{empty}
-\input{cover.tex}
-\newpage
-\setcounter{page}{1}
 \begin{questions}
     \question[Trefthen - Lecture 6] Um projetor \'{e} uma matriz $P : n \times n$ que satisfaz $P^2 = P$ (matriz idempotente).
     \begin{parts}
-        \part Se $v \in \EI{P}$, ent\~{a}o $P v = v$.
+        \part Se $v \in \EIof{P}$, ent\~{a}o $P v = v$.
         \begin{solution}
-            $v \in \EI{P} \rightarrow v = P x, x \in \mathbb{R}^n$. Ent\~{a}o, $P v = P (Px) = P^2(x) = Px = v$.
+            $v \in \EIof{P} \rightarrow v = P x, x \in \mathbb{R}^n$. Ent\~{a}o, $P v = P (Px) = P^2(x) = Px = v$.
         \end{solution}
 
-        \part O vetor $(v - Pv)$ pertence a $\EN{P}$.
+        \part O vetor $(v - Pv)$ pertence a $\ENof{P}$.
         \begin{solution}
             $P (v - Pv) = Pv - P^2v = Pv - Pv = 0$.
         \end{solution}
@@ -82,32 +36,32 @@
             Resultado: se $P$ \'{e} projetor, ent\~{a}o, $I - P$ tamb\'{e} \'{e} projetor.
         \end{solution}
         
-        \part $\EI{I - P} = \EN{P}$.
+        \part $\EIof{I - P} = \ENof{P}$.
         \begin{solution}
-            Primeiro vamos provar que $\EI{I - P} \subseteq \EN{P}$.
+            Primeiro vamos provar que $\EIof{I - P} \subseteq \ENof{P}$.
 
-            Se $w \in \EI{I - P}$, ent\~{a}o $w = (I - P) y$, $y \in \mathbb{R}^n$, e $P w = P (I - P) y = P y - P^2 y = P y - P y = 0$, portanto, $w \in \EN{P}$.
+            Se $w \in \EIof{I - P}$, ent\~{a}o $w = (I - P) y$, $y \in \mathbb{R}^n$, e $P w = P (I - P) y = P y - P^2 y = P y - P y = 0$, portanto, $w \in \ENof{P}$.
 
-            Agora vamos provar que $\EN{P} \subseteq \EI{I - P}$.
+            Agora vamos provar que $\ENof{P} \subseteq \EIof{I - P}$.
 
-            $z \in \EN{P} \rightarrow P z = 0 \rightarrow P z - z + z = 0 \rightarrow (I - P) z = z \rightarrow z \in \mathbb{I - P}$.
+            $z \in \ENof{P} \rightarrow P z = 0 \rightarrow P z - z + z = 0 \rightarrow (I - P) z = z \rightarrow z \in \mathbb{I - P}$.
 
-            Resultado: $\EI{I - P} = \EN{P}$ e $\EI{P} = \EN{I - P}$.
+            Resultado: $\EIof{I - P} = \ENof{P}$ e $\EIof{P} = \ENof{I - P}$.
         \end{solution}
 
-        \part $\EI{P}$ e $\EN{P}$ s\~{a}o subespa\c{c}os complementares em $\mathbb{R}^n$.
+        \part $\EIof{P}$ e $\ENof{P}$ s\~{a}o subespa\c{c}os complementares em $\mathbb{R}^n$.
 
         \begin{solution}
-            %$\EI{P} \cap \EN{P} = \{0\} 
-            $\forall w \in \EI{P} \cap \EN{P}$, tem-se que $P w = w$ e $P w = 0$, logo, $\EI{P} \cap \EN{P} = {0}$. $\forall v \in \mathbb{R}^n : v = v - P v + Pv = Pv + (I - P)v = v_1 + v_2$ com $v_1 \in \EI{P}$ e $v_2 \in \EI{I - P}$ (e pelo resultado do item anterior: $v_2 \in \EN{P}$).
+            %$\EIof{P} \cap \ENof{P} = \{0\} 
+            $\forall w \in \EIof{P} \cap \ENof{P}$, tem-se que $P w = w$ e $P w = 0$, logo, $\EIof{P} \cap \ENof{P} = {0}$. $\forall v \in \mathbb{R}^n : v = v - P v + Pv = Pv + (I - P)v = v_1 + v_2$ com $v_1 \in \EIof{P}$ e $v_2 \in \EIof{I - P}$ (e pelo resultado do item anterior: $v_2 \in \ENof{P}$).
 
-            E, esta forma de representar $v$ \'{e} única, pois: se existir outra representa\c{c}\~{a}o para $v$, $v = r_1 + r_2$ com$r_1 \in \EI{P}$ e $r_2 \in \EN{P}$ e $r_2 \in \EN{P}$, subtraindo esta representa\c{c}\~{a}o da anterior, teremos: $0 = P v + (I - P)v - (r_1 + r_2) = (Pv - r_1) + ((I - P)v - r_2)) \rightarrow (P v - r_1) = -( (I - P) v - r_2) $ com $(P v - r_1) \in \EI{P}$ e $( (I - P)v - r_2) \in \EI{I - P} = \EN{P}$. Logo estes veores est\~{a}o na interse\c{c}\~{a}o de $\EI{P}$ e $\EN{P}$, e portanto, s\~{a}o iguais ao vetor nulo. Logo, $r_1 = P v$ e $r_2 = (I - P)v$ e portanto a representa\c{c}\~{a}o \'{e} única.
+            E, esta forma de representar $v$ \'{e} única, pois: se existir outra representa\c{c}\~{a}o para $v$, $v = r_1 + r_2$ com$r_1 \in \EIof{P}$ e $r_2 \in \ENof{P}$ e $r_2 \in \ENof{P}$, subtraindo esta representa\c{c}\~{a}o da anterior, teremos: $0 = P v + (I - P)v - (r_1 + r_2) = (Pv - r_1) + ((I - P)v - r_2)) \rightarrow (P v - r_1) = -( (I - P) v - r_2) $ com $(P v - r_1) \in \EIof{P}$ e $( (I - P)v - r_2) \in \EIof{I - P} = \ENof{P}$. Logo estes veores est\~{a}o na interse\c{c}\~{a}o de $\EIof{P}$ e $\ENof{P}$, e portanto, s\~{a}o iguais ao vetor nulo. Logo, $r_1 = P v$ e $r_2 = (I - P)v$ e portanto a representa\c{c}\~{a}o \'{e} única.
 
-            Resultado: $\mathbb{R}^n = \EI{P} + \EN{P}$ ou $\mathbb{R}^n = \EI{P} + \EI{I - P}$ e portanto, se $\posto{P} = r$, temos $\posto{\EI{I - P}} = \posto{\EN{P}} = n - r$.
+            Resultado: $\mathbb{R}^n = \EIof{P} + \ENof{P}$ ou $\mathbb{R}^n = \EIof{P} + \EIof{I - P}$ e portanto, se $\postoof{P} = r$, temos $\postoof{\EIof{I - P}} = \postoof{\ENof{P}} = n - r$.
         \end{solution}
     \end{parts}
 
-    \question Encontre um exemplo de matriz $P : 2 \times 2$ que seja um projetor (n\~{a}o deve ser ortogonal). Interprete geometricamente esta proje\c{c}\~{a}o mostrando os subespa\c{c}os $\EI{P}$ e $\EN{P}$.
+    \question Encontre um exemplo de matriz $P : 2 \times 2$ que seja um projetor (n\~{a}o deve ser ortogonal). Interprete geometricamente esta proje\c{c}\~{a}o mostrando os subespa\c{c}os $\EIof{P}$ e $\ENof{P}$.
     \begin{solution}
         Se $P$ \'{e} um projetor ent\~{a}o $P^2 = P$ que implica em $P^2 - P = P(I - P) = 0$. Logo,
         \begin{align*}
@@ -214,7 +168,7 @@
         \end{enumerate}
     \end{solution}
 
-    \question[Exemplo 5.13.3, p\'{a}gina 434, do Meyer\nocite{Meyer:2000:matrix}] Projetores com Bases Arbitr\'{a}rias: Considere $A : m \times n$, $\posto{A} = n$ e o subespa\c{c}o $\EI{A}$. Deduza a express\~{a}o para $P$, projetor ortogonal sobre $\EI{A}$.
+    \question[Exemplo 5.13.3, p\'{a}gina 434, do Meyer\nocite{Meyer:2000:matrix}] Projetores com Bases Arbitr\'{a}rias: Considere $A : m \times n$, $\postoof{A} = n$ e o subespa\c{c}o $\EIof{A}$. Deduza a express\~{a}o para $P$, projetor ortogonal sobre $\EIof{A}$.
     \begin{solution}
         Seja $B_{m \times r}$ e $N_{n \times n - r}$ matrizes cujas colunas s\~{a}o bases de $\text{Im}(A)$ e $\text{N}(A)$, respectivamente. O Teorema da decomposi\c{c}\~{a}o ortogonal diz que $\text{Im}(A)^\perp = \text{N}(A^t)$ e $\text{N}(A)^\perp = \text{Im}(A^t)$, ent\~{a}o utilizando
         \begin{align*}
@@ -340,8 +294,3 @@
         \end{align*}
     \end{solution}
 \end{questions}
-\bibliographystyle{plain}
-\bibliography{bibliography}
-\end{document}
-
-

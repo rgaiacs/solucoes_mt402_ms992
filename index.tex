@@ -1,0 +1,120 @@
+% Filename: index.tex
+% 
+% This code is part of 'Solutions for MT402, Matrizes'
+% 
+% Description: This file corresponds to the solutions of homework sheet 01.
+% 
+% Authors:
+% - Raniere Silva (2012): initial version
+% 
+% Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
+% 
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[a4paper,12pt, leqno, answers]{exam}
+\header{MT402}{}{\thepage/\numpages}
+\headrule
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footrule 
+\pagestyle{headandfoot}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\SolutionEmphasis{\slshape}
+\unframedsolutions
+\pointname{}
+
+\input{paper_size.tex}
+
+% Pacotes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+% Customiza\c{c}\~{a}o do pacote amsmath
+\allowdisplaybreaks[4]
+
+% Novos ambientes
+% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
+
+% Novos comandos
+% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
+\newcommand{\mdot}{\bullet}
+\newcommand{\EI}{\text{Im}}
+\newcommand{\EN}{\text{N}}
+\newcommand{\posto}{\text{posto}}
+\newcommand{\cond}{\text{cond}}
+\newcommand{\EIof}[1]{\text{Im}(#1)}
+\newcommand{\ENof}[1]{\text{N}(#1)}
+\newcommand{\postoof}[1]{\text{posto}(#1)}
+\newtheorem{defi}{Defini\c{c}\~{a}o}
+\newtheorem{theorem}{Teorema}
+
+
+\begin{document}
+%cover
+\thispagestyle{empty}
+\input{cover.tex}
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\section{Lista 01 - Revis\~{a}o de \'{A}lgebra Matricial I}
+\input{lista01}
+\newpage
+\section{Lista 02 - Revis\~{a}o de \'{A}lgebra Matricial II}
+\input{lista02}
+\newpage
+\section{Lista 03 - Revis\~{a}o de \'{A}lgebra Matricial III}
+\input{lista03}
+\section{Lista 04 - Normas de Vetores e Matrizes}
+\input{lista04}
+\newpage
+\section{Lista 05 - N\'{u}mero de Condi\c{c}\~{a}}
+\input{lista05}
+\newpage
+\section{Lista 06 - Fatora\c{c}\~{a}o LU}
+\input{lista06}
+\newpage
+\section{Lista 07 - Fatora\c{c}\~{a}o de Cholesky}
+\input{lista07}
+\newpage
+\section{Lista 08 - Projetores}
+\input{lista08}
+\newpage
+\section{Lista 09 - Fatora\c{c}\~{o}es Ortogonais}
+\input{lista09}
+\newpage
+\section{Lista 10 - Quadrados Mínimos}
+\input{lista10}
+\newpage
+\section{Lista 11 - Decomposi\c{c}\~{a}o SVD}
+\input{lista11}
+\newpage
+\section{Lista 12 - Pseudoinversa}
+\input{lista12}
+\newpage
+\section{Lista 13 - SVD}
+\input{lista13}
+\newpage
+\section{Lista 14 - Autovalores e Autovetores I}
+\input{lista14}
+\newpage
+\section{Lista 15 - Autovalores e Autovetores II}
+\input{lista15}
+\newpage
+\section{Lista 16 - M\'{e}todo QR}
+\input{lista16}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\end{document}

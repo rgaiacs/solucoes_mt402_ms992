@@ -1,4 +1,12 @@
-This code is part of 'Solutions for MT402, Matrizes'
+# Solutions for MT402, Matrizes
+
+This has resources from MT402 classes from
+
+- 2010 taught by Márcia Ruggiero
+- 2011 taught by Márcia Ruggiero
+- 2012 taught by Aurelio Oliveira
+
+## License
 
 Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 
@@ -6,18 +14,12 @@ This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unpo
 
 This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
---- English ---
+## Instructions
 
----
+Compile using
 
---- Português ---
-Aqui você encontrará as soluções das listas de exercícios, testes e provas utilizadas nas disciplinas
- - MT402: Matrizes,
+~~~
+$ latexmk -pdf index.tex
+~~~
 
-Cada questão encontra-se identificada pela atividade e ano em que apareceu (eventualmente também algum livro-texto), e.g., \question[P2 de 2011, E de 2011] que corresponde a segunda prova de 2011 e ao exame de 2011.
-
-A seguir encontra-se uma listas dos anos, seguido pelo professor responsável, utilizados para compor esse material:
- - 2010 (Márcia Ruggiero)
- - 2011 (Márcia Ruggiero)
- - 2012 (Aurelio Oliveira)
----
+and open `index.pdf` with your favorite PDF reader.

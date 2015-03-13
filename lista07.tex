@@ -16,49 +16,6 @@
 %
 % This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
-\documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 07 - Fatora\c{c}\~{a}o de Cholesky}
-\header{MT402}{\mycheader}{\thepage/\numpages}
-\headrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
-\footrule 
-\pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
-\SolutionEmphasis{\slshape}
-\unframedsolutions
-\pointname{}
-
-\input{paper_size.tex}
-
-% Pacotes
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{algorithmicx}
-\usepackage{algpseudocode}
-
-% Customiza\c{c}\~{a}o do pacote amsmath
-\allowdisplaybreaks[4]
-
-% Novos ambientes
-% \newenvironment{fwsolution}{\begin{EnvFullwidth}\begin{TheSolution}}{\end{TheSolution}\end{EnvFullwidth}}
-
-% Novos comandos
-% \newcommand{\mdot}{\text{\LARGE $\boldsymbol{\cdot}$}}
-\newcommand{\mdot}{\bullet}
-
-\begin{document}
-%cover
-\thispagestyle{empty}
-\input{cover.tex}
-\newpage
-\setcounter{page}{1}
 \begin{questions}
     \question[Ver exerc\'{i}cio 3.10.9, p\'{a}gina 157, do Meyer\nocite{Meyer:2000:matrix}] Demonstre que se a matriz $A : n \times n$ tem fatora\c{c}\~{a}o LU ent\~{a}o \'{e} poss\'{i}vel obter uma fatora\c{c}\~{a}o $A = L D \tilde{U}$ com $\tilde{u}_{ii} = 1$. Se, $A$ for tamb\'{e}m sim\'{e}trica ent\~{a}o esta fatora\c{c}\~{a}o \'{e} da forma $A = L D L^t$.
     \begin{solution}
@@ -494,6 +451,3 @@
         Como $x^t A x \geq 0$ para qualquer $x$ temos que $x_2^t A_{22} x_2 \geq 0$ para qualque $x_2$ e portanto as submatrizes $A_{22}$ de ordem $(n - k)$ s\~{a}o matrizes sim\'{e}tricas definidas positivas
     \end{solution}
 \end{questions}
-\bibliographystyle{plain}
-\bibliography{bibliography}
-\end{document}
